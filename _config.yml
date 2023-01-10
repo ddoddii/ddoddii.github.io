@@ -66,15 +66,15 @@ heading_anchors: true
 
 # Aux links for the upper right navigation
 aux_links:
-  "Just the Docs on GitHub":
-    - "//github.com/just-the-docs/just-the-docs"
+  "Ddoddii on GitHub":
+    - "https://github.com/ddoddii"
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false
 
 # Sort order for navigation links
 # nav_sort: case_insensitive # default, equivalent to nil
-nav_sort: case_sensitive # Capital letters sorted before lowercase
+nav_sort: case_insensitive # Capital letters sorted before lowercase
 
 # External navigation links
 nav_external_links:
