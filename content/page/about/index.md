@@ -15,6 +15,9 @@ menu:
             icon: user
 ---
 
+# My Motto 
+
+Change yourself, Change your organization, Change the world ! 
 # Things I like
 
 - 📖 "Science Fiction novels" are the books I would carry to an island, when I am shipwrecked. I love books by Andy Weir and Ted Chaing. My favorite book is 'Project HailMary' and  'Story of Your Life'. I figure I love stories about outer space and aliens. Maybe someday I hope I would be showing my blog to random stranger in space? 

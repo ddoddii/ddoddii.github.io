@@ -1,4 +1,4 @@
-baseURL = ' https://ddoddii.github.io'
+baseURL = 'https://ddoddii.github.io'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = "Soeun's Dots"
 theme = 'hugo-theme-stack'
