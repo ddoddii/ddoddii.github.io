@@ -1,16 +1,18 @@
----
-title: Building Reproducible ML Pipelines
-description: ML Model 배포하기 - 4
-date: 2023-07-04 
-slug: DS
-image: 
-categories:
-    - DS
-tags:
-    - MLOps
----
++++
+author = "Soeun"
+title = "Building Reproducible ML Pipelines"
+date = "2023-07-04"
+description = "ML Model 배포하기 - 4"
+categories = [
+    "DS"
+]
+tags = [
+    "MLOps"
+]
+image = ""
++++
 
-## ch 2-4. Building Reproducible ML Pipelines
+### Reproducibility
 
 ![Untitled](https://github.com/ddoddii/skills-for-DS/assets/95014836/6300a20e-6272-4b62-81ec-74eefda977e7)
 

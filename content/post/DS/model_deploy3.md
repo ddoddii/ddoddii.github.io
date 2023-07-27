@@ -1,14 +1,16 @@
----
-title: Research vs. Production Environments
-description: ML Model 배포하기 - 3
-date: 2023-07-03 
-slug: DS
-image: 
-categories:
-    - DS
-tags:
-    - MLOps
----
++++
+author = "Soeun"
+title = "Research vs. Production Environments"
+date = "2023-07-03"
+description = "ML Model 배포하기 - 3"
+categories = [
+    "DS"
+]
+tags = [
+    "MLOps"
+]
+image = ""
++++
 
 ### Environment
 

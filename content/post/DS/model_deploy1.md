@@ -1,14 +1,16 @@
----
-title: ML Model Deployment
-description: ML Model 배포하기 - 1
-date: 2023-07-01
-slug: DS
-image: 
-categories:
-    - DS
-tags:
-    - MLOps
----
++++
+author = "Soeun"
+title = "ML Model Deployment"
+date = "2023-07-01"
+description = "ML Model 배포하기 - 1"
+categories = [
+    "DS"
+]
+tags = [
+    "MLOps"
+]
+image = ""
++++
 ### Model Deployment 이란 무엇일까?
 
 ML Model 을 deploy(배포) 한다는 것은 우리가 만든 모델을 프로덕션 환경에서 쓸 수 있게 하는 것이다. ML 라이프 사이클에서 가장 마지막 단계에 위치하며, 어쩌면 가장 어려운 단계이다. 

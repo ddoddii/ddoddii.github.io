@@ -1,14 +1,16 @@
----
-title: Deployment of ML Pipelines
-description: ML Model 배포하기 - 2
-date: 2023-07-02
-slug: DS
-image: 
-categories:
-    - DS
-tags:
-    - MLOps
----
++++
+author = "Soeun"
+title = "Deployment of ML Pipelines"
+date = "2023-07-02"
+description = "ML Model 배포하기 - 2"
+categories = [
+    "DS"
+]
+tags = [
+    "MLOps"
+]
+image = ""
++++
 
 ### Machine Learning Models
 
