@@ -12,4 +12,3 @@ categories:
 
 ![img1](https://github.com/ddoddii/skills-for-DS/assets/95014836/f3df8e6d-21af-4512-a360-9801b993b08b)
 
-여기 팀원 A와 
