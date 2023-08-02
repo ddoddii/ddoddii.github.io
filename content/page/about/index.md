@@ -1,13 +1,13 @@
 ---
 title: About Me
 description: Soeun Uhm
-date: '2023-03-02'
+date: '2023-01-31'
 aliases:
   - about-us
   - about-hugo
   - contact
 license: CC BY-NC-ND
-lastmod: '2023-03-02'
+lastmod: '2023-02-01'
 menu:
     main: 
         weight: -90
@@ -15,12 +15,17 @@ menu:
             icon: user
 ---
 
-# My Motto 
+## My Motto 
 
-Change yourself, Change your organization, Change the world ! 
-# Things I like
+**Change yourself, Change your organization, Change the world !**
+## About Me
 
-- 📖 "Science Fiction novels" are the books I would carry to an island, when I am shipwrecked. I love books by Andy Weir and Ted Chaing. My favorite book is 'Project HailMary' and  'Story of Your Life'. I figure I love stories about outer space and aliens. Maybe someday I hope I would be showing my blog to random stranger in space? 
-- 🏂 I am a great skiier, fencer, horseback rider. I enjoy many challenges. I have been skiing since I was 4 years old. I learned fencing since 2020, and I participated in amateur fencing competition (I never got any medal..) but still,the oppurtunity to stab some random stranger doesn't come easily.
-- 📊 I am interested in studies about studying efficiently. I always experiment with tools that would make me more productive. I am really adaptive to new things. 
-- 🌎 Traveling is the source of my life and passion. I have been to many countries, and by far Spain was my favorite country. I can never forget the codfish I ate in Barcellona after a long long walk! 
+- 📖 책 읽는 것을 좋아합니다. 특히 그 중에서 SF 소설, 특히 우주와 관련된 소설을 정말 좋아합니다. 가장 재밌게 읽었던 책들은 `프로젝트 헤일메리 - 앤디위어` , `마션 - 앤디위어` , `당신 인생의 이야기 - 테드 창` 입니다. 이렇게 놓고 보니 외계인, 우주에 표류하기 와 같은 종류를 정말 좋아하네요. 🪐 특히 프로젝트 헤일메리는 정말 강력 추천합니다. 500페이지가 넘어가는 책이지만 너무 재밌어서 앉은 자리에서 6시간 동안 다 읽어버렸던 책입니다. 
+
+- 🏂 저는 도전적인 액티비티를 좋아합니다. 저는 스키를 잘 타고, 펜싱을 배웠으며, 몽골에 말을 타러 다녀왔습니다. 번지점프, 자이로드롭 등 흥미진진한 놀이기구를 타는 것도 좋아합니다. 도전하는 것을 즐기고, 그런 낙에 살아갑니다.
+
+- 📊 저는 효율화, 최적화 에 관심이 많습니다. 그래서 데이터를 분석하는 효율적이고 최적화된 파이프라인을 구축하는 데이터 엔지니어 라는 직업에 재미를 느끼는 것 같습니다. 사람의 지식 체계에도 관심이 많아 Zettelkasten Method, Second Brain 에 대해 공부하고 있습니다.
+
+- 🌎 저는 여행하는 것을 좋아합니다. 지금껏 많은 나라를 여행했지만, 제가 꼽은 가장 좋았고 재밌고 맛있었던 나라는 스페인🇪🇸입니다. 스페인 바르셀로나 해변가에서 탄 자전거, 저녁에 먹었던 꿀대구 요리가 가장 기억에 남네요.
+
+- 💪 저의 모토는 나를 바꾸고, 내 조직을 바꾸고, 세상을 바꾸자 입니다. 저는 저부터 바뀌고, 제 영향으로 제가 몸담고 있는 조직이 긍정적으로 변화하고, 나아가 저와 제가 만난 사람들이 결국에는 세상을 바꿀 수 있다고 생각합니다. 아주 조금씩, 좋은 방향으로 세상이 바뀔 것이라고 믿습니다.
