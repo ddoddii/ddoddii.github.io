@@ -77,8 +77,7 @@ class BookRequest(BaseModel):
 async def create_book(book_request : BookRequest):
     new_book = Book(**book_request.dict())
     BOOKS.append(find_book_id(new_book))
-    return BOOKS
-
+    return BOOKS=
 ```
 
 그래서 실제 docs 에서 rating 에 10 을 입력하면 422 error 가 나타나는 것을 확인할 수 있다.
