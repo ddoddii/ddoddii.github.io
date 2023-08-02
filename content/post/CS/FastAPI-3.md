@@ -39,9 +39,10 @@ def sentiment(text):
 
 main.py 파일에서는 label_1, label_2, score_1, score_2 값을 리턴하도록 했다. 
 
-이렇게 main.py 파일을 세팅했으면 api.py 파일에서 FastAPI 를 이용해서 API Endpoint 를 설계해보자. 
+### 2. API 설계
 
-나의 api.py 파일은 다음과 같다. 
+-  `api.py` 파일에서 FastAPI 를 이용해서 API Endpoint 를 설계
+-  `api.py` 파일은 다음과 같다. 
 
 우선 logger 를 설정해서 error 가 발생하면 로그가 발생하도록 했다. 
 그리고 SentimentRequest , SentimentResult class 를 각각 만들어서 어떤 값이 input 이고 output 값은 어떤지 지정을 해줬다. 
@@ -114,5 +115,5 @@ async def root(payload: SentimentRequest):
 - Udemy, FastAPI - The complete course 2023
 
 ### 사용한 자료와 코드
-- 사용한 자료와 코드는 모두 제 Github 에서 볼 수 있습니다.
+- 사용한 자료와 코드는 모두 제 GitHub 에서 볼 수 있습니다.
 - [GitHub](https://github.com/ddoddii/skills-for-DS/tree/main/week3) `sentiment-api-project` 파일 참고

@@ -171,5 +171,5 @@ async def read_book(book_id : int =Path(gt=0)):
 - Udemy, FastAPI - The complete course 2023
 
 ### 사용한 자료와 코드
-- 사용한 자료와 코드는 모두 제 Github 에서 볼 수 있습니다.
+- 사용한 자료와 코드는 모두 제 GiHhub 에서 볼 수 있습니다.
 - [GitHub](https://github.com/ddoddii/skills-for-DS/tree/main/week3) `books2.py` 파일 참고
