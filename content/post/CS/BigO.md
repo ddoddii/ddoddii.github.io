@@ -83,3 +83,6 @@ Big(O) : Worst case 를 생각한다
                 for j in range(b):
                     print(i,j)
     ```
+
+### Reference
+Udemy, Data Structures & Algorithms sec.2
