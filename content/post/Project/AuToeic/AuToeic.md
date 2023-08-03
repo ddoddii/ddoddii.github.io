@@ -121,3 +121,7 @@ OpenAI에서 2021년 1월 5일에 공개한 CLIP(Contrastive Language-Image Pre-
 
 
 ![KakaoTalk_Photo_2023-08-03-14-58-27](https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/74ea0a95-36ca-4e00-98cc-e587c3d2d0a9)
+
+## 코드와 설명서
+- 사용한 코드는 아래 GitHub 에서 볼 수 있습니다.
+- Code : [GitHub](https://github.com/ddoddii/DSL-23-1-modeling-AuToeic)
