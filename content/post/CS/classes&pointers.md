@@ -35,6 +35,103 @@ print(cookie_one.get_color()) # green 출력
 cookie_one.set_color('red')
 print(cookie_one.get_color()) # red 출력
 ```
+### Inheritance 
+- **"A natural way to organize various structural components of a software package is in a hierachical fashion"**
+- 아래는 수업시간에 정말 헷갈렸고 머리가 터졌던 예시이다. 
+
+**오류코드 1.**
+```python
+class Square:
+    def __init__(self,side):
+        self.side = side
+    def area(self):
+        return self.side * self.side
+class SquarePrism(Square):
+    def __init__(self,side,height):
+        self.side = side
+        self.height = height
+    def area(self):
+        base_area = super().area() #Square 의 area 함수를 상속받음
+        lateral_area = self.side * self.height
+        returen 2 * base_area + 4 * lateral_area
+class Cube(SquarePrism):
+    def __init__(self,side):
+        super().__init__(self,side)
+    def area(self):
+        return super().area() * 100
+
+x = Cube(2)
+print(x.area()) # Error
+```
+- 위의 코드에서 Cube의 init 함수 내의 `super().__init__(self, side)` 를 보자. 
+  - super() 라고 했으니 SquarePrism 의 __init__ 함수를 가져온다. SquarePrism 의 __init__ 함수는 인자가 2개 (side, height) 필요하다. 
+  - x = Cube(2) 라고 했을 때 SquarePrism 의 side = Cube(2) , height = 2 가 된다.
+  - SquarePrism 에서 super().area() 를 할 때, Square 의 area method 내 self.side * self.side 는 Cube(2) * Cube(2) 가 된다.
+  - 하지만 우리는 Instance (Cube) 끼리의 곱셈은 정의한 적 없다. 
+  - 따라서 위 코드는 오류가 난다 ! 
+
+**오류코드2.**
+
+```python
+class Square:
+    def __init__(self,side):
+        self.side = side
+    def area(self):
+        return self.side * self.side
+class SquarePrism(Square):
+    def __init__(self,side,height):
+        self.side = side
+        self.height = height
+    def area(self):
+        base_area = super().area() #Square 의 area 함수를 상속받음
+        lateral_area = self.side * self.height
+        returen 2 * base_area + 4 * lateral_area
+class Cube(SquarePrism):
+    def __init__(self,side):
+        super().__init__(self,side)
+        self.side = side
+    def area(self):
+        return super().area() * 100
+
+x = Cube(2)
+print(x.area()) #2400
+```
+- 위 코드는 정상적으로 작동하지만, 옳게 고친 방법은 아니다.
+  - Cube 의 __init__ 내에 `self.side = side` 를 추가했다.
+  - 앞과 동일하게, 여전히 SquarePrism 에서 side = Cube(2) , height = 2 
+  - 하지만, `self.side = side` 를 통해서, side = 2 로 변경된다.
+  - 따라서 본의 아니게, side 자리에는 side 가, height 자리에도 side 가 들어간다.
+
+**정답코드**
+
+```python
+class Square:
+    def __init__(self,side):
+        self.side = side
+    def area(self):
+        return self.side * self.side
+class SquarePrism(Square):
+    def __init__(self,side,height):
+        self.side = side
+        self.height = height
+    def area(self):
+        base_area = super().area() #Square 의 area 함수를 상속받음
+        lateral_area = self.side * self.height
+        return 2 * base_area + 4 * lateral_area
+class Cube(SquarePrism):
+    def __init__(self,side):
+        super().__init__(side=side,height=side)
+    def area(self):
+        return super().area() * 100
+
+x = Cube(2)
+print(x.area())
+``` 
+- 위의 코드에서 Cube의 __init__ 함수에 `super().__init__(side=side,height=side)` 를 보자
+  - Cube 는 인자를 1개 받는다 (side)
+  - Cube 는 정육면체이므로 side, height 가 같다. 따라서 height = side 를 해주면, height 에도 side 와 같은 값이 들어가서 Cube class 가 완성된다 !
+
+
 
 ### Pointer
 
@@ -95,4 +192,5 @@ print(id(dict3)) #4302620352
 여기서 dict1 = dict2 까지 해주면 어떻게 될까 ? 그러면 {'value':11} 를 가리키는 변수가 더 이상 없고, 이 값에 접근할 수 없어진다. 그러면 python 에서는 Garbage Collection 이라는 기능을 통해 이 값을 없애버린다.
 
 ### Reference
-Udemy, Data Structures & Algorithms sec.3
+- 2023-1 데이터 사이언스를 위한 자료구조 및 알고리즘, 연세대학교 송경우 교수님
+- Udemy, Data Structures & Algorithms sec.3
