@@ -14,13 +14,14 @@ image = ""
 
 ### Utterances 
 
-내 개인 blog 를 만들고 comment 를 만들고 싶었는데, disqus, commento, utterances 중에서 고민하다가 utterances 를 골랐다. 
+내 개인 blog 를 만들고 comment 를 만들고 싶었는데, disqus, commento, utterances 중에서 고민하다가 ==utterances== 를 골랐다. 
 이유는 아래와 같다. 
 - 익숙한 github issues 를 이용한 코멘트 방식
 - 무료 (최대 이유)
 - 설치하기 정말 쉽다 
 
-
+<span style="background-color:#fff5b1"> 노란형광펜 </span>
+<span style="color:red"> red </span>
 ### 설치 방법
 
 1. **[utterances](https://utteranc.es/?installation_id=40366359&setup_action=install)로 가서 아래 사진 속 네모 친 utterances app 을 클릭한다.** 

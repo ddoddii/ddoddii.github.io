@@ -2,3 +2,13 @@ baseURL = 'https://ddoddii.github.io'
 languageCode = 'en-us'
 title = "Soeun's Dots"
 theme = 'hugo-theme-stack'
+
+# robots.txt
+enableRobotsTXT = true
+
+# sitemap 생성
+[sitemap]
+# always, hourly daily, weekly, monthly, yearly, never
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
