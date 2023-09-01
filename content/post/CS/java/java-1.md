@@ -2,7 +2,7 @@
 author = "Soeun"
 title = "Java 기초"
 date = "2023-08-28"
-description = "Java 기초 학습"
+description = "Java 기초 배우기"
 categories = [
     "CS"
 ]
@@ -21,11 +21,11 @@ image = ""
     - C , C++ , Java 등이 있다.
     - 하지만 여러 OS(window, mac, linux) 등이 있는데, 윈도우에서 컴파일한 C언어를 mac 또는 Linux 에서 돌리지 못한다. 그래서 실행할 컴퓨터 OS 환경에 맞춰 따로따로 compile 해야 한다.
     - Java 는 실행할 컴퓨터에 jvm(java virtual machine)을 깔아서, 어느 OS위에 Compile 해도, 어느 OS 위에서도 실행할 수 있다! Java로 짠 코드는 처음에 JB(Java Bytecode)로 compile 되는데, jvm 은 JB 도 알아듣고, 각 OS 의 기계어도 알아듣기 때문에 문제없이 실행가능하다. 
-    - 
+    - Compile 언어는 문법오류가 있을 때 아예 compile하지 않고, 오류가 뜬다. 그래서 더 안정적이다.
   - Interpreted(통역) 언어
     - 사람이 읽을 수 있는 언어로 짠 코드를 컴퓨터가 알아들을 수 있게 실시간으로 통역하는 것
     - 사람이 짠 코드를 그대로 가지고 있다가, 프로그램을 실행하면 그때그때 통역 프로그램이 실시간으로 통역해주는 언어
-    - 개발이 더 간편하지만, 오류에 취약하고 실행이 더 느리다.
+    - 개발이 더 간편하지만, 오류에 취약하고 실행이 더 느리다. 문법에 오류가 있어도 실시간으로 실행할 때 알기 때문이다.
     - 대표적으로 python이 있다. 
 
 - **JVM, JDK ,JRE ?**
