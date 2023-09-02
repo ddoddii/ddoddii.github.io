@@ -12,3 +12,15 @@ enableRobotsTXT = true
   changefreq = "monthly"
   filename = "sitemap.xml"
   priority = 0.5
+
+# code
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+[markup]
+    [markup.highlight]
+        lineNoStart = 1
+        lineNos = true
+        tabWidth = 4
+
+[markup.goldmark.renderer]
+  unsafe = true
