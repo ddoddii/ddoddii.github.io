@@ -1,6 +1,7 @@
 {{- $query := first 1 (where .Context.Site.Pages "Layout" "==" "archives") -}}
 {{- $context := .Context -}}
-{{- $limit := default 5 .Params.limit -}}
+{{- $limit := default 10 .Params.limit -}}
+
 {{- if $query -}}
     {{- $archivesPage := index $query 0 -}}
     <section class="widget archives">

@@ -24,3 +24,12 @@ pygmentsUseClasses = true
 
 [markup.goldmark.renderer]
   unsafe = true
+
+features = [
+    "photoswipe",
+    "opengraph",
+    "widgets",
+    "darkmode",
+    "table of contents",
+    "search",
+]

@@ -59,7 +59,8 @@ image = "https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/d9
 
 ### Step 4. 폴더 요약 구현사항
 다음과 같이, 특정 폴더의 정보를 확인할 수 있는 기능을 구현해 주세요.
-    ![img](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/a4c25d65-4ddd-47ef-9e9d-4d262ac14887)
+
+   ![img](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/a4c25d65-4ddd-47ef-9e9d-4d262ac14887)
 
 - 만든 날짜는 최초 1회에 한 해 설정되며, 절대 변경되지 않습니다. 수정한 날짜는 다음과 같은 과업이 수행될 때 변경됩니다.
 
