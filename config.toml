@@ -33,3 +33,18 @@ features = [
     "table of contents",
     "search",
 ]
+
+[[params.widgets.page]]
+type = "toc"
+
+[params.widgets]
+    [[params.widgets.homepage]]
+    type = "search"
+
+    [[params.widgets.homepage]]
+    type = "categories"
+    limit = 10
+
+    [[params.widgets.homepage]]
+    type = "archives"
+    limit = 10

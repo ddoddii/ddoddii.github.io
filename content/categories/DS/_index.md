@@ -1,9 +1,9 @@
 ---
-title: "Data Science"
-description: "DS 지식 저장소"
+title: "DS"
+description: "Data Science 지식 저장소"
 slug: "DS"
 image: "DL.jpg"
 style:
-    background: "#61D641"
-    color: "#fff"
+    background: "#C1FFBF"
+    color: "#FFFFFF"
 ---

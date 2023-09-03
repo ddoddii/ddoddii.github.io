@@ -1,9 +1,9 @@
 ---
 title: "CS"
-description: "CS 지식 다지기"
+description: "Computer Science 지식 저장소"
 slug: "CS"
 image: "cs.jpg"
 style:
-    background: "#2a9d8f"
+    background: "#BED9FF"
     color: "#fff"
 ---
