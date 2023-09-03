@@ -38,8 +38,6 @@ features = [
 type = "toc"
 
 [params.widgets]
-    [[params.widgets.homepage]]
-    type = "search"
 
     [[params.widgets.homepage]]
     type = "categories"
