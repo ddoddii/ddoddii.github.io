@@ -245,8 +245,8 @@ image = "https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/d9
       -  지속성은 **트랜잭션이 성공적으로 완료됬을 경우, 결과는 영구적으로 반영되어야 한다는 점**이다.
 
 -  <span style="background-color: #EBFFDA">**Lock**</span>
-  - DB는 여러 사용자들이 같은 데이터를 동시에 접근하는 상황에서, 데이터의 무결성과 일관성을 지키기 위해 Lock을 사용한다. 
-  - Lock 이란 **트랜잭션 처리의 순차성을 보장하기 위한 방법**이다.
+     - DB는 여러 사용자들이 같은 데이터를 동시에 접근하는 상황에서, 데이터의 무결성과 일관성을 지키기 위해 Lock을 사용한다. 
+     - Lock 이란 **트랜잭션 처리의 순차성을 보장하기 위한 방법**이다.
 -  <span style="background-color: #EBFFDA">**Lock의 종류**</span>
    -  Lock의 종류에는 Shared Lock, Exclusive Lock 이 있다. 
    -  Shared(공유) Lock

@@ -12,6 +12,7 @@ tags = [
 image = ""
 +++
 
+
 ## Stack 
 
 - Stacks : a collection of objects that are inserted and removed according to the **last-in , first-out (LIFO)** principle
@@ -131,4 +132,4 @@ image = ""
 
 ### Reference 
 - 2023-1 데이터 사이언스를 위한 자료구조 및 알고리즘, 연세대학교 송경우 교수님
-- Udemy, Python Data Structures & Algorithms
+- Python Data Structures & Algorithms , Udemy
