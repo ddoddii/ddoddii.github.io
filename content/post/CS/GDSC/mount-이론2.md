@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "GDSC mount - BackEnd 탐구(2)"
-date = "2023-09-01"
+date = "2023-09-03"
 description = "GDSC Yonsei - BackEnd Mount"
 categories = [
     "CS"
