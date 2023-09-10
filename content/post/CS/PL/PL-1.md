@@ -1,8 +1,8 @@
 +++
 author = "Soeun"
-title = "프로그래밍 언어 구조론 - 1"
+title = "프로그래밍 언어 구조 Intro"
 date = "2023-09-10"
-description = "Abstraction, Script, Compile"
+description = "Programming Paradigm, Abstraction, Defining Language"
 categories = [
     "CS"
 ]
@@ -15,6 +15,7 @@ image = ""
 ## Machine Language(기계 언어)
 - 기계어는 컴퓨터가 직접 읽고 이해할 수 있는 비트 단위로 쓰여진 언어이다.
 - 각 줄의 언어는 16bits 로 이루어져 있다. (이진수) 
+
     <img width="295" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/dd24ab04-0058-409b-acc5-9f731cdf0791">
 - 프로그램 실행은 코드의 첫번째 줄부터 시작된다.
   - Code is fetched from memory, decoded(interpreted), and excuted.
