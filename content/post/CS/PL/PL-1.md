@@ -119,5 +119,5 @@ image = ""
 이번 주는 앞으로 배울 내용의 개괄 느낌으로 정리했다. 이것이 기본 뼈대이고 앞으로 더 살을 붙여 나가며 공부해야겠다 ! 
 
 ### Reference
-- 2023-1 프로그래밍언어구조론, 조성배 교수님 
+- 2023-2 프로그래밍언어구조론, 조성배 교수님 
 - https://www.geeksforgeeks.org/introduction-of-programming-paradigms/
