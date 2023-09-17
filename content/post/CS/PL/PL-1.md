@@ -10,6 +10,7 @@ tags = [
     "프로그래밍언어"
 ]
 image = ""
+draft = true
 +++
 
 ## Machine Language(기계 언어)

@@ -11,6 +11,7 @@ tags = [
     "GCP"
 ]
 image = ""
+draft = true
 +++
 
 ### GCP

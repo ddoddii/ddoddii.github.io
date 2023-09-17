@@ -9,6 +9,7 @@ categories = [
 tags = [
     "CJ공모전"
 ]
+draft = true
 image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/ea9adcdd-3652-4c0e-a96a-737b66572aa1"
 +++
 
