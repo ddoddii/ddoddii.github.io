@@ -15,5 +15,5 @@ menu:
 comments: false
 ---
 
-Connet to my personal links below !
+Connect to my personal links below !
 
