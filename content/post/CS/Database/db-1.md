@@ -1,6 +1,6 @@
 +++
 author = "Soeun"
-title = "Database and Database User"
+title = "[데이터베이스] Database and Database User"
 date = "2023-09-11"
 description = "Database 를 왜 쓰는가?"
 categories = [

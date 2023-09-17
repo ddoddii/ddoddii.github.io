@@ -1,6 +1,6 @@
 +++
 author = "Soeun"
-title = "Computer Netwoks and the Internet"
+title = "[네트워크] Computer Netwoks and the Internet"
 date = "2023-09-16"
 description = "네트워크 기초"
 categories = [
