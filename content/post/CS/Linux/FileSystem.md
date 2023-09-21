@@ -7,7 +7,8 @@ categories = [
     "CS"
 ]
 tags = [
-    "Linux"
+    "Linux",
+    "운영체제"
 ]
 image = ""
 +++
@@ -74,7 +75,7 @@ GDSC Mount 실습에서 간단한 cloud storage system 을 구현해보니, 실�
 	- a partition containing the users' personal data (/home)
 	- a partition to store temporary data like print- and mail queues (/var)
 	- a partition for third party and extra software (/opt)
-    
+
 	파티션이 한번 만들어지면, 더 추가할 수 는 있다. 하지만 존재하는 파티션의 사이즈나 속성을 변경하는 것은 가능하지만 추천하지 않는다. 
 
 - 서버 상에서는, 시스템 데이터와 유저 데이터를 분리한다. 아래 시스템들에 대해서는 파티션이 생성된다 :
