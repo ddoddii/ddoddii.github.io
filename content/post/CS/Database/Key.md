@@ -62,6 +62,8 @@ Key 에는 5가지 종류가 있다 : Primary Key, Foreign Key, Alternate Key, S
 - 값이 자주 변경될 수 있는 속성이 포함된 PK 는 부적합하다. 
 - 단순한 후보키를 PK 로 설정한다. 
 
+PK 는 Null 값을 가지면 안되고, 유일성과 최소성을 모두 만족해야 한다 ! 각 테이블 마다 PK 는 오직 1개이다. 오해하면 안되는게, 그렇다고 속성 단 하나만 PK 여야 되는 것은 아니다. 정말 단 하나의 속성으로 투플이 구분되지 않는다면 두 가지 속성의 집합이 PK 가 될 수도 있다. 그리고 꼭 auto-incrementing id 가 PK 가 될 필요는 없다. 그저 convention 인 것이지, 필수적인 규칙은 아니다. 
+
 ### Alternate Key
 > Alternate Key 는 Primary Key 로 선택되지 못한 후보키들이다. 
 
