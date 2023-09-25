@@ -28,6 +28,10 @@ toc = true
 
 ## 구현
 
+### API Endpoint
+- `PUT /file/{username}/move` : Move file for specific user
+- `PUT /folder/{username}/move` : Move folder for specific user
+
 ###  폴더 삭제
 
 #### <span style="font-size:110%"><span style="background-color: #EBFFDA">**1) Folders Table 에 children 정보가 있는 경우**</span></span>
