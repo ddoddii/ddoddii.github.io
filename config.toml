@@ -23,13 +23,14 @@ enableRobotsTXT = true
   priority = 0.5
 
 # code
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+pygmentsCodeFences = false
+pygmentsUseClasses = false
 [markup]
     [markup.highlight]
         lineNoStart = 1
-        lineNos = true
+        lineNos = false
         tabWidth = 4
+        style = "monokailight"
 
 [markup.goldmark.renderer]
   unsafe = true
@@ -55,3 +56,4 @@ type = "toc"
     [[params.widgets.homepage]]
     type = "archives"
     limit = 10
+
