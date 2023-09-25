@@ -296,8 +296,9 @@ toc = true
 
 **내린 결론**
 - 가장 상위에 있는 폴더의 직속 parent_id 만 바꿔주면, 그 폴더의 하위에 있는 모든 폴더들도 옮겨지므로 아주 간단했다. 
+  
   <img width="642" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/1dcac11b-edf2-4859-8ed9-49a77c13ef02">
 
 
 ## 소스 코드 
-- 
+- [GDSC mount be](https://github.com/gdsc-ys/mount-be/tree/soeunuhm)

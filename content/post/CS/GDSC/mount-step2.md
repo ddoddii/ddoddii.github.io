@@ -208,5 +208,5 @@ toc = true
   HTTPException Error 는 DB 관련 처리는 아니라고 생각해서 일단은 모두 controller 쪽에서 처리했다. 
 
 --------------------------------------------------------
-## Links
-- [GDSC Mount](https://github.com/gdsc-ys/mount-be)
+## 소스 코드 
+- [GDSC mount be](https://github.com/gdsc-ys/mount-be/tree/soeunuhm)
