@@ -100,4 +100,4 @@ test1.txt > Test1, Test2
 근데 DB에는 파일의 메타 데이터만 저장하지, 파일 안의 내용은 저장하지 않는다. 데이터베이스의 특징이 파일의 실제 데이와, 파일의 메타 데이터를 따로 저장하는 것인데, 그러면 파일의 실제 데이터는 어디에 저장해야 할까 ? 
 
 ## 소스 코드 
-- [GDSC mount be](https://github.com/gdsc-ys/mount-be/tree/soeunuhm)
+- [GDSC mount be](https://github.com/gdsc-ys/mount-be/tree/feature/soeunuhm_step1)
