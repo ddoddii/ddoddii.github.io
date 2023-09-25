@@ -27,6 +27,7 @@ pygmentsCodeFences = false
 pygmentsUseClasses = false
 [markup]
     [markup.highlight]
+        codeFences = true
         lineNoStart = 1
         lineNos = false
         tabWidth = 4

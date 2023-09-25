@@ -30,8 +30,10 @@
         }
 
         .article-content {
-            margin: var(--card-padding) 0;
+            padding: var(--card-padding); /* Keep the padding as it is */
+            margin: 0; /* Remove the top and bottom margins */
             color: var(--card-text-color-main);
+            
 
             img {
                 max-width: 100%;
@@ -52,7 +54,7 @@
                 text-transform: uppercase;
                 display: flex;
                 align-items: center;
-                font-size: 1.4rem;
+                font-size: 1.6rem;
                 gap: 15px;
 
                 svg {
@@ -82,6 +84,7 @@
 }
 
 .widget--toc {
+    
     background-color: var(--card-background);
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
@@ -97,6 +100,7 @@
     #TableOfContents {
         overflow-x: auto;
         max-height: 75vh;
+        font-size : 1.4rem;
 
         ol,
         ul {
@@ -121,7 +125,7 @@
         }
 
         li {
-            margin: 15px 0 15px 20px;
+            margin: 10px 0 15px 20px;
             padding: 5px;
 
             & > ol,
@@ -206,7 +210,7 @@
     line-height: var(--article-line-height);
 
     & > p {
-        margin: 1.5em 0;
+        margin: 1.7em 0;
     }
 
     h1,
@@ -262,6 +266,7 @@
         padding: 2px 4px;
         border-radius: var(--tag-border-radius);
         font-family: var(--code-font-family);
+        font-size : 1.4rem;
     }
 
     .gallery {
