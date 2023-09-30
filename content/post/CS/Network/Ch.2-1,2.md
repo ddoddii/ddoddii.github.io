@@ -33,7 +33,7 @@ image = ""
 	- always-on 서버가 없고, 호스트끼리 직접적인 소통을 한다. 
 	- Self-scalability : 새로운 호스트가 들어오면, 규모가 확장된다. 
 
-### 2.1.2 Process Communication
+### Process Communication
 
 프로세스는 호스트 안에서 돌아가고 있는 프로그램이다. 프로그램을 실행시키면 프로세스가 발생하는데, 프로그램은 1개이지만 프로세스는 여러 개가 될 수 있다. 같은 호스트 내에서 두 개의 프로세스가 소통할 때는 **inter-process communication** 을 사용한다. 다른 호스트에 있는 프로세스 끼리 소통할 때는 **messages 를 교환**한다. 
 
@@ -55,7 +55,7 @@ Client process 는 소통을 시작하는 프로세스이고, Server process 는
 
 호스트는 **IP address**를 통해 알 수 있다. 호스트 내에서 많은 프로세스가 실행 중일 수 있기 때문에, 특정 프로세스를 구분하려면 **Port number** 가 필요하다. 
 
-### 2.1.3 Transport Services available to applications
+### Transport Services available to applications
 
 소켓이 application layer 과 transport layer 사이에 인터페이스라고 했다. transport layer 에서도 소켓을 잘 전달하기 위한 여러가지 프로토콜이 존재한다. 각 프로토콜은 transport layer 가 제공하는 여러 서비스들을 적절하게 취사선택해서 제공한다. 그렇다면 transport layer가 제공하는 서비스에는 어떤 것들이 있는지 보자. 
 
@@ -73,7 +73,7 @@ Client process 는 소통을 시작하는 프로세스이고, Server process 는
 	
 	보안이 없다면 패킷을 보내는 도중에 해킹 당할 수 도 있다. 
 
-### 2.1.4 Transport Services Provided by the Internet
+### Transport Services Provided by the Internet
 
 2.1.3 에서는 transport services 가 네트워크에게 제공할 수 있는 서비스들에 대해 알아보았다. 이번에는 실제로 인터넷이 제공하는 서비스들에 대해 알아보자. 2가지 transport protocol 이 있는데, UDP 와 TCP 이다. 
 
@@ -104,7 +104,7 @@ Client process 는 소통을 시작하는 프로세스이고, Server process 는
 
 지금까지는 전송 계층에서의 프로토콜에 대해 알아보았다. 각 프로세스가 소켓을 통해 메세지를 전송한다고 했다. 그러면 이 메세지는 어떻게 구조화되어 있고, 어떤 의미를 가지고 있을까? 이것에 대한 답은 application layer protocol 에 있다.  이 중 Web 어플리케이션에서 쓰이는 프로토콜이 HTTP (HyperText Transfer Protocol) 이다.
 
-### 2.2.1 Overview of HTTP
+### Overview of HTTP
 
 Web page 는 여러 object 들로 이루어져 있다. 이 object 에는 base HTML 파일, JPEG 이미지, 오디오 파일.. 등등이 있다. base HTML 파일은 다른 object 들을 그 object URL 을 사용해서 불러온다. URL 은 두 가지 구성 요소로 이루어져 있다 : 서버의 hostname, object 의 path name
 
@@ -117,7 +117,7 @@ https://www.yonsei.ac.kr/en_sc/intro/greeting_2016.jsp
 
 HTTP는 주로 TCP 를 사용한다. 클라이언트는 TCP connection 을 시작하고, 서버는 클라이언트로부터 온 TCP connection 을 수락한다. 그런 다음, 브라우저와 서버 사이에 HTTP messages 가 교환된다. 그 후, TCP connection 이 끝난다. 중요한 것은, HTTP 는 stateless 하다는 것이다. 즉, 서버는 지난 클라이언트에 대한 접속 정보를 모른다 ! 이것을 보완하기 위해 cookie 라는 개념이 나왔다. 
 
-### 2.2.2 Non-Persistent and Persistent Connections
+### Non-Persistent and Persistent Connections
 
 <span style="font-size:110%"><span style="background-color: #EBFFDA">**Non-Persistent Connections**</span></span>
 
@@ -135,7 +135,7 @@ Non-Persistent Connections 에는 object 당 2RTT 가 필요하다. 이러면 OS
 
 서버는 HTTP response 를 보낸 후에도 connection 을 열어둔다. 따라서 다른 Object 를 보내고 싶을 때 TCP connection 을 연결할 필요 없이, 바로 request 를 보낼 수 있다. 
 
-### 2.2.3 HTTP Message Format
+###  HTTP Message Format
 
 HTTP message 에는 2가지 종류가 있다 : request, response
 
@@ -161,7 +161,7 @@ HTTP Response message 의 첫줄은 status line 이다. 여기에는 HTTP versio
 
 <img width="574" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/5740984d-09ab-4282-9d65-a13f8933c7cf">
 
-### 2.2.4 User-Server Interaction : Cookies
+### User-Server Interaction : Cookies
 
 HTTP 서버는 stateless 라고 했다. 하지만 쇼핑 사이트에서는 클라이언트를 기억해서, 상품 추천을 하고 싶을 수 도 있다. 그래서 HTTP 는 cookies 를 사용한다. Cookies 는 사이트가 유저를 추적할 수 있게 해준다. 
 
@@ -173,7 +173,7 @@ Cookie 는 4가지 구성요소가 있다
 
 ![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/1d1f3de1-daf6-47e4-98c1-cbad31b16a59)
 
-### 2.2.5 Web Caches (Proxy Server)
+### Web Caches (Proxy Server)
 
 Web caches 의 목적 : origin server 가 없이 client request 를 만족시키는 것 
 
