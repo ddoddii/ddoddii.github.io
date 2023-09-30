@@ -243,3 +243,6 @@ Web caches 의 목적 : origin server 가 없이 client request 를 만족시키
     정보가 변경되지 않았으니, 로컬 캐시는 자기한테 저장되어 있는 정보를 브라우저에게 보낸다. 만약 변경 되었다면, response 에 `HTTP/1.0 response OK <data>`  메세지를 보낸다. 
 
 
+## Reference
+- Computer Networking A Top Down Approach , 7th edition
+- 2023-2 컴퓨터 네트워크 , 이수경 교수님 강의안 
