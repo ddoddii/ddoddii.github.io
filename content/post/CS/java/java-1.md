@@ -1,8 +1,8 @@
 +++
 author = "Soeun"
-title = "Java 기초"
+title = "[Java] Java의 특징"
 date = "2023-08-28"
-description = "Java 기초 배우기"
+description = "Compile 언어와 JDK , JVM, JRE"
 categories = [
     "CS"
 ]

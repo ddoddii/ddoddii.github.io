@@ -1,6 +1,6 @@
 +++
 author = "Soeun"
-title = "Java Maven으로 build 하기"
+title = "[Java] Maven으로 build 하기"
 date = "2023-09-27"
 description = "Maven 에 대해 알아보자"
 categories = [
