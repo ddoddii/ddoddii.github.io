@@ -9,7 +9,7 @@ categories = [
 tags = [
     "네트워크"
 ]
-image = ""
+image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/408cc122-3a08-4657-a3b5-ebd316196b1a"
 +++
 
 ## DNS

@@ -9,7 +9,7 @@ categories = [
 tags = [
     "네트워크"
 ]
-image = ""
+image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/408cc122-3a08-4657-a3b5-ebd316196b1a"
 +++
 
 이번에는 어플리케이션 계층과 네트워크 계층 사이에 있는 전송계층(transport layer) 에 대해 알아보겠다. 우선 전송계층과 어플리케이션 계층 간의 관계를 보고, UDP 까지 알아보겠다. 
