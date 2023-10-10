@@ -9,7 +9,7 @@ categories = [
 tags = [
     "Java"
 ]
-image = ""
+image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/384bd77d-965b-4d8d-aa98-015cedc6ad55"
 +++
 
 
