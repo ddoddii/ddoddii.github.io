@@ -136,3 +136,7 @@ link-layer 프로토콜이 에러 체킹 작업을 하는데, 왜 UDP 에서도 
 UDP 가 에러 체킹을 하나ㄷ고 해도, 에러를 다시 회복하기 위해 아무것도 하지 않는다. 어떤 UDP 의 형태는 망가진 segment 를 버리기도 하고, 그냥 어플리케이션에 에러만 띄워주기도 한다. 
 
 다음 글에서는 TCP 에 대해 더 자세히 알아보겠다. 
+
+## Reference
+- Computer Networking A Top Down Approach , 7th edition
+- 2023-2 컴퓨터 네트워크 , 이수경 교수님 강의안 
