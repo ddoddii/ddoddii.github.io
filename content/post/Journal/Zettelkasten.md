@@ -9,7 +9,7 @@ categories = [
 tags = [
     "Second Brain",
 ]
-image = ""
+image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/c50aa724-8c1e-4e8e-8218-08acf630baed"
 +++
 
 ## 창의성은 거대한 인풋에서 나온다
