@@ -9,7 +9,7 @@ categories = [
 tags = [
     "데이터베이스"
 ]
-image = ""
+image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/35592c11-7971-472b-9668-3c4a2dbfa5e0"
 +++
 
 ## RDB 의 구성
