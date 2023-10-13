@@ -7,7 +7,7 @@ categories = [
     "CS"
 ]
 tags = [
-    "Java"
+    "Java", "자료구조"
 ]
 image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/384bd77d-965b-4d8d-aa98-015cedc6ad55"
 +++
