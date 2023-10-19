@@ -67,3 +67,7 @@ BitTorrent 는 파일 분배를 위한 프로토콜이다. peer 들이 파일을
 새로운 Peer 는 자신에게 청크를 가장 빠른 rate 로 보내는 상위 4명의 peer 에게 청크를 보낸다. 그리고 10초마다 top 4 를 갱신한다. 이 top4 를 unchoked 되었다고 하고, 나머지 다른 peer 들은 choked 되었다고 한다. 
 
 30초마다는 랜덤으로 다른 peer 를 선택한다. 왜냐하면 , 또 새롭게 torrent 를 조인하는 사용자도 파일 청크를 줘야 하기 때문이다. 
+
+## Reference
+- Computer Networking A Top Down Approach , 7th edition , ch.2-5
+- 2023-2 컴퓨터 네트워크 , 이수경 교수님 강의안 
