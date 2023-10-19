@@ -2,7 +2,7 @@
 author = "Soeun"
 title = "Elon Musk 자서전을 읽고"
 date = "2023-09-27"
-description = "머스크 인생 엿보기"
+description = "Elon Musk - 윌터 아이작슨"
 categories = [
     "Journal"
 ]
