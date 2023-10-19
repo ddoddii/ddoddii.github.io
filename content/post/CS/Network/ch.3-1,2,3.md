@@ -1,8 +1,8 @@
 +++
 author = "Soeun"
-title = "[네트워크] Transport Layer -1 "
+title = "[네트워크] Transport Layer의 개념과 UDP"
 date = "2023-10-02"
-description = "Transport Layer 의 배경과 UDP까지"
+description = "Transport Layer - 1"
 categories = [
     "CS"
 ]
