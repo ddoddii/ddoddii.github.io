@@ -196,5 +196,5 @@ SR 과 같은 경우에는 발신자의 윈도우 내에는 ack 를 받은 패�
 이것은 seq # 와 윈도우 사이즈가 같으면 생기는 문제이다. 그래서 보통은 seq # > window size * 2 로 잡는다.
 
 ## Reference
-- Computer Networking A Top Down Approach , 7th edition
+- Computer Networking A Top Down Approach , 7th edition, ch.3-4
 - 2023-2 컴퓨터 네트워크 , 이수경 교수님 강의안 
