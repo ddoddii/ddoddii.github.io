@@ -161,4 +161,4 @@ LastByteRcvd - LastByteRead <= RcvBuffer 이어야 한다.
 
 ## Reference
 - Computer Networking A Top Down Approach , 7th edition, ch.3-5
-- 2023-2 컴퓨터 네트워크 , 이수경 교수님 강의안 
+- 2023-2 컴퓨터 네트워크 , 이수경 교수님 강의안
