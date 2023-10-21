@@ -18,7 +18,7 @@ enableRobotsTXT = true
 # sitemap 생성
 [sitemap]
 # always, hourly daily, weekly, monthly, yearly, never
-  changefreq = "monthly"
+  changefreq = "weekly"
   filename = "sitemap.xml"
   priority = 0.5
 

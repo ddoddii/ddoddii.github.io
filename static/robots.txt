@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://ddoddii.github.io/sitemap.xml
