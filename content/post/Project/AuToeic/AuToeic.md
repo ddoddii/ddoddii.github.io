@@ -12,6 +12,9 @@ tags = [
 image = "https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/2a7f0bab-459d-45c7-b15a-c1d5fc35be13"
 +++
 
+## AuToeic 발표 영상
+{{< youtube 23sJz4J0dpY >}}
+
 ## AuToeic 등장 배경 
 
 Toeic 시험을 치뤄보신 분이라면, Part .1 의 사진 묘사 문제를 알 것이다. 아래와 같은 이미지가 주어지고, 듣기 평가를 통해 사진에 가장 적합한 설명을 고르는 문제이다.
@@ -92,9 +95,11 @@ OpenAI에서 2021년 1월 5일에 공개한 CLIP(Contrastive Language-Image Pre-
 입력 Text : Black and white photo, Some bicycles have been left unattained
 
 생성 이미지: 
+
 ![img](https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/3126721a-a82c-468d-b8cc-4ac88ceb9585)
 
 실제 문제 선지 4개 (정답1개 + 오답 3개)
+
 ![img](https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/3e1c76b5-1695-4af1-9fd5-d2f7a68243bf)
 
 ### **문제2.**
@@ -102,9 +107,11 @@ OpenAI에서 2021년 1월 5일에 공개한 CLIP(Contrastive Language-Image Pre-
 입력 Text: black and white photo, a man looking at a computer
 
 생성 이미지:
+
 ![img](https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/8ab697e0-c039-4a43-9c41-0e537a2e4140)
 
 실제 문제 선지 4개 (정답1개 + 오답 3개)
+
 ![img](https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/bd1f1c3f-47a2-4090-af2d-89074389d932)
 
 위의 결과를 보면, 문제1은 하나의 정답 선지만 사진을 적절하게 설명하는 것으로 나오고, 문제2는 다른 선지도 사진을 어느 정도 설명하는 것으로 평가할 수 있다. 이 과정을 통해서 어느 문제가 출제가 잘 되었는지, 다시 한번 검토해볼 수 있다.
@@ -118,7 +125,7 @@ OpenAI에서 2021년 1월 5일에 공개한 CLIP(Contrastive Language-Image Pre-
 ![pipeline](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/2a7449a2-e514-42a7-a39a-678d1c32f53b)
 
 
-정말 훌륭한 팀원들을 만나 팀장으로 활동하며 좋은 결과물을 낼 수 있어서 굉장히 애착이 많이 가고 뿌듯한 프로젝트이다. 실제로 학회 내에서 발표를 했을 때 재우가 영국에서 살다와서 직접 선지를 읽어주고 우리가 만든 문제를 풀어보게 하면서 발표를 시작했는데, 좋은 평가를 받았다. 그리고 아이디어가 독창적이라는 이야기를 들어서 "우리 특허 한번 출원해볼까 ?!!?" 라고 해서 학회 지도교수님의 도움을 받아 특허 출원에 도전해보기로 했다. 앞으로 할 수 많은 프로젝트를 할 테지만, 이 프로젝트가 가장 기억에 많이 남을 것 같다.
+정말 훌륭한 팀원들을 만나 팀장으로 활동하며 좋은 결과물을 낼 수 있어서 굉장히 애착이 많이 가고 뿌듯한 프로젝트이다. 실제로 학회 내에서 발표를 했을 때 재우가 영국에서 살다와서 직접 선지를 읽어주고 우리가 만든 문제를 풀어보게 하면서 발표를 시작했는데, 좋은 평가를 받았다. 발표 시작 전 학회원에게 문제 상황을 받고 발표 중에 내가 문제를 실시간으로 만들었다. 그만큼 완성도가 높았던 프로젝트였다. 아이디어가 독창적이라는 이야기를 들어서 "우리 특허 한번 출원해볼까 ?!!?" 라고 해서 학회 지도교수님의 도움을 받아 특허 출원에 도전해보기로 했다. 앞으로 할 수 많은 프로젝트를 할 테지만, 이 프로젝트가 가장 기억에 많이 남을 것 같다.
 
 우리끼리 너무 재밌어서 회의를 핑계삼아 많이도 놀러다녔다.. 개그맨이었던 규원오빠와 아이디어 넘치던 성균이 회의 올때마다 야무지게 해오던 재우까지 정말 최고의 팀이었다 !
 
