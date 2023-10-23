@@ -36,7 +36,8 @@ R 근처의 throughput 을 운용하는 것은 throughput 관점에서는 이상
 
 #### **시나리오2 : 2 senders, a router with Finite Buffers**
 
-이번에는 라우터에 유한한 버퍼가 있다. 그리고, Sender 가 타이머가 끝난 패킷을 재전송한다고 하자. 어플리케이션에서 소켓을 통해 데이터를 보내는 속도는 $\lambda_{in}bytes/sec$ 이다. 하지만, transport layer 가 네트워크 계층으로 segment (original + retransmitted 모두 고려) 를 보내는 속도는 $\lambda'_{in}bytes/sec$ 이라고 하자. $\lambda'_{in}$ 은 offered load 라고도 불린다. 
+이번에는 라우터에 유한한 버퍼가 있다. 그리고, Sender 가 타이머가 끝난 패킷을 재전송한다고 하자. 어플리케이션에서 소켓을 통해 데이터를 보내는 속도는 $\lambda_{in}bytes/sec$ 이다. 
+하지만, transport layer 가 네트워크 계층으로 segment (original + retransmitted 모두 고려) 를 보내는 속도는 $\lambda\prime_{in}bytes/sec$ 이라고 하자. $\lambda\prime_{in}$ 은 offered load 라고도 불린다. 
 
 ![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/3c7f3034-c8e3-4d60-8373-57b9d22db96e)
 
