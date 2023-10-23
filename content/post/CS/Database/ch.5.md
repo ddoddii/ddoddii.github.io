@@ -69,7 +69,7 @@ Domain constraints 는 각 튜플 내에서, attribute A 의 value 는 atomic va
 ### 2.2 Key Constraints and Constraints on NULL Values
 relation 은 set of tuples 라고 했다. 집합에서는 모든 원소가 다 달라야 한다. 따라서, relation 내에 있는 tuple 들도 다 달라야 한다. 여기서 몇개의 속성을 뽑아서 그 속성들만 가지고 모든 튜플을 비교해봐도 겹치는 것이 없는 속성들이 있다. 
 
- $t_{1}[SK]\neq t_2[SK] \ where \ t_{1} , t_{2} \notin r(R)$ 을 만족하는 속성 SK를 relational schema R 의 **superkey** 라고 한다. 모든 relational schema 는 적어도 한 개 이상의 superkey 를 가지고 있다. superkey 중 minimal 한 조건을 만족하는 것을 **key** 라고 한다. 즉 superkey 이면서, 어느 속성을 제거했을 때 더 이상 superkey 가 안되는 superkey 가 key 이다.  key 는 아래 2개의 조건을 만족해야 한다. 
+ $t_{1}[SK]\neq t_2[SK] \ where \ t_{1} , t_{2} \in r(R)$ 을 만족하는 속성 SK를 relational schema R 의 **superkey** 라고 한다. 모든 relational schema 는 적어도 한 개 이상의 superkey 를 가지고 있다. superkey 중 minimal 한 조건을 만족하는 것을 **key** 라고 한다. 즉 superkey 이면서, 어느 속성을 제거했을 때 더 이상 superkey 가 안되는 superkey 가 key 이다.  key 는 아래 2개의 조건을 만족해야 한다. 
  
  1. uniqueness
  2. minimal superkey 
