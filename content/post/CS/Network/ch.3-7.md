@@ -21,7 +21,7 @@ TCP 의 첫번쨰 접근 방법은, 각 sender 가 보내는 속도를 네트워
 
 첫번째로, **TCP sender 가 연결로 데이터를 보내는 속도를 제한하는 방법**을 보자. 저번 장에서, TCP 연결은 receive buffer, send buffer, 각종 변수들 (rwnd, LastByteRead .. ) 가 있다고 했다. TCP sender 는 congestion window(cwnd) 라는 또 다른 변수를 도입한다. 이것은 TCP sender 가 데이터를 보내는 속도를 제한한다. sender 가 가지고 있는 unacked data 는 양은 , min(cwnd, rwnd) 값을 넘어서는 안된다. 
 
-$LastByteSent - LastByteAcked \leq min\{cwnd,rwnd\}$ 
+$LastByteSent - LastByteAcked \leq min(cwnd,rwnd)$ 
 
 여기서는 cwnd 에 집중하기 위해 receiver 쪽의 버퍼는 매우 크다고 하자. 그러면 sender 쪽의 unacked data 는 cwnd 에 의해 결정된다. 대략적으로, RTT 가 시작할 때 sender 가 cwnd bytes 를 커넥션으로 보내고, RTT 가 끝날 때 ACK 를 받는다고 하면, sender의 sending rate 는 대략적으로 $cwnd/RTT\ bytes/sec$ 이다. 
 
