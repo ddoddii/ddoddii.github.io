@@ -1,0 +1,30 @@
+<ol id="menu" class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {{ $.Scratch.Set "posisi" 1 }}
+  <li itemprop="itemListElement" itemscope
+  itemtype="https://schema.org/ListItem">
+  <a itemprop="item" href="/">
+  <span class="text" itemprop="name">Home&nbsp;</span>
+  <meta itemprop="position" content="{{ $.Scratch.Get "posisi" }}" />
+  </a>
+  <span class="text">/&nbsp;</span>
+  </li>
+  {{- with .Params.categories -}}
+  {{- range . -}}
+  {{ $.Scratch.Add "posisi" 1 }}
+  <li itemprop="itemListElement" itemscope
+  itemtype="https://schema.org/ListItem">
+  <a itemprop="item" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+  <span class="text" itemprop="name">{{ . }}</span>
+  </a>
+  <span class="text" class="breadcrumbs-mobile">/&nbsp;</span>
+  <meta itemprop="position" content="{{ $.Scratch.Get "posisi" }}" />
+  {{- end -}}
+  {{- end -}}
+  <meta itemprop="position" content="{{ $.Scratch.Get "posisi" }}" />
+  <li class="breadcrumbs-mobile" itemprop="itemListElement" itemscope
+  itemtype="https://schema.org/ListItem">
+    {{ $.Scratch.Add "posisi" 1 }}
+    <span class="text" style="font-weight: 700" itemprop="name">{{ .Params.title }}</span>
+    <meta itemprop="position" content="{{ $.Scratch.Get "posisi" }}" />
+  </li>
+</ol>
