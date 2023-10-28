@@ -31,9 +31,6 @@ googleAnalytics = "G-S3NXZWQ2D5"
   [params.widgets]
 
     [[params.widgets.homepage]]
-    type = "search"
-
-    [[params.widgets.homepage]]
     type = "categories"
     limit = 10
 
