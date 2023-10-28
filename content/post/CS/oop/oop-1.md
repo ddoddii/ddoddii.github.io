@@ -2,7 +2,7 @@
 author = "Soeun"
 title = "이상한 나라 앨리스 코드로 본 객체의 의미"
 date = "2023-10-27"
-description = "객체는 역할, 책임, 협력의 실체이다"
+description = "객체지향의 본질과 타입"
 categories = [
     "CS"
 ]
