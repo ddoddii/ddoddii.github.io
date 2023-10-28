@@ -7,7 +7,7 @@ categories = [
     "CS"
 ]
 tags = [
-    "MVC", "우테코"
+    "MVC"
 ]
 +++
 
