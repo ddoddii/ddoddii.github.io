@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "이상한 나라 앨리스 코드로 본 객체의 의미"
-date = "2023-10-27"
+date = "2023-10-26"
 description = "객체지향의 본질과 타입"
 categories = [
     "CS"
