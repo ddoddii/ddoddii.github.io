@@ -1,4 +1,4 @@
-baseURL = 'https://ddoddii.github.io'
+baseurl = "https://www.example.com"
 languageCode = 'ko-kor'
 title = "Soeun's Dots"
 theme = 'hugo-theme-stack'
@@ -76,6 +76,8 @@ features = [
     "table of contents",
     "search",
 ]
+
+disableKinds = ["sitemap", "RSS", "robotsTXT"]
 
 
 
