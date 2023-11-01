@@ -4,7 +4,7 @@ title = "Soeun's Dots"
 theme = 'hugo-theme-stack'
 googleAnalytics = "G-S3NXZWQ2D5"
 [permalinks]
-  post = '/:title'
+  posts = "/:year/:month/:day/:slug/"
 
 # params
 [params]
@@ -78,8 +78,6 @@ features = [
 ]
 
 disableKinds = ["sitemap", "RSS", "robotsTXT"]
-
-
 
 
     
