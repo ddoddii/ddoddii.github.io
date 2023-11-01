@@ -4,7 +4,7 @@ title = "Soeun's Dots"
 theme = 'hugo-theme-stack'
 googleAnalytics = "G-S3NXZWQ2D5"
 [permalinks]
-  posts = "/:year/:month/:day/:slug/"
+  posts = "/:slug/"
 
 # params
 [params]
