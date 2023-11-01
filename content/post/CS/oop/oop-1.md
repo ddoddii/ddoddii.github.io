@@ -9,6 +9,7 @@ categories = [
 tags = [
     "oop"
 ]
+slug = "oop-objects-with-code"
 +++
 
 ## 협력하는 객체들의 공동체
