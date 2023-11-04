@@ -63,7 +63,7 @@ pygmentsUseClasses = false
         lineNoStart = 1
         lineNos = true
         tabWidth = 4
-        style = "catppuccin-latte"
+        style = "catppuccin-frappe"
 
 [markup.goldmark.renderer]
   unsafe = true
