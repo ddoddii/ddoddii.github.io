@@ -55,15 +55,17 @@ enableRobotsTXT = true
   priority = 0.5
 
 # code
-pygmentsCodeFences = false
+pygmentsCodeFences = true
 pygmentsUseClasses = false
 [markup]
     [markup.highlight]
+        noClasses = true
         codeFences = true
         lineNoStart = 1
         lineNos = true
         tabWidth = 4
         style = "catppuccin-frappe"
+        hl_inline = false
 
 [markup.goldmark.renderer]
   unsafe = true
