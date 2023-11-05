@@ -43,7 +43,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --sys-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";
     --zh-font-family: "SUIT", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";
 
-    --base-font-family: "MaruBuri", var(--sys-font-family), var(--zh-font-family), sans-serif;
+    --base-font-family: "NanumSquareRound", var(--sys-font-family), var(--zh-font-family), sans-serif;
     --code-font-family: D2Coding, Monaco, Consolas, "Courier New", monospace;
 }
 
@@ -51,7 +51,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 *   Card style
 */
 :root {
-    --card-background: #ffffff;
+    --card-background: rgb(255, 255, 255);
     --card-background-selected: #eaeaea;
 
     --card-text-color-main: #000000;
@@ -59,7 +59,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --card-text-color-tertiary: #bababa;
     --card-separator-color: rgba(218, 218, 218, 0.5);
 
-    --card-border-radius: 10px;
+    --card-border-radius: 20px;
 
     --card-padding: 20px;
 
@@ -91,11 +91,11 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 *   Article content font settings
 */
 :root {
-    --article-font-family: "MaruBuri";
-    --article-font-size: 1.8rem;
+    --article-font-family: "NanumSquare";
+    --article-font-size: 3.2rem;
 
     @include respond(md) {
-        --article-font-size: 1.7rem;
+        --article-font-size: 1.75rem;
     }
 
     --article-line-height: 1.85;
