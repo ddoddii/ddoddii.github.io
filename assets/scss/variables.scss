@@ -92,7 +92,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 */
 :root {
     --article-font-family: "NanumSquare";
-    --article-font-size: 3.2rem;
+    --article-font-size: 1.7rem;
 
     @include respond(md) {
         --article-font-size: 1.75rem;
