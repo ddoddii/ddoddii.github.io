@@ -16,9 +16,18 @@
 /* LineTableTD */
 .chroma .lntd {
     vertical-align: top;
-    padding: 0;
+    padding: 10px;
     margin: 0;
     border: 0;
+}
+
+pre {
+    background-border : 100px;
+}
+
+pre code {
+    border-radius : 10px;
+    font-size: 16px; /* Change this value to your preferred font size */
 }
 
 /* LineTable */
@@ -26,9 +35,10 @@
     border-spacing: 0;
     padding: 0;
     margin: 0;
-    border: 0;
+    border: 20px;
     width: 100%;
     display: block;
+    border-radius: 500px;
 
     > tbody {
         display: block;
