@@ -194,3 +194,70 @@ link cost 가 바뀌는 상황을 생각해보자. 노드는 근접해 있는 �
 - **robustness** : 라우터가 고장난다면?
 	- LS : node can advertise incorrect link cost, each node computes only its own table
 	- DV : node can advertise incorrect path cost, each node's table used by others
+
+## 3. intra-AS routing in the Internet : OSPF
+
+지금까지 우리는 라우터에 대해 너무 이상적으로 공부했다. 라우터는 모두 동일하다고 가정했지만, 실제로는 사실이 아니다. 하지만 이렇게 가정하는데는 2가지 이유가 있다.
+
+- **Scale**
+  
+  수백만 가지의 목적지가 있는데, 이것을 모두 라우팅 테이블에 저장할 수는 없다. 이렇게 하면 라우터의 연결 정보와 link cost 를 브로드캐스팅하는 과정에서 링크가 마비될 것이다. 
+  
+- **administrative autonomy**
+  
+  인터넷은 ISP 들의 네트워크이다. 각 ISP 는 각자 라우터들의 네트워크로 이루어져 있다. 각 ISP 는 각자의 입맛에 맞게 네트워크를 운용하고자 할 수 있다. 
+
+이 2가지 문제는 라우터들을 **<span style="background:#FEFBD1">autonomous systems(ASs)</span>** 로 정리하면 해결할 수 있다. ISP 내부의 라우터와 그들을 연결하는 링크는 하나의 AS 를 구성한다. 
+
+같은 AS 내에 있는 라우터들이 모두 같은 라우팅 알고리즘 운용하고, 각각에 대한 정보를 가지고 있는 시스템을 **<span style="background:#FEFBD1">intra-autonomous system</span>** 이라고 한다. 다른 AS 에 있는 라우터와는 라우팅 알고리즘이 다를 수 있다. AS의 경계에는 gateway router 가 있어서, 다른 AS 의 라우터와 연결한다. 
+
+**<span style="background:#FEFBD1">inter-AS routing</span>** 은 AS 끼리 연결이다. gateway 가 inter-domain routing 의 역할을 수행한다. 
+
+<img width="450" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/1e173544-b12a-438a-a703-92e6aa427805">
+
+forwarding table 은 intra-AS, inter-AS 둘 다의 영향을 받느다. intra-AS 라우팅은 AS 내부에 목적지가 있는 entry 들을 담당한다. inter-AS & intra-AS 모두 바깥 목적이에 대한 entry 를 담당한다.
+
+### Inter-AS Routing
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/4f29d4fc-2b38-4630-8173-fed0840a8d77">
+
+AS1 에 있는 라우터가 AS1 바깥에 있는 라우터에게 datagram 을 받는다고 하자. 라우터는 이 패킷을 gateway 라우터에게 보내야 하지만, 어느 것이 gateway 라우터일까?
+
+AS1 은 목적지 라우터가 AS2, AS3 에서 올 때 각각 어느 라우터를 통해서 올 수 있는지 알아야 한다. 그리고 이 정보를 AS1 내에 있는 모든 라우터에게 전달해야 한다. 
+
+예를 들어, AS2 에서 AS1 로 들어올 때 gateway 라우터는 1b 이다. 
+
+### Intra-AS Routing
+
+**<span style="background:#FEFBD1">interior gateway protocols(IGP)</span>** 라고도 불린다. 가장 흔한 intra-AS protocol는 아래이다. 
+- RIP : Routing Information Protocol
+- OSPF : Open Shortest Path First
+- IGRP : Interior Gateway Routing Protocol 
+
+
+### Open Shortest Path First(OSPF)
+OSPF 는 link-state protocol로, link-state information 과 Dijkstra's least cost path 알고리즘을 사용한다. OSPF 를 사용해서, 각 라우터는 AS 의 topological map 을 구축한다. 각 라우터는 Dijkstra's shortest path algorithm 을 사용하여 각 subnet 에게 도달하는 가장 최적의 path tree 를 계산한다. 각 link cost 는 네트워크 관리자에 의해 결정된다. 
+
+라우터는 OSPF link-state advertisements 를 AS 내에 있는 모든 라우터에게 전달한다. 라우터는 link state 의 변화가 있을 때마다 브로드캐스팅 하고, 변화가 없어도 주기적으로 브로드캐스팅한다. 이것은 OSPF 메세지에 포함되어, IP 에 의해 전달된다. 따라서 OSPF 프로토콜은 신뢰할 수 있는 메세지 주고받기 기능과, link-state 브로드캐스트 기능을 충분하게 수행해야 한다. 
+
+OSPF 가 포함하는 advance features 는 다음과 같다.
+- **security**
+  모든 OSPF 메세지는 authenticated 된다. 
+  
+- **Multiple same-cost paths**
+  
+  같은 비용을 가지는 여러 path 를 넣을 수 있다. 
+  
+- **Integrated support for unicast and multicast routing**
+  
+  Multicast OSPF(MOSPF) 는 존재하는 기존의 OSPF link database 를 사용한다.
+  
+- **Support for hierarchy within a single AS**
+  
+  2가지 계층이 있다. local area, backbone 
+  
+  backbone의 역할은, AS 내부의 교통정리이다. 이 backbone 은 area-border 라우터들을 모두 포함한다. AS 내부의 Inter-routing 은 우선 패킷이 area-border 라우터로 간 뒤, backbone으로 라우팅된 후, backbone 내에서 그 패킷의 목적지를 포함하는 border 라우터로 보내진 뒤, 최종 목적지로 간다. 
+  
+
+	<img width="450" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/40b02e5d-efa3-4485-b697-15f1cadd2158">
+
