@@ -134,3 +134,74 @@ Slotted ALOHA 의 efficiency를 계산해보자. N 개의 노드가 보내야할
 
 #### Pure (unslotted) ALOHA 
 
+unslotted ALOHA 는 synchonization 기능이 없다. 즉, frame 을 slot 의 시작시간에 맞추서 전송하는 것이 아니라 frame 이 도착하면 바로 전송한다. 하지만 이때 충돌 확률이 증가한다. $t_{0}$ 에 보내진 frame 은 $[t_{0}-1,t_{0}+1]$  시간에 보내진 frame 과 충돌한다. 
+
+<img width="500" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/cfc0be22-252c-4de8-b634-4d8583253656">
+
+Pure ALOHA 의 efficiency 를 계산해보자. 
+$P(success\ by \ given \ node) =  P(node\ transmits)*P(no\ other\ node\ transmits \ in [t_{0}-1,t_{0}])*P(no\ other\ node\ transmits \ in [t_{0},t_{0}+1]) \n$ $=p*(1-p)^{N-1}*(1-p)^{N-1}$
+$=p*(1-p)^{2(N-1)}$
+
+n 을 리미트로 보내고, 최적화된 p 를 고르면, max. effiency 는 0.18 이 나온다. 즉, clock synchro 에 들어가는 overhead 는 없어졌지만, 효율을 오히려 slotted ALOHA 보다 나빠졌다 !
+
+#### CSMA(Carrier Sense Multiple Access)
+
+ALOHA 에서는 패킷을 전송하는 것은 노드의 결정이었다. 즉, 다른 노드들이 전송하고 있건 말건 신경쓰지 않는다. CSMA 는 전송하기 전에 "listen" 하는 단계가 있다. 이것을 **<span style="background:#FEFBD1">carrier sensing</span>** 이라고 한다. 만약 채널이 idle 하다면, 전체 패킷 을 전송한다. 전송하는 와중에도, 다른 노드가 패킷을 전송하는 것을 감지한다면 (**<span style="background:#FEFBD1">collision detection</span>**) 전송하는 것을 멈춘다. 
+
+모든 노드들이 carrier sensing 을 하는데, 어떻게 충돌이 일어나는가? 아래의 다이어그램에서 볼 수 있다. $t_0$ 에 B 는 채널이 idle 하다는 것을 알고, 전송을 시작한다. $t_1$ 에, D 는 전송할 패킷이 생긴다. B 는 이때 여전히 전송중이지만, B 가 전송한 패킷의 bit 가 아직 D까지 도착하지 않았다. 따라서 D는 $t_1$ 에 채널이 idle 하다고 느낀다. 따라서 D 는 패킷을 전송하기로 시작한다. 조금 후에, B 는 D의 전송과 interfere 하기 시작한다. 따라서, end-to-end **<span style="background:#FEFBD1">channel propagation delay</span>**(하나의 노드에서 다른 노드들로 propagate 하는데 걸리는 시간) 가 성능에 굉장히 중요한 역할을 한다는 것을 알 수 있다. 
+
+<img width="400" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/bb969a2d-6040-4e0b-8c17-348b15654bc0">
+
+#### CSMA/CD(Carrier Sense Multiple Access with Collision Detection)
+
+위에 CSMA 에서는 , 노드가 collision detection 은 하지 않았다. B,D 는 충돌이 일어난 후에도 본인의 패킷을 계속 전송한다. collision detection 은 , 충돌을 감지하면 전송을 멈추는 것이다. 
+
+아래는, 위의 시나리오와 동일하지만, 충돌을 감지한 후에 전송을 짧은 시간 동안 멈췄다. Collision detection 을 추가하는 것은 손상된 패킷을 그대로 전송하는 것을 방지해준다. 
+
+<img width="400" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/e2d3d7fe-be18-4f52-b75d-2a26686866d7">
+
+broadcast channel 에 붙어있는 노드의 입장에서 살펴보자.
+1. 노드가 network layer 에서 datagram 을 받고, link-layer frame 을 준비한 후에, 이 frame 을 buffer 에 넣는다. 
+2. 노드는 채널이 idle 하다는 것을 감지하고, frame 전송을 시작한다. 만약에 채널이 바쁘다는 것을 감지하면, 다른 시그널이 없을 때까지 기댜렸다가 frame 을 전송한다. 
+3. 전송 중에, 노드는 broadcast channel 을 사용하여 들어오는 다른 시그널이 없는지 감지한다. 
+4. 노드는 다른 시그널이 없이 frame 전체를 전송하면 끝난다. 하지만, 전송 중에 다른 시그널을 감지하면, 전송을 중지한다. 
+5. 중지 후에 , 노드는 random 한 시간을 기다린 다음에 step 2 로 돌아간다. 
+
+랜덤한 시간을 기다려야 하지만, 대략 어느 구간에서 골라야 할까? 구간이 짧고 전송하는 노드들이 많으면 같은 시간을 고를 확률이 높아져 계속 충돌할 것이고, 구간이 길고 전송하는 노드들이 적다면 너무 많은 시간을 기다려야 할 것이다. 따라서, 최적의 구간은 노드들이 적을 때는 구간의 길이가 짧고, 충돌하는 노드들이 많으면 구간의 길이가 길 때이다. 
+
+**<span style="background:#FEFBD1">Binary exponential backoff</span>** 알고리즘은 이더넷에 의해 사용되는데, 이 문제를 해결해준다. 이미 n번의 collisions 를 경험한 frame 을 전송할 때는, $\{0,1,2,...,2^n-1\}$ 에서 랜덤한 값 K 를 선택한다. 이렇게 하면 충돌한 횟수가 커질수록 선택하는 구간의 폭도 커진다. 
+
+그렇다면, CSMA/CD 의 efficiency 를 보자. 
+$T_{prop}$ = max  propagation  delay  between  2  nodes in LAN
+$t_{trans}$ = time to transmit max-size frame
+
+$efficiency= \frac{1}{1+5t_{prop}/t_{trans}}$  
+
+$t_{prop}$ 가 0 으로 수렴하고, $t_{trans}$ 가 무한대로 가면, efficiency 는 1로 수렴한다. 즉, ALOHA 보다 더 좋은 성능을 낸다. 
+
+### 3.3. Taking-Turns Protocols
+
+앞에서, multiple access protocol 의 이상적인 조건들은 다음과 같았다.  (1) 하나의 노드만 전송하면, R 의 속도로 전송한다. (2) M 노드들이 active 하다면 각 노드들은 R/M bps 의 속도로 전송한다. 앞에서 본 CSMA, ALOHA 는 첫번째 조건은 만족하지만 두번째 조건은 만족하지 않는다. 따라서 새로운 프로토콜인 **<span style="background:#FEFBD1">Taking-Turns protocol</span>** 이 나왔다.  구체적으로 구현하는 프로토콜은 여러가지이지만, 여기서는 먼저 polling protocol 에 대해 알아보자. 
+
+#### Polling Protocol
+
+여기서는 하나의 노드가 마스트 노드로 지정된다. 마스터 노드는 slave 노드에게 전송하라고 초대(poll)한다. 예를 들어, 마스터 노드는 1번 노드에게 메세지를 보내서 frame 을 전송하라고 말한다. 그 후 다른 노드들에게도 이 작업을 반복한다. 마스터 노드는 노드가 frame 전송을 끝냈는지 채널의 시그널을 관찰해서 알 수 있다. 
+
+Polling protocol 은 충돌과 빈 slot 이 있는 것을 방지한다. 하지만 단점도 있다. 첫번째는 , polling delay 가 있다는 점이다. 예를 들어 하나의 노드만 active 하다면, 그 노드는 R bps 보다 작은 속도로 전송한다. 왜냐하면 마스터 노드는 각각 inactive 노드들에게 active 노드가 frame 전송이 끝난 후 메세지를 보내야 하기 때문이다. 두번째는, 마스터 노드가 fail 하면 전체 프로토콜이 fail 한다. 
+
+<img width="300" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/7db6edeb-6286-4284-a398-9517a1cb7989">
+
+#### Token-passing protocol
+여기서는 마스터 노드가 없다. 대신, 노드끼리 **토큰**을 전달한다. 이때 전달은 고정된 순서를 따른다. 만약 노드가 토큰을 건내 받으면, 전송한 frame 이 있을 때만 토큰을 가지고 있는다. 만약 frame 이 없다면 다른 노드에게 토큰을 전달한다. 
+
+하지만 단점이 있다. token overhead 가 발생할 수 있고, 토큰이 사라지거나 하나의 노드가 망가지면 전체가 무너질 수 있다. 
+
+<img width="300" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/d6e7da65-dbb5-4fb1-8d14-78df44f2d8ee">
+
+
+### 3.4. DOCSIS : The Link-Layer Protocol for Cable Internet Access
+
+Cable internet 에서 위에서 알아본 프로토콜이 어떻게 작동하는지 알아보자. Cable network 는 수천개의 가정에서 cable modem 들을 연결하여 CMTS(cable modem termination system) 에 연결한다. DOCSIS(Data-Over-Cable Service Interface Specifications) 는 이것을 결정한다. 
+
+<img width="500" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/66259853-3351-41bf-922d-2d0fb5928373">
+
