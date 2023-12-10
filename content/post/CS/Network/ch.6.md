@@ -139,7 +139,11 @@ unslotted ALOHA 는 synchonization 기능이 없다. 즉, frame 을 slot 의 시
 <img width="500" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/cfc0be22-252c-4de8-b634-4d8583253656">
 
 Pure ALOHA 의 efficiency 를 계산해보자. 
-$P(success\ by \ given \ node) =  P(node\ transmits)*P(no\ other\ node\ transmits \ in [t_{0}-1,t_{0}])*P(no\ other\ node\ transmits \ in [t_{0},t_{0}+1]) \n$ $=p*(1-p)^{N-1}*(1-p)^{N-1}$
+
+$P(success\ by \ given \ node) =  P(node\ transmits)*P(no\ other\ node\ transmits \ in [t_{0}-1,t_{0}])*P(no\ other\ node\ transmits \ in [t_{0},t_{0}+1])$
+
+$=p*(1-p)^{N-1}*(1-p)^{N-1}$
+
 $=p*(1-p)^{2(N-1)}$
 
 n 을 리미트로 보내고, 최적화된 p 를 고르면, max. effiency 는 0.18 이 나온다. 즉, clock synchro 에 들어가는 overhead 는 없어졌지만, 효율을 오히려 slotted ALOHA 보다 나빠졌다 !
