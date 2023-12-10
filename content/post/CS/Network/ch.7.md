@@ -16,7 +16,7 @@ slug = "wireless-and-mobile-networks"
 
 ## 1. Introduction
 
-Wireless network 의 구성요소는 아래오 같다. 
+Wireless network 의 구성요소는 아래와 같다. 
 
 <img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/51264176-47fa-4f55-b6dc-412365fb720f">
 
@@ -94,13 +94,13 @@ VANET 은 802.11p 이다. Internet of Vehicles(IoV) 로 진화했다. MANET 에 
 
 노이즈와 같은 방해 요소 때문에 받을 수 있는 data rate 이 제한될 수 있다. **<span style="background:#FEFBD1">Channel Capacity</span>** 는 주어진 소통 경로에서 데이터가 전송될 수 있는 최대 속도이다. Bit Error Rate(BER) 는 보내진 bit 이 받는 쪽에서 에러가 될 확률이다. 이것은  **<span style="background:#FEFBD1">Signal-to-Noise Ratio(SNR)</span>** 에 좌우된다. 
  
-**Signal-to-Noise Ratio (SNR)**
+<span style="font-size:110%"><span style="background-color: #EBFFDA">**Signal-to-Noise Ratio (SNR)**</span></span>  
 
 SNR 은 받은 전체 데이터 중 실제 정보(시그널)  과 노이즈의 비율이다. 받는 쪽에서 데시벨(dB)로 측정한다. SNR 이 높을 수록 실제 정보가 더 많으니까, 더 품질이좋은 것이다. SNR 에 따라 채널의 capacity 가 결정된다. 
 
 $SNR_{(dB)}=10\log_{10}\frac{signal \ power}{noise \ power}$ 
 
-Capacity 는 Shannon capacity formula 를 통해 구할 수 있다. 이것은 채널이 이론적으로 받을 수 있는 최대 대역폭 값이다. 
+**Capacity** 는 Shannon capacity formula 를 통해 구할 수 있다. 이것은 채널이 이론적으로 받을 수 있는 최대 대역폭 값이다. 
 
 $C=B\log_{2}(1+SNR)$
 
@@ -255,4 +255,129 @@ collision avoidance 를 알아보기 전에, **<span style="background:#FEFBD1">
 Frame 을 성공적으로 전달 받으면, SIFS 이후 ACK 를 전송한다. 
 
 -----
+CSMA/CA 에서는 채널이 idle 해도 DIFS 만큼 카운트다운 한 후 frame 을 전송한다. 반면에 CSMA/CD 는 채널이 Idle 하다고 탐지하면 바로 frame 을 전송한다. 왜 이런 차이가 생기는 것일까?
 
+이것에 대한 답변을 보기 위해, 2개의 스테이션이 각자 보낼 frame 이 있지만, 3번째 스테이션이 전송중이어서 보내고 있지 않은 상황을 보자. **이더넷의 CSMA/CD** 에서는 3번째 스테이션의 전송이 끝나는 것을 탐지하자마자 frame 을 전송할 것이다. 이것은 곧 충돌로 이어지는데, 이것은 CSMA/CD 에서는 충돌이 일어나면 전송을 멈추므로 큰 문제가 되지 않는다. 
+
+반면에 **802.11** 에서는 상황이 다르다. 여기서는 충돌을 감지하지 않으므로 최대한 충돌이 발생하는 상황 자체를 피해야 한다. 802.11 에서는 2개의 스테이션이 채널이 바쁘다고 감지하면, 바로 random backoff 에서 값을 선택한다. 이 두개의 값이 다르다면, 채널이 idle 해지면 2개 중 1개의 스테이션이 다른 스테이션 보다 먼저 전송을 시작할 것이다. 그러면 다른 후자의 스테이션은 다시 채널이 바빠진 것을 감지하고, 카운터를 멈춘 다음 첫번째 스테이션이 전송하는 것이 끝날 때까지 전송을 하지 않을 것이다. 이렇게 하면, 충돌을 최대한 피할 수 있다. 
+
+#### Dealing with Hidden Terminals : RTS and CTS
+
+802.11 MAC 프로토콜은 Hidden terminal 문제에도 충돌을 방지할 수 있는 기능을 제공한다. 만약 2개의 무선 스테이션이 있고, 1개의 AP 가 있다고 하자. 2개으 스테이션은 모두 AP 의 범위 내에 있고 , 2개 모두 AP와 연결되어 있다. 하지만, fading 때문에 2개의 스테이션은 서로에게 hidden 되어 있다. 
+
+<img width="400" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/7728aec3-36be-49e3-a5ce-e72cb893d30a">
+
+H1 이 frame 을 보내고 있는데, 전송 중반 쯤에 H2가 AP 에게 frame 을 보내고 싶다고 하자. H2 는 H1 의 전송 소식을 모르니, H2 는 DIFS 만큼 기다렸다가 frame 을 전송하기 시작한다. 이것은 충돌을 야기한다. 
+
+이 문제를 방지하고자, 802.11 프로토콜은 스테이션이 **<span style="background:#FEFBD1">Request to Send(RTS)</span>** control frame 과 짧은 **<span style="background:#FEFBD1">Clear to Send(CTS)</span>** control frame 을 사용하여 채널을 예약할 수 있게 한다. 발신자가 data frame 을 보내고 싶을 때, AP에게 RTS 를 보낸다. 이 RTS에는 전송에 걸리는 시간과, ACK frame이 들어있다. AP가 RTS를 받으면, CTS frame 을 보로드캐스팅 함으로 응답한다. 이 CTS frame을 받은 모든 스테이션은 CTS 안에 있는 시간 구간 동안은 전송을 하지 않는다.  CTS frame 은 2가지 목적이 있는데, (1) 보내는 이에게 명시적인 허락을 주고, (2) 다른 스테이션에게 예약된 기간동안 보내지 말라는 경고이다. 
+
+보내는 쪽에서 둘다 RTS 를 보내서 충돌할 수 있지만, RTS 의 패킷은 작기 때문에 손실이 적다. 
+
+<img width="400" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/c4dc751a-245a-470a-8599-b3e267da6ccc">
+
+RTS 와 CTS 를 쓰면서 성능을 2가지 측면에서 향상시킬 수 있다.
+- 채널이 예약된 이후에만 긴 Data 를 전송하므로, hidden station problem 이 완화된다. 
+- RTS, CTS frame 들은 짧으므로, RTS 또는 CTS 충돌은 손실이 적다. 하나의 RTS 또는 CTS frame 이 정상적으로 전달되면, 다음 데이터들은 충돌 없이 전달된다. 
+- 숨겨진 노드들은 CTS 필드 안에 있는 특정 시간 (**Network Allocation Vector(VAV)**) 동안은 전송하지 않아서 충돌을 방지할 수 있다.
+
+### 802.11 Frame
+
+802.11 프레임은 이더넷 프레임과 유사한 점이 많지만, 유선 링크에 특별하게 쓰이는 필드도 포함한다. 
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/1ce1ff20-2266-4ed2-8d09-43ceaf1733b5">
+
+여기서 위에 쓰여진 숫자는 byte 를 의미한다. 
+
+#### Payload and CRC fields
+  
+  프레임의 중심에는 payload 가 있는데, 이것은 IP datagram 또는 ARP packet 으로 구성된다. 대체로 1,500 byte 보다 짧다. 이더넷과 마찬가지로, 받는 쪽이 에러를 체크할 수 있는 CRC 필드가 있다. 
+
+#### Address Fields
+  
+4개의 주소 필드가 있다. address 3 을 이해하기 위해, 다음의 상황을 살펴보자. 
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/7d4bb6ae-cff3-4f88-9064-7d76623b0bba">
+
+위에서는 2개의 AP 가 있고, 각각 다수의 무선 스테이션에 연결되어 있다. 각 AP 는 라우터와 직접적으로 연결되어 있다. AP 는 Link-layer 디바이스로, IP 주소를 이해하지 못한다. **R1 에서 H1 으로 datagram 을 보내는 과정**을 살펴보자. 라우터는 H1 과 자신 사이에 AP 가 있다는 사실을 알지 못한다. 그저 H1 이 자신에게 연결되어 있는 subnet 에 속해있는 호스트라고 인식한다.
+
+라우터는 H1 의 IP 주소를 알고, ARP 를 이용해 H1 의 MAC 주소를 알아낸다. H1의 MAC 주소를 알아낸 후에는, R1 의 인터페이스는 datagram 을 이더넷 프레임으로 캡슐화한다. source 주소는 R1 의 MAC 주소가 적혀있고, 목적지 주소는 H1의 MAC 주소가 적혀있다. 
+
+이더넷 프레임이 AP에 도착하면, AP는 802.3 이더넷 프레임을 802.11 프레임으로 변경한다. AP 는 address 1 을 H1 의 MAC 주소, address 2를 AP 본인의 MAC 주소로 채운다. address 3 은 R1 의 MAC 주소를 넣는다. 이렇게 하면, H1 은 subnet 에 datagram 을 보낸 라우터의 MAC 주소를 알 수 있다. 
+
+이제 **H1 이 R1 에게 datagram 을 보내는 과정**을 보자. 
+
+H1 은 802.11 프레임을 만들고, address 1 을 AP 의 MAC 주소, adddress 2 를 본인(H1) 의 MAC 주소로 채운다. address 3 에는 R1 의 MAC 주소를 넣는다. AP 가 802.11프레임을 받으면, 이더넷 프레임으로 바꾼다. source 주소 필드는 H1 의 MAC 주소이고, 목적지 주소 필드는 R1 의 MAC 주소이다. address 3은 AP 가 이더넷 프레임을 만들 때 적절한 목적지 주소를 파악하는데 도와준다. 
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/8199dde0-0964-4de6-a85f-02da77b557f2">
+
+#### Sequence Number, Duration, and Frame Control Fields
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/4f82d2b4-d83f-4c96-95a0-44f681c2192b">
+
+802.11 에서는 스테이션이 맞는 프레임을 받으면, ACK 를 보낸다고 했다. ACK 도 잃어버릴 수 있기 때문에, 보내는 스테이션은 프레임의 복사본들을 여러개 보낸다. 앞서 봤던 rdt 2.1 에서 sequence number 를 활용해서 새롭게 전송한 프레임인지, 아니면 이전 프레임을 재전송 한 것인지를 구분했다. 여기서 **sequence number** 도 정확히 같은 역할을 한다. 
+
+802.11 프로토콜이 채널을 예약하는 기능도 있다고 했다. 이 duration value 는 frame 의 **duration** 필드에 들어간다. 
+
+frame control field 도 여러 개의 subfield 를 가진다. 
+
+### Mobility in the Same IP Subnet
+
+무선 LAN 의 물리적인 범위를 늘리기 위해, 기업들은 같은 IP Subnet 내에 다수의 BSS 를 설치한다. 
+
+<img width="350" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/95e3afe8-6d50-4eca-be0a-9438bf54d0cd">
+
+여기서 BSS 끼리의 이동성이 이슈가 된다. 무선 스테이션이 TCP session 이 끊기지 않게 하나의 BSS 에서 다른 BSS 로 움직일까? 위의 예시에서는 H1 이 BSS1 에서 BSS2 로 움직이는 상황이다. 2개의 BSS 를 연결하는 것이 라우터가 아니라 스위치이기 때문에, 2개의 BSS 는 같은 IP subnet 안에 있다. 따라서 H1 은 이동해도 IP 주소는 바뀌지 않는다. 
+
+H1 이 AP1 에서 멀어지면, 신호가 약해지며, 더 강한 신호를 찾게 된다. H1 은 AP2 에게 beacon 을 받는다. H1 은 그러면 AP1 과 연결을 끊고 AP2 와 연결한다. 
+
+그렇다면 스위치는 어떤 AP 가 H1 과 연결되어 있는지 어떻게 알까? 앞에서 배운 self-learning 으로 알 수 있다. 
+
+### Advanced Features in 802.11 
+
+#### Rate Adaptation
+
+앞에서, 다른 SNR 시나리오마다 다른 modulation 기술이 적합하다고 했다. 따라서 802.11 은 현재 채널 특성에 맞춰서 physical-layer modulation 을 선택하는 **<span style="background:#FEFBD1">rate adaption capability</span>** 가 있다. 
+
+#### Power Management
+
+802.11 은 파워를 매지니할 수 있는 기능을 제공한다. 노드는 AP 에게 "I am going to sleep until nex beacon frame" 이라고 보내면, AP 는 이 노드에게 frame 을 보내지 않는다. 그리고 노드는 다음 beacon frame 을 보내기 전에 일어난다. 
+
+beacon frame 은 AP-to-mobile frame 을 보내기를 기다리는 모바일들의 리스트가 있다. 노드는 만약 AP-to-mobile frame 이 보내진다면 깨어있고, 아니라면 다음 beacon frame 까지 잔다. 
+
+## 4. Cellular Internet Access
+
+### Cellular Network Architecture
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/a7d5f0b4-df2e-4d47-848c-2cdbd05b4997">
+
+#### 2G : Voice Connections to the Telephone Network
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/3c551e32-1140-43f8-9ea3-04765349ca95">
+
+**cellular** 는 cellular network 가 cell 이라는 커버 지역으로 구분되어 있다는 사실에서 나온다. 각 cell 은 모바일 스테이션으로 부터 시그널을 주고받는  **<span style="background:#FEFBD1">Base Transceiver Station(BTS)</span>** 를 포함한다. 2G celluar system 은 air interference 에 **<span style="background:#FEFBD1">combined FDM/TDM</span>** 을 사용한다. 여기서는 스펙트럼이 주파수 채널로 분할되고, 각 채널은 time slot 으로 분할된다. 
+
+### 3G Cellular Data Networks : Extending the Internet to Cellular Subscribers
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/f5bcc199-3b1b-4fd6-a66b-0600ac2eeb5e">
+
+3G에서는 음성뿐만 아니라 데이터도 전송할 수 있게 되었다. 모바일 디바이스가 인터넷에 접속하려면, TCP/IP 프로토콜을 운영하고, cellular data network 를 통해 접속해야 한다. 
+
+#### 3G Core Network
+
+3G core cellular data network 는 radio access network 를 인터넷에 연결한다. 이때 Core network 는 기존에 있던 cellular voice network 를 건드리지 않고, 이것과 동시에 작동하는 새로운 기능을 넣었다. 3G core network 에는 2가지 타입의 노드가 있다 : **<span style="background:#FEFBD1">Serving GPRS Support Nodes(SGSNs)</span>**, **<span style="background:#FEFBD1">Gateway GPRS Support Nodes(GGSNs)</span>**.
+
+## 4G : LTE
+
+3G 와 4G 를 비교해보자. 
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/232d1c35-a503-4372-a725-3ba629d5696e">
+
+4G 에서 3G 보다 달라진 점은 아래 이다. 
+- All IP core : IP packet 들은 base station 에서 gateway 까지 터널링된다. 
+- voice 와 date 의 차이가 없다. 모든 트래픽은 IP core 에서 gateway 로 전달된다. 
+
+<img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/a3c965cc-71ff-4999-839c-fad8b829d834">
+
+
+## Reference
+- Computer Networking A Top Down Approach , 7th edition, ch.7
+- 2023-2 컴퓨터 네트워크 , 이수경 교수님 강의안 
