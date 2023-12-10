@@ -173,7 +173,7 @@ Output port 는 아래와 같이 이루어져 있다.
 
 - **Weighted Fair Queuing(WFQ)**
 
-  일반화된 형태의 Round Robin 이다. 여기서도 패킷들은 클래스로 분류된다. 각 클래스는 사이클마다 weighted amount 의 서비스를 받는다. 어느 인터벌에도 class i 는 bandwidth 의 $w_{i} / \sum w_i$  만큼 할당을 받는다. 
+  일반화된 형태의 Round Robin 이다. 여기서도 패킷들은 클래스로 분류된다. 각 클래스는 사이클마다 서로 다른 weighted amount 의 가중치를 갖는다. 각 클래스는 지정된 사이클마다 가중치에 비례하는 양의 서비스(처리 시간)을 받는다. 특정 인터벌 동안 클래스 i는 전체 대역폭 중에서 $w_{i} / \sum w_i$ 의 비율로 대역폭을 할당받는다. 여기서 $w_i$ 는 클래스 i 의 가중치이며, $\sum w_i$ 는 모든 클래스의 가중치 합계이다. 이를 통해 WFQ 는 다양한 트래픽 유형과 필요에 따라 공정하고 유연한 대역폭 할당을 보장한다.
   
   <img width="432" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/ee296ad0-2d6a-4ec4-91ed-bd037c23429e">
 
