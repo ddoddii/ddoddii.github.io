@@ -111,7 +111,7 @@ lookup 을 통해 패킷의 output port 가 정해졌으니, 패킷은 switching
 
 - **Switching via memory**
   
-  Switching 이 CPU (router processor) 의 관리 하에 이루어진다. input port 에 패킷이 도착하면 라우터 프로세서에 알림이 간다. 패킷은 그러면 input port 에서 프로세서 메모리로 복사된다. 라우팅 프로세서는 헤더에서 목적지 주소를 뽑아내고, forwarding table 에서 적합한 output port 를 계산한다. 그 후 패킷을 output port 의 버퍼에 복사한다. 이 경우에 memory bandwidth 이 B packets / sec 이면, fowarding throughput 은 B/2 보다 작아야 한다. 
+  Switching 이 CPU (router processor) 의 관리 하에 이루어진다. input port 에 패킷이 도착하면 라우터 프로세서에 알림이 간다. 패킷은 그러면 input port 에서 프로세서 메모리로 복사된다. 라우팅 프로세서는 헤더에서 목적지 주소를 뽑아내고, forwarding table 에서 적합한 output port 를 계산한다. 그 후 패킷을 output port 의 버퍼에 복사한다. 이 경우에 memory bandwidth 이 B packets / sec 이면, fowarding throughput 은 B/2 보다 작아야 한다. 왜냐면 Switching via memory 일 때, 패킷이 2번 메모리를 거치기 때문이다. 첫번째는 입력 포트에서 메모리로 패킷을 복사할 때, 두번째는 메모리에서 출력 포트의 버퍼로 패킷을 복사할 때이다. 각 패킷 당 2번의 메모리 액세스가 필요하기 때문에, 전체 메모리 대역폭의 절반만이 실제 포워딩 처리양으로 사용될 수 있다. 그 이상이라면 메모리 접근에 병목 현상이 발생하여 라우터의 성능이 저하될 수 있다.
   
 
 - **Switching via a bus**
