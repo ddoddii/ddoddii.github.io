@@ -164,7 +164,7 @@ $Z_{i,m}=d_{i}*c_{m}$
 
 ## 3. WiFi : 802.11 Wireless LANs
 
-802.11 Wifi 에도 여러가지가 있다. 802.11a, 802.11b, 802.11g ... 그렇지만 이들 모두 같은 medium access protocol 인 CSMA/CA 를 사용하고, 같은 link-layer frame 을 사용한다. 그리고 모두 base-station 이 있고 ad-hoc network version 이다. 
+802.11 Wifi 에도 여러가지가 있다. 802.11a, 802.11b, 802.11g ... 그렇지만 이들 모두 같은 medium access protocol 인 CSMA/CA 를 사용하고, 같은 link-layer frame 을 사용한다.
 
 <img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/fe4af79b-49ee-4a50-a770-ce1b44b70b13">
 
