@@ -262,8 +262,8 @@ ARP 메세지는 link-layer frame 의 data portion 에 들어간다.
 	- destination address : FF-FF-FF-FF-FF-FF
 	- source address : 디바이스 본인의 MAC address
 - reply
-	- destination address : 요청하는 디바이스의 MAC address
-	- source address : 디바이스 본인의 MAC address
+	- destination address : ARP Query 를 보낸 디바이스의 MAC address
+	- source address : ARP Query 를 응답하는 디바이스의 MAC address
 
 ARP 메세지가 min. data link frame 보다 작으면 data portion 은  0 으로 패딩된다. 이더넷에서는, 0x0806 이라는 frame type field 가 사용된다.
 

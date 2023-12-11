@@ -199,7 +199,7 @@ IP datagram 은 옵션이 없을 때 20byte 의 헤더를 가진다. 만약 data
 
 <img width="600" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/def3b76b-23d9-45f7-bb14-22981bac6105">
 
-각 fragment들은 목적이의 transport layer 에 도달하기 전에 재조립(reassemble)되어야 한다. 
+각 fragment들은 목적지의 transport layer 에 도달하기 전에 재조립(reassemble)되어야 한다. 
 TCP, UDP 는 완전한 segment 를 기대하지 분해된 segment 가 도착하길 기대하지 않는다. 하지만 네트워크 코어를 간단하게 유지하자는 원칙 아래, IPv4 설계자들은 재조립 과정을 end system 에 맡기기로 했다. 
 
 목적지의 호스트가 같은 source 에서 온 여러 개의 datagrams 를 받았으면, 이 datagrams 들이 모두 같은 원본의 datagram 에서 왔는지 판별해야 한다. 또, 마지막 조각을 받았을 때 이 조각들을 원본으로 어떻게 재조립할지도 파악해야 한다. 
@@ -265,7 +265,11 @@ DHCP 클라이언트-서버 시나리오는 크게 4가지 단계로 이루어�
    
    서버는 DHCP request msg 를 DHCP ack msg 로 응답한다. 
 
+
+
+
 <img width="500" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/5ac9cafa-1cb3-45ad-9a10-8f419e9df3a4">
+
 
 클라이언트가 DHCP ACK 를 받으면, 상호작용은 끝나고 클라이언트는 DCHP 를 통해 할당받은 IP 주소를 lease duration 동안 쓸 수 있다.
 
