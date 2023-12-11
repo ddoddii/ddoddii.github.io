@@ -209,13 +209,15 @@ $Z_{i,m}=d_{i}*c_{m}$
 	- (1) beacon frames sent from APs
 	- (2) association request frame sent : H1 to selected AP
 	- (3) association Response frame sent from selected AP to H1
-    <img width="300" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/e9581cda-cb63-43bd-ab1b-807c3dc7307c">
+
+      <img width="300" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/e9581cda-cb63-43bd-ab1b-807c3dc7307c">
 - **active scanning** 
 	- (1) Probe request frame broadcast from H1
 	- (2) Probe Response frames sent from APs
 	- (3) Association Request frame sent : H1 to selected AP
 	- (4) Association Response frame sent from selected AP to H1
-  <img width="300" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/90e5534e-ddb7-4104-8ef7-1666e109b08d">
+
+      <img width="300" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/90e5534e-ddb7-4104-8ef7-1666e109b08d">
 
 #### Ad Hoc Networking 
 
