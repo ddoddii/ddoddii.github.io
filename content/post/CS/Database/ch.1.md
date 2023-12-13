@@ -9,7 +9,7 @@ categories = [
 tags = [
     "데이터베이스"
 ]
-image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/35592c11-7971-472b-9668-3c4a2dbfa5e0"
+image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9246b7a7-030a-4057-96fd-28b1ce6b2c13"
 +++
 
 ## Introduction
