@@ -165,6 +165,59 @@ ADD PRIMARY KEY (Beatle);
 
 **3NF 의 핵심은, 모든 non-key 속성은 key, the whole key, nothing but the key 에만 의존해야 한다는 것**이다. 
 
+## Boyce-Codd Normal Form(BCNF)
+
+BCNF 는 제 3 정규형의 조금 더 강화된 형태이다. 예시를 보자.
+
+| Sales_year | Sales_month | Widgets_Sold |
+| ---------- | ----------- | ------------ |
+| 2021       | November    | 1581         |
+| 2021       | December    | 1927         |
+| 2022           | January            | 1343             |
+
+여기서 PK 는 (Sales_year, Sales_month) 이다. 이때 non-key 속성인 Widgets_Sold 는 key, the whole key, nothing but the whole key 에만 의존해야 한다는 제 3 정규형의 조건을 만족한다. 
+
+| Locker_ID | Reservation_Start_Date | Reservation_End_Date | Reservation_End_Day |
+| --------- | ---------------------- | -------------------- | ------------------- |
+| 221       |  14-May-2019                      | 12-Jun-2019                     | Wednesday                    |
+|  308         | 07-Jun-2019                       | 12-Jun-2019                     |  Wednesday                   |
+| 537          |  14-May-2019                      |  17-May-2019                    |  Friday                   |
+
+위의 테이블을 보자. (Locker_ID, Reservation_Start_Date) 를 PK 로 정의할 수 있다. 이때는 2NF 를 만족한다. 하지만 PK 를 (Locker_ID, Reservation_End_Date) 로도 정의할 수 있다. 만약 PK를 (Locker_ID, Reservation_End_Date) 로 정의한다면, Reservation_End_Day 는 PK 의 일부인 Reservation_End_Date 에만 의존하므로 2NF 를 위배한다. 
+
+그렇다면 이것은 2NF 를 만족하는 것일까 아닐까? 정답은 '아니다' 이다. 2NF 의 정의를 좀 더 엄밀하게 보자. **2NF 는 non-prime 속성이 candidate key 의 일부에 의존하면 안된다.** 
+
+**candidate key**(후보키)는 유일성과 최소성을 만족하는 속성 또는 속성들의 집합이다. 위의 테이블에는 (Locker_ID, Reservation_Start_Date) , Locker_ID, Reservation_End_Date) 2개의 후보키가 존재한다. **prime attribute** 는 최소 하나의 후보키에 속하는 속성이다. **non-prime attribute** 는 어떠한 후보키에도 속하지 않는 속성이다. 
+
+위의 테이블에서 non-prime 속성은 Reservation_End_Day 뿐이다. 하지만 Reservation_End_Day 는 후보키의 일부인 Reservation_End_Date 에 의존하므로, 2NF 를 위배한다. 
+
+3NF 의 엄밀한 정의도 보자. **각 non-prime 속성은 모든 후보키에 의존해야 하고, 후보키의 일부에 의존해서는 안되고, 다른 non-prime 속성에 의존해서는 안된다.** 
+
+하지만 3NF 의 엄밀한 정의에는 약점이 있다. 아래 예시를 보자. 
+
+| Release_year | Popularity_ranking | Movie_name      | Release_year_and_month |
+| ------------ | ------------------ | --------------- | ---------------------- |
+| 2008         | 1                  | The Dark Knight | 2008-07                |
+| 2008         | 2                  | Indiana Jones   | 2008-05                |
+| 2008         | 3                  | Kung Fu Panda   | 2008-06                |
+| 2009         | 1                  | Avatar          | 2009-12                |
+| 2009         | 2                  | Harry Potter    | 2009-07                | 
+| 2009         | 3                  | Ice Age         |  2009-07                      |
+
+3개의 후보키가 있다. (1) Movie_name, (2) (Release_year, Popularity_ranking), (3) (Release_year_and_month, Popularity_ranking) 이다. 여기서 주목할 점은 테이블 내의 모든 속성이 prime 속성이라는 것이다. 하지만 Release_year 는 Release_year_and_month 에 의존한다. 만약 Kung Fu Panda 의 Release_year_and_month 가 2018-06 으로 업데이트 되면, Release_year 과 데이터 불일치가 발생할 것이다. 
+
+위 테이블은 3NF 를 만족한다. 왜냐하면 non-prime 속성이 없기 때문이다. 따라서 이 약점을 보완할만한 정규형인 **Boyce-Codd Normal Form(BCNF)** 가 도입되었다. 
+
+BCNF 의 정의는 다음과 같다. **사소한 functinal dependencies 의 예외는 있을 수 있지만, 테이블 내에 모든 functinal dependency 는 후보키 또는 후보키의 super set 에 의존해야 한다.** 
+
+사소한 functinal dependency 는 속성 그 자체 또는 속성 그 자체 + 다른 것 에 의존하는 것이다. 예를 들어 Popularity_ranking 이 Popularity_ranking 에 의존하거나, Popularity_ranking + (Popularity_ranking, Movie_name) 에 의존하는 것이다. 
+
+후보키의 super set 을 **super key** 라고 한다. super key 는 유일성의 특성을 만족하는 속성 또는 속성들의 집합이다.
+
+따라서 위의 테이블은 BCNF 를 만족하지 못한다. 왜냐하면 Release_year 는 Release_year_and_month 에 의존하는데, Release_year_and_month 는 super key 가 아니기 때문이다. 그렇다면 BCNF 를 만족하도록 어떻게 고칠까? Release_year_and_month 를 단순히 Release_month 로 바꾸면 된다. 그러면 더 이상 Release_year 가 Release_month 에 의존하지 않는다. 
+
+BCNF 는 2NF, 3NF 의 정의를 엄밀하게 따져야 했다. 하지만 BCNF 를 informal 하게 나타내는 방법도 있다. 그것은 **테이블 내의 모든 속성이 key, the whole key, nothing but the key 에만 의존해야 한다는 것**이다. 여기서 key 는 후보키를 나타낸다. 
+
 ## 제 4 정규형(4NF)
 
 제 3 정규형으로도 만족스럽지 않을 수 있다. 만약 BirdHouse 웹페이지를 디자인하고 싶다고 하자. 이때 Model, Color, Style 을 고를 수 있다. 선택지들을 테이블로 만들면 다음과 같다. 
