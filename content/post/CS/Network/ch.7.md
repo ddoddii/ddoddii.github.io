@@ -26,7 +26,7 @@ Wireless network 의 구성요소는 아래와 같다.
 
 - **Base station**
   
-  유선 네트워크에 연결되어 있다. 그 지역내에서 유선 네트워크와 무선 호스트 간 패킷을 전송하는 책임이 있다. 예시로는 cell tower, 802.11 access point 등이 있따.
+  유선 네트워크에 연결되어 있다. 그 지역내에서 유선 네트워크와 무선 호스트 간 패킷을 전송하는 책임이 있다. 예시로는 cell tower, 802.11 access point 등이 있다.
 
 - **wireless links**
   
