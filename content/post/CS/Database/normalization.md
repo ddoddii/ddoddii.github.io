@@ -162,13 +162,17 @@ ADD PRIMARY KEY (Beatle);
 
 만약 sso 의 level 이 3에서 4로 증가했다고 하자. 그렇다면 Rating 도 Beginner 에서 Intermediate 로 바뀌어야 한다. 하지만 오류가 생겨서 Rating 이 업데이트가 안되면, 데이터간의 불일치가 생긴다. 
 
-이것이 왜 생긴 문제일까 ? \\(Player \ Id \rightarrow \ Player \ Skill \ Level\\) 이다.  그러나 Player Rating 은 Player Id 에 의존하지만, 간접적으로 의존한다. \\(Player \ Id \rightarrow \ Player \ Skill \ Level \rightarrow Player \{Rating}\\)  이다. 이것을 **<span style="background:#FEFBD1">Transitive Dependency</span>** 라고 한다. 
+이것이 왜 생긴 문제일까 ? Player_Id \\(\rightarrow\\)  Player_Skill_Level이다.  그러나 Player Rating 은 Player Id 에 의존하지만, 간접적으로 의존한다. Player_ Id \\(\rightarrow\\) Player_Skill_Level \\(\rightarrow\\) Player_Rating 이다. 이것을 **<span style="background:#fff88f">Transitive Dependency</span>** 라고 한다. 
 
 3NF 는 non-key 속성이 다른 non-key 속성에 의존하는 것을 허용하지 않는다. 따라서 위의 테이블을 3NF 를 위반한다. 
 
 이것을 해결하는 방법은, Player 에는 (Player_ID, Player_Level) 속성을 두고, Player_Level 라는 새로운 테이블을 만들어 (Player_Level, Player_Rating) 을 저장하는 것이다. 
 
 **3NF 의 핵심은, 모든 non-key 속성은 key, the whole key, nothing but the key 에만 의존해야 한다는 것**이다. 
+
+3NF의 일반화된 정의를 보자.
+
+> A relational schema R is in 3NF if, whenever a non trivial functional dependenxy X \\(\rightarrow\\) A holds in R, either (a) X is a superkey in R or (b) A is a prime attribute of R
 
 ## Boyce-Codd Normal Form(BCNF)
 
@@ -222,6 +226,12 @@ BCNF 의 정의는 다음과 같다. **사소한 functinal dependencies 의 예�
 따라서 위의 테이블은 BCNF 를 만족하지 못한다. 왜냐하면 Release_year 는 Release_year_and_month 에 의존하는데, Release_year_and_month 는 super key 가 아니기 때문이다. 그렇다면 BCNF 를 만족하도록 어떻게 고칠까? Release_year_and_month 를 단순히 Release_month 로 바꾸면 된다. 그러면 더 이상 Release_year 가 Release_month 에 의존하지 않는다. 
 
 BCNF 는 2NF, 3NF 의 정의를 엄밀하게 따져야 했다. 하지만 BCNF 를 informal 하게 나타내는 방법도 있다. 그것은 **테이블 내의 모든 속성이 key, the whole key, nothing but the key 에만 의존해야 한다는 것**이다. 여기서 key 는 후보키를 나타낸다. 
+
+BCNF 면 모두 3NF 이지만, 3NF 라고 모두 BCNF 인 것은 아니다. BCNF 의 일반화된 정의를 보자.
+
+> A relational schema R is in BCNF if whenever a nontrivial functional dependency X \\(\rightarrow\\) A holds in R, then X is a superkey of R.
+
+3NF 에는 or 로 X 가 superkey 이거나 A 가 Prime attribute 면 3NF 를 만족했다. 이때 X가 superkey 가 아니고 and A 가 prime attribute 이면 3NF 이지만 BCNF 가 아님을 알 수 있다. 
 
 ## 제 4 정규형(4NF)
 
