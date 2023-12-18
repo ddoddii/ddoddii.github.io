@@ -12,6 +12,8 @@ tags = [
 image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9246b7a7-030a-4057-96fd-28b1ce6b2c13"
 math = true
 slug = "transaction"
+series = ["Database"]
+series_order = 9
 +++
 {{< katex >}}
 
