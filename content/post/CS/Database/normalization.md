@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "[데이터베이스] 정규화의 의미 - 1NF, 2NF, 3NF, 4NF, 5NF"
-date = "2023-10-27"
+date = "2023-11-01"
 summary = "정규화는 무엇이고, 왜 해야 할까?"
 categories = [
     "CS"
@@ -13,7 +13,7 @@ image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9246b7a7-0
 math = true
 slug = "normalization"
 series = ["Database"]
-series_order = 7
+series_order = 8
 +++
 
 Normalization(정규화) 는 무엇이고, 왜 해야할까?

@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "[데이터베이스] Functional Dependency and Closure Set"
-date = "2023-11-01"
+date = "2023-10-27"
 summary = "함수 종속성의 정의와 Closure"
 categories = [
     "CS"
@@ -13,7 +13,7 @@ image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9246b7a7-0
 math = true
 slug = "functional-dependency"
 series = ["Database"]
-series_order = 8
+series_order = 7
 +++
 {{< katex >}}
 
@@ -98,6 +98,7 @@ Armstrong's Axioms 를 사용하여 테이블에 존재하는 FD 를 모두 알 
 ## Attribute Closure
 
 R(A,B,C,D,E)
+
 Functinal Dependency : {A\\(\rightarrow\\) B, B\\(\rightarrow\\)C,C\\(\rightarrow\\)D,D\\(\rightarrow\\) E}
 
 - A \\(\rightarrow\\) C (O) : Transitivity property 때문에 맞다.
@@ -109,6 +110,7 @@ Functinal Dependency : {A\\(\rightarrow\\) B, B\\(\rightarrow\\)C,C\\(\rightarro
 	- AD \\(\rightarrow\\) B , AD \\(\rightarrow\\) D : Decomposition 
 
 \\(X\\) : Set of arrtibutes 
+
 \\(X^{+}\\) : contains set of attributes determined by \\(X\\) 
 
 위의 예시를 다시 보자,

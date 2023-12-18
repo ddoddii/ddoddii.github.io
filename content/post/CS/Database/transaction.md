@@ -40,6 +40,7 @@ Transaction 을 더 깊이 다루기 전에, 우선 사용자들이 DB 를 사�
 트랜잭션 은 DB의 컨텐츠를 접근하거나, 바꾸는 프로그램의 명령이다. 트랜잭션은 하나 이상의 DB 접근 명령을 수행한다 - insertion ,deletion, modification, retrieval. 트랜잭션을 알리는 방법에는 명령어 전에 'begin transaction' 을 표기하고, 명령어 후에 'end transaction' 을 표기하는 것이 있다. 만약 트랜잭션이 DB 를 업데이트 하지 않고 오로지 정보를 받아오기만 하면, **read-only transaction** 이라고 하고, 그게 아니면 **read-write transaction** 이라고 한다. 
 
 트랜잭션의 예시를 몇개 보자.
+
 (a) 
 
 ```sql
