@@ -18,7 +18,7 @@ series_order = 8
 {{< katex >}}
 
 ## Functional Dependency
-Functional Dependency : \\) x \rightarrow y\\) 라고 쓰면, x 가 y 를 결정한다는 뜻이다. 즉, 아래 테이블에서 x 를 주면, y 를 알 수 있다는 뜻이다. 여기서 x 는 **determinant** 이고, y 는 **dependent** 이다. 
+Functional Dependency : \\( x \rightarrow y \\) 라고 쓰면, x 가 y 를 결정한다는 뜻이다. 즉, 아래 테이블에서 x 를 주면, y 를 알 수 있다는 뜻이다. 여기서 x 는 **determinant** 이고, y 는 **dependent** 이다. 
 
 | x   | y   |
 | --- | --- |
@@ -76,7 +76,7 @@ Functional dependency 에 대한 정의를 보자 .
 
 위의 예시에서, R.No  \\(\rightarrow\\) Name 은 Non-Trivial dependency 이다. 이 경우에는 실제로 성립하는지 테이블에서 확인해야 한다. 
 
-### Semi-Trivial Functional Dependency
+### Semi-Trivial Functional Dependency
 
 > x \\(\rightarrow\\) y , y \\(\notin\\) x
 
@@ -98,18 +98,18 @@ Armstrong's Axioms 를 사용하여 테이블에 존재하는 FD 를 모두 알 
 ## Attribute Closure
 
 R(A,B,C,D,E)
-Functinal Dependency : {A\\(\rightarrow\\) B, B\\(\rightarrow\\(C,C\\(\rightarrow\\(D,D\\(\rightarrow\\(E}
+Functinal Dependency : {A\\(\rightarrow\\) B, B\\(\rightarrow\\)C,C\\(\rightarrow\\)D,D\\(\rightarrow\\) E}
 
 - A \\(\rightarrow\\) C (O) : Transitivity property 때문에 맞다.
 - A \\(\rightarrow\\) A (O) : Replexivity property
-- A\\(\rightarrow\\(D (O)
-- A\\(\rightarrow\\(E (O)
+- A\\(\rightarrow\\) D (O)
+- A\\(\rightarrow\\) E (O)
 - A \\(\rightarrow\\) {A,B,C,D,E} (O): Union property
 - AD \\(\rightarrow\\) BD (O) : Argumentation property
 	- AD \\(\rightarrow\\) B , AD \\(\rightarrow\\) D : Decomposition 
 
 \\(X\\) : Set of arrtibutes 
-\\(X^{+}\\) : contains set of attributes determined by \\(X\\(
+\\(X^{+}\\) : contains set of attributes determined by \\(X\\) 
 
 위의 예시를 다시 보자,
 - \\(A^+\\) = {A,B,C,D,E} 
