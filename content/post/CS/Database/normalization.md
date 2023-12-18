@@ -262,6 +262,11 @@ Model, Color, Style 과의 functional dependency 를 보자. 각 모델은 제�
 
 해결하는 방법은 2개의 테이블로 쪼개는 것이다. (Model, Color), (Model, Style) 테이블 2개로 쪼개면 된다. 
 
+4NF 의 일반화된 정의는 다음과 같다.
+
+> A relational schema R is in 4NF with respect to a set of dependencies F (that includes functional dependencies and multivalued dependencies) if, for every nontrivial multivalued dependency X \\(\twoheadrightarrow\\) Y if \\(F^+\\) ,  X is a superkey for R.
+
+
 ## 제 5 정규형(5NF)
 
 아이스크림 가게 예시를 보자.
