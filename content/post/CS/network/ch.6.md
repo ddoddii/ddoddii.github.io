@@ -16,9 +16,7 @@ series = ["Network"]
 series_order = 15
 +++
 {{< katex >}}
-{{< badge >}}
-Link Layer
-{{< /badge >}}
+
 
 ## 1. Introduction to Link Layer
 
@@ -133,24 +131,24 @@ slotted ALOHA 는 항상 노드가 패킷을 full rate R 로 전송할 수 있�
 
 만약 충돌이 일어난다면, 그 slot 은 "wasted"된 것이다. 또, 패킷 전송이 일어나지 않아서 빈 slot 도 "wasted" 된 것이다. 그렇다면 "unwasted" 된 slot 은 하나의 노드만 패킷을 전송할 때이다. 이것을 successful slot 이라고 한다. **<span style="background:#FEFBD1">Efficiency</span>** 는 장기적으로 봤을 때 많은 노드들이 많은 frame 을 전송하는 상황에서 successful slot 의 비율이다. 
 
-Slotted ALOHA 의 efficiency를 계산해보자. N 개의 노드가 보내야할 많은 frame 들이 있고, 각 노드는 확률 p 로 slot 에 전송한다. 하나의 노드가 slot 에서 success 할 확률은 $p(1-p)^{N-1}$ 이다. 즉, 특정 노드만 보내고 나머지 노드들은 전송하지 않는 경우이다. Any 노드가 성공할 확률은 $Np(1-p)^{N-1}$  이다.
+Slotted ALOHA 의 efficiency를 계산해보자. N 개의 노드가 보내야할 많은 frame 들이 있고, 각 노드는 확률 p 로 slot 에 전송한다. 하나의 노드가 slot 에서 success 할 확률은 \\(p(1-p)^{N-1}\\) 이다. 즉, 특정 노드만 보내고 나머지 노드들은 전송하지 않는 경우이다. Any 노드가 성공할 확률은 \\(Np(1-p)^{N-1}\\)  이다.
 
-여기서 max efficiency 는 , $Np(1-p)^{N-1}$ 를 최대화하는 $p^*$ 을 구하면 된다.  $Np(1-p)^{N-1}$ 의 리밋을 구하면, max efficiency 는 $1/e=3.7$ 이 된다. 즉, 가장 이상적일 때, 채널은 37% 의 확률로 전송에 성공한다. 
+여기서 max efficiency 는 , \\(Np(1-p)^{N-1}\\) 를 최대화하는 \\(p^*\\) 을 구하면 된다.  \\(Np(1-p)^{N-1}\\) 의 리밋을 구하면, max efficiency 는 \\(1/e=3.7\\) 이 된다. 즉, 가장 이상적일 때, 채널은 37% 의 확률로 전송에 성공한다. 
 
 
 #### Pure (unslotted) ALOHA 
 
-unslotted ALOHA 는 synchonization 기능이 없다. 즉, frame 을 slot 의 시작시간에 맞추서 전송하는 것이 아니라 frame 이 도착하면 바로 전송한다. 하지만 이때 충돌 확률이 증가한다. $t_{0}$ 에 보내진 frame 은 $[t_{0}-1,t_{0}+1]$  시간에 보내진 frame 과 충돌한다. 
+unslotted ALOHA 는 synchonization 기능이 없다. 즉, frame 을 slot 의 시작시간에 맞추서 전송하는 것이 아니라 frame 이 도착하면 바로 전송한다. 하지만 이때 충돌 확률이 증가한다. \\(t_{0}\\) 에 보내진 frame 은 \\([t_{0}-1,t_{0}+1]\\)  시간에 보내진 frame 과 충돌한다. 
 
 <img width="500" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/cfc0be22-252c-4de8-b634-4d8583253656">
 
 Pure ALOHA 의 efficiency 를 계산해보자. 
 
-$P(success\ by \ given \ node) =  P(node\ transmits)*P(no\ other\ node\ transmits \ in [t_{0}-1,t_{0}])*P(no\ other\ node\ transmits \ in [t_{0},t_{0}+1])$
+$$P(success\ by \ given \ node) =  P(node\ transmits)*P(no\ other\ node\ transmits \ in [t_{0}-1,t_{0}])*P(no\ other\ node\ transmits \ in [t_{0},t_{0}+1])$$
 
-$=p*(1-p)^{N-1}*(1-p)^{N-1}$
+$$=p*(1-p)^{N-1}*(1-p)^{N-1}$$
 
-$=p*(1-p)^{2(N-1)}$
+$$=p*(1-p)^{2(N-1)}$$
 
 n 을 리미트로 보내고, 최적화된 p 를 고르면, max. effiency 는 0.18 이 나온다. 즉, clock synchro 에 들어가는 overhead 는 없어졌지만, 효율을 오히려 slotted ALOHA 보다 나빠졌다 !
 
@@ -158,7 +156,7 @@ n 을 리미트로 보내고, 최적화된 p 를 고르면, max. effiency 는 0.
 
 ALOHA 에서는 패킷을 전송하는 것은 노드의 결정이었다. 즉, 다른 노드들이 전송하고 있건 말건 신경쓰지 않는다. CSMA 는 전송하기 전에 "listen" 하는 단계가 있다. 이것을 **<span style="background:#FEFBD1">carrier sensing</span>** 이라고 한다. 만약 채널이 idle 하다면, 전체 패킷 을 전송한다. 전송하는 와중에도, 다른 노드가 패킷을 전송하는 것을 감지한다면 (**<span style="background:#FEFBD1">collision detection</span>**) 전송하는 것을 멈춘다. 
 
-모든 노드들이 carrier sensing 을 하는데, 어떻게 충돌이 일어나는가? 아래의 다이어그램에서 볼 수 있다. $t_0$ 에 B 는 채널이 idle 하다는 것을 알고, 전송을 시작한다. $t_1$ 에, D 는 전송할 패킷이 생긴다. B 는 이때 여전히 전송중이지만, B 가 전송한 패킷의 bit 가 아직 D까지 도착하지 않았다. 따라서 D는 $t_1$ 에 채널이 idle 하다고 느낀다. 따라서 D 는 패킷을 전송하기로 시작한다. 조금 후에, B 는 D의 전송과 interfere 하기 시작한다. 따라서, end-to-end **<span style="background:#FEFBD1">channel propagation delay</span>**(하나의 노드에서 다른 노드들로 propagate 하는데 걸리는 시간) 가 성능에 굉장히 중요한 역할을 한다는 것을 알 수 있다. 
+모든 노드들이 carrier sensing 을 하는데, 어떻게 충돌이 일어나는가? 아래의 다이어그램에서 볼 수 있다. \\(t_0\\) 에 B 는 채널이 idle 하다는 것을 알고, 전송을 시작한다. \\(t_1\\) 에, D 는 전송할 패킷이 생긴다. B 는 이때 여전히 전송중이지만, B 가 전송한 패킷의 bit 가 아직 D까지 도착하지 않았다. 따라서 D는 \\(t_1\\) 에 채널이 idle 하다고 느낀다. 따라서 D 는 패킷을 전송하기로 시작한다. 조금 후에, B 는 D의 전송과 interfere 하기 시작한다. 따라서, end-to-end **<span style="background:#FEFBD1">channel propagation delay</span>**(하나의 노드에서 다른 노드들로 propagate 하는데 걸리는 시간) 가 성능에 굉장히 중요한 역할을 한다는 것을 알 수 있다. 
 
 <img width="400" alt="IMG" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/bb969a2d-6040-4e0b-8c17-348b15654bc0">
 
@@ -179,15 +177,15 @@ broadcast channel 에 붙어있는 노드의 입장에서 살펴보자.
 
 랜덤한 시간을 기다려야 하지만, 대략 어느 구간에서 골라야 할까? 구간이 짧고 전송하는 노드들이 많으면 같은 시간을 고를 확률이 높아져 계속 충돌할 것이고, 구간이 길고 전송하는 노드들이 적다면 너무 많은 시간을 기다려야 할 것이다. 따라서, 최적의 구간은 노드들이 적을 때는 구간의 길이가 짧고, 충돌하는 노드들이 많으면 구간의 길이가 길 때이다. 
 
-**<span style="background:#FEFBD1">Binary exponential backoff</span>** 알고리즘은 이더넷에 의해 사용되는데, 이 문제를 해결해준다. 이미 n번의 collisions 를 경험한 frame 을 전송할 때는, $\{0,1,2,...,2^n-1\}$ 에서 랜덤한 값 K 를 선택한다. 이렇게 하면 충돌한 횟수가 커질수록 선택하는 구간의 폭도 커진다. 
+**<span style="background:#FEFBD1">Binary exponential backoff</span>** 알고리즘은 이더넷에 의해 사용되는데, 이 문제를 해결해준다. 이미 n번의 collisions 를 경험한 frame 을 전송할 때는, \\(\{0,1,2,...,2^n-1\}\\) 에서 랜덤한 값 K 를 선택한다. 이렇게 하면 충돌한 횟수가 커질수록 선택하는 구간의 폭도 커진다. 
 
 그렇다면, CSMA/CD 의 efficiency 를 보자. 
-$T_{prop}$ = max  propagation  delay  between  2  nodes in LAN
-$t_{trans}$ = time to transmit max-size frame
+\\(T_{prop}\\) = max  propagation  delay  between  2  nodes in LAN
+\\(t_{trans}\\) = time to transmit max-size frame
 
-$efficiency= \frac{1}{1+5t_{prop}/t_{trans}}$  
+\\(efficiency= \frac{1}{1+5t_{prop}/t_{trans}}\\)  
 
-$t_{prop}$ 가 0 으로 수렴하고, $t_{trans}$ 가 무한대로 가면, efficiency 는 1로 수렴한다. 즉, ALOHA 보다 더 좋은 성능을 낸다. 
+\\(t_{prop}\\) 가 0 으로 수렴하고, \\(t_{trans}\\) 가 무한대로 가면, efficiency 는 1로 수렴한다. 즉, ALOHA 보다 더 좋은 성능을 낸다. 
 
 ### Taking-Turns Protocols
 
@@ -405,7 +403,7 @@ Switch table 은 LAN 에 있는 몇몇 엔트리들을 포함한다. 이 엔트�
 
 - 테이블에 DD-DD-DD-DD-DD-DD 의 엔트리가 없다. 이 경우에는 스위치가 프레임의 복사본들을  x 를 제외한 모든 인터페이스의 output buffer 에 포워딩한다. 다른 말로, 스위치가 프레임을 브로드캐스팅한다. -> **flood**
 - 엔트리가 있는데, (DD-DD-DD-DD-DD-DD - x) 가 연결되어 있다. 이 경우에는 이 프레임은 다른 인터페이스에 포워딩할 필요가 없으므로, 스위치는 프레임을 버린다. 
-- 엔트리가 있는데, (DD-DD-DD-DD-DD-DD - $y \not = x$) 이다. 이 경우에는 프레임은 인터페이스 y 로 포워딩되어야 한다. 이 때 스위치는 인터페이스 y 에 있는 output buffer 로 포워딩 한다.
+- 엔트리가 있는데, (DD-DD-DD-DD-DD-DD - \\(y \not = x\\() 이다. 이 경우에는 프레임은 인터페이스 y 로 포워딩되어야 한다. 이 때 스위치는 인터페이스 y 에 있는 output buffer 로 포워딩 한다.
 
 이것을 pseudo code 로 표현하면 아래와 같다. 
 
