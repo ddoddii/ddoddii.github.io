@@ -15,6 +15,7 @@ slug = "normalization"
 series = ["Database"]
 series_order = 8
 +++
+{{< katex >}}
 
 Normalization(정규화) 는 무엇이고, 왜 해야할까?
 
@@ -68,7 +69,7 @@ FROM BEATLES;
 | Ringo  | 168과 171사이    |
 | Paul       |   180     |
 
-위의 표에는, Height 의 type이 Integer과 Strign 의 혼합된 형태이다. 이것은 1NF 를 위반한다. 속성의 datatype 는 1가지여야 한다. 
+위의 표에는, Height 의 type이 Integer과 String 의 혼합된 형태이다. 이것은 1NF 를 위반한다. 속성의 datatype 는 1가지여야 한다. 
 
 ### 1NF 위반(3) - 테이블에 PK 가 없을 때
 
@@ -133,9 +134,9 @@ ADD PRIMARY KEY (Beatle);
 
 왜 이런 문제들이 생기는 걸까? 정답은 2NF 를 만족하지 않아서이다. 2NF 는 테이블의 non-key 속성들이 PK와 연관되어 있는 상태에 관한 것이다. 2NF 를 만족하기 위한 조건은, 각 non-key 속성은 PK 전체에 의존해야 한다. 
 
-위의 테이블에서 non-key  속성은 Item_Quantity, Player_Rating 이다. PK는  (Player_ID, Item_Type)의 집합이다. Item_Quantity 는 (Player_ID, Item_Type) 전체에 의존한다. 이것을 나타내자면, $(Player\ ID, Item \ Type) \rightarrow \ Item\ Quantity$ 이다. 이것을 **<span style="background:#FEFBD1">Functional Dependency</span>** 라고 한다. 즉, 화살표 왼쪽에 있는 것과 화살표 오른쪽에 있는 것은 정확히 1:1 대응한다. 
+위의 테이블에서 non-key  속성은 Item_Quantity, Player_Rating 이다. PK는  (Player_ID, Item_Type)의 집합이다. Item_Quantity 는 (Player_ID, Item_Type) 전체에 의존한다. 이것을 나타내자면, \\((Player\ ID, Item \ Type) \rightarrow \ Item\ Quantity\\) 이다. 이것을 **<span style="background:#FEFBD1">Functional Dependency</span>** 라고 한다. 즉, 화살표 왼쪽에 있는 것과 화살표 오른쪽에 있는 것은 정확히 1:1 대응한다. 
 
-하지만, Player_Rating 은 오로지 Player_ID 와 연관이 있다.  $Player \ Rating \rightarrow \ Player \ ID$ 이다. Player_ID 는 혼자서는 PK 가 아니라 PK 의 일부이기 때문에 문제가 생긴다. 
+하지만, Player_Rating 은 오로지 Player_ID 와 연관이 있다.  \\(Player \ Rating \rightarrow \ Player \ ID\\) 이다. Player_ID 는 혼자서는 PK 가 아니라 PK 의 일부이기 때문에 문제가 생긴다. 
 
 이 설계를 어떻게 고칠까?Player 정보와 Inventory 정보 테이이블을 분리하면 된다. 
 
@@ -161,7 +162,7 @@ ADD PRIMARY KEY (Beatle);
 
 만약 sso 의 level 이 3에서 4로 증가했다고 하자. 그렇다면 Rating 도 Beginner 에서 Intermediate 로 바뀌어야 한다. 하지만 오류가 생겨서 Rating 이 업데이트가 안되면, 데이터간의 불일치가 생긴다. 
 
-이것이 왜 생긴 문제일까 ? $Player \ Id \rightarrow \ Player \ Skill \ Level$ 이다.  그러나 Player Rating 은 Player Id 에 의존하지만, 간접적으로 의존한다. $Player \ Id \rightarrow \ Player \ Skill \ Level \rightarrow Player \{Rating}$  이다. 이것을 **<span style="background:#FEFBD1">Transitive Dependency</span>** 라고 한다. 
+이것이 왜 생긴 문제일까 ? \\(Player \ Id \rightarrow \ Player \ Skill \ Level\\) 이다.  그러나 Player Rating 은 Player Id 에 의존하지만, 간접적으로 의존한다. \\(Player \ Id \rightarrow \ Player \ Skill \ Level \rightarrow Player \{Rating}\\)  이다. 이것을 **<span style="background:#FEFBD1">Transitive Dependency</span>** 라고 한다. 
 
 3NF 는 non-key 속성이 다른 non-key 속성에 의존하는 것을 허용하지 않는다. 따라서 위의 테이블을 3NF 를 위반한다. 
 
@@ -245,7 +246,7 @@ BCNF 는 2NF, 3NF 의 정의를 엄밀하게 따져야 했다. 하지만 BCNF �
 
 이때 PK 는 (Model, Color, Style) 이다. Priarie 에 제공되는 color 는 Brown, Beige 였는데, 이때 새로운 color Green 이 생기면 새로운 열 2개 (Priarie, Green, Bungalow), (Priarie, Green, Schoolhouse) 를 추가해야 한다. 하지만 오류가 생겨서 (Priarie, Green, Schoolhouse) 열을 추가하지 못한다면 데이터 불일치가 발생한다. 
 
-Model, Color, Style 과의 functional dependency 를 보자. 각 모델은 제공하는 color 의 집합이 있다. 이것을 **<span style="background:#FEFBD1">multi-valued dependency</span>** 라고 한다. 이것을 $Model \twoheadrightarrow Color$ 로 표현한다. 
+Model, Color, Style 과의 functional dependency 를 보자. 각 모델은 제공하는 color 의 집합이 있다. 이것을 **<span style="background:#FEFBD1">multi-valued dependency</span>** 라고 한다. 이것을 \\(Model \twoheadrightarrow Color\\) 로 표현한다. 
 
 **4NF 에서는, 테이블 내에 multivalued dependencies 는 key 에 대해서만 multivalued dependencies 이어야만 한다.** 여기서 Model 는 Key 가 아니기 때문에 4NF 를 만족하지 못한다. 
 
