@@ -25,9 +25,9 @@ TCP 의 첫번쨰 접근 방법은, 각 sender 가 보내는 속도를 네트워
 
 첫번째로, **TCP sender 가 연결로 데이터를 보내는 속도를 제한하는 방법**을 보자. 저번 장에서, TCP 연결은 receive buffer, send buffer, 각종 변수들 (rwnd, LastByteRead .. ) 가 있다고 했다. TCP sender 는 congestion window(cwnd) 라는 또 다른 변수를 도입한다. 이것은 TCP sender 가 데이터를 보내는 속도를 제한한다. sender 가 가지고 있는 unacked data 는 양은 , min(cwnd, rwnd) 값을 넘어서는 안된다. 
 
-$LastByteSent - LastByteAcked \leq min(cwnd,rwnd)$ 
+$$LastByteSent - LastByteAcked \leq min(cwnd,rwnd)$$ 
 
-여기서는 cwnd 에 집중하기 위해 receiver 쪽의 버퍼는 매우 크다고 하자. 그러면 sender 쪽의 unacked data 는 cwnd 에 의해 결정된다. 대략적으로, RTT 가 시작할 때 sender 가 cwnd bytes 를 커넥션으로 보내고, RTT 가 끝날 때 ACK 를 받는다고 하면, sender의 sending rate 는 대략적으로 $cwnd/RTT\ bytes/sec$ 이다. 
+여기서는 cwnd 에 집중하기 위해 receiver 쪽의 버퍼는 매우 크다고 하자. 그러면 sender 쪽의 unacked data 는 cwnd 에 의해 결정된다. 대략적으로, RTT 가 시작할 때 sender 가 cwnd bytes 를 커넥션으로 보내고, RTT 가 끝날 때 ACK 를 받는다고 하면, sender의 sending rate 는 대략적으로 \\(cwnd/RTT\ bytes/sec\\) 이다. 
 
 두번째로, **TCP sender 가 자신과 목적지 사이에 congestion 이 있는지 감지하는 방법**을 보자. "loss event" 를 timeout 또는 three duplicate ACKs 로 정의하자. congestion 이 발생하면, 경로 상에 하나 이상의 라우터 버퍼가 overflow 된 것이고, 데이터그램이 드랍된 것이다. 이 드랍된 데이터그램은 sender 에게 loss event 를 발생시킨다. 따라서, sender 는 경로 상에 congestion 이 발생했다고 인식한다. 
 
@@ -61,7 +61,7 @@ TCP 연결이 시작되면, cwnd 의 초기값은 1MSS 이다. 그래서 초기 
 
 ### Congestion Avoidance
 
-CA 상태에서는, cwnd 는 선형적으로 증가한다. 즉 RTT마다 두배를 하는 대신,  RTT 마다 1 MSS 씩 증가한다. 이것을 구현하는 방법은, TCP sender 가 ACK 가 올 때마다 cwnd 를 MSS bytes (MSS/cwnd) 씩 증가시키는 것이다. 만약, MSS 가 1460bytes 이고 cwnd 가 14600bytes 라면, RTT 내에 10개의 segment 가 보내진다. 각 ACK는 cwnd 의 사이즈를 1/10 MSS 씩 증가시키고, 10개의 ACK 가 도착한 후엔, cwnd가 1MSS 만큼 증가했을 것이다.  이것을 식으로 나타내면, ACK 가 올 때마다 $cwnd=cwnd+MSS*(MSS/cwnd)$ 가 된다. 
+CA 상태에서는, cwnd 는 선형적으로 증가한다. 즉 RTT마다 두배를 하는 대신,  RTT 마다 1 MSS 씩 증가한다. 이것을 구현하는 방법은, TCP sender 가 ACK 가 올 때마다 cwnd 를 MSS bytes (MSS/cwnd) 씩 증가시키는 것이다. 만약, MSS 가 1460bytes 이고 cwnd 가 14600bytes 라면, RTT 내에 10개의 segment 가 보내진다. 각 ACK는 cwnd 의 사이즈를 1/10 MSS 씩 증가시키고, 10개의 ACK 가 도착한 후엔, cwnd가 1MSS 만큼 증가했을 것이다.  이것을 식으로 나타내면, ACK 가 올 때마다 \\(cwnd=cwnd+MSS*(MSS/cwnd)\\) 가 된다. 
 
 **이 선형적으로 증가하는 것은 언제 끝나야 할까?** 
 
@@ -85,13 +85,13 @@ fast recovery 상태에서는 duplicate ACK 가 올 때 마다 1 MSS 씩 증가�
 
 TCP 연결의 throughput의 평균은 어떻게 될까? 여기서는 slow-start 단계들을 무시할 것이다. 왕복 인터벌에서, TCP 가 데이터를 보내는 속도는 congestion window 와 현재 RTT 에 의해 결정된다. window size = w bytes,  round trip time = RTT sec 일 때, TCP 의 전송 속도는 대략적으로 w/RTT 이다. 여기서 loss가 발생하기 전까지, w 를 1 MSS 만큼 증가시킨다. 그래서 전송 속도는 w/(2*RTT) ~ W/RTT 까지 이다. 
 
- 따라서,  $avg \ TCP \ thruput=\frac{3}{4}\frac{W}{RTT}bytes/sec$ 이다.  
+ 따라서,  \\(avg \ TCP \ thruput=\frac{3}{4}\frac{W}{RTT}bytes/sec\\) 이다.  
 
 ![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/df41cf61-1fda-4bf4-98a2-0a5cf3bffccd)
 
 **TCP futures : TCP Over "long, fat pipes"**
 
-Loss probability(L) 을 고려한 $TCP \ throughput = \frac{1.22*MSS}{RTT\sqrt{L}}$ 이다. 
+Loss probability(L) 을 고려한 \\(TCP \ throughput = \frac{1.22*MSS}{RTT\sqrt{L}}\\) 이다. 
 
 
 ### TCP Fairness

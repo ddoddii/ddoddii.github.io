@@ -136,7 +136,7 @@ Queuing 은 input port, output port 둘 다에서 발생할 수 있다. 만약 q
 #### Input Queuing
 만약 fabric 이 처리하는 속도가 input port 에 패킷이 들어오는 속도보다 느리면, input queue 가 발생할 수 있다. input buffer 가 꽉 차서 queuing delay 와 packet  loss 가 발생할 수 있다. 
 
-N개의 input, N개의 output ports 가 있고, input , output line speed 가 $R_{line}$ 이라고 하자. Switching fabric transfer rate 를 $R_{switch}$ 라고 하자. 이 때 $R_{switch} > N*R_{line}$ 이면 무시할 수 있는 queuing 만 발생한다. 그러나, $R_{switch}$ 가 충분히 빠르지 않으면 어떻게 될까? 이 때 input port 에서 packet queuing 이 발생할 것이다. 이 queuing 의 결과를 설명하기 위해서, 상황을 가정하자. crossbar switching fabric 에서, (1) link speed 는 모두 동일하고, (2) 하나의 패킷이 input port 에서 output port 로 전달되는 속도는 input port 에서 패킷을 받는 속도와 같고, (3) 패킷은 input queue 에서 output queue 로 FCFS(First-come-First-served) 방식으로 보내진다. 다수의 패킷은 output port 이 다를 경우에 병렬적으로 동시에 보내질 수 있다. 하지만, output port 가 같은 경우, 하나가 보내질 동안 나머지는 input queue 에서 기다려야 한다. 
+N개의 input, N개의 output ports 가 있고, input , output line speed 가 \\(R_{line}\\) 이라고 하자. Switching fabric transfer rate 를 \\(R_{switch}\\) 라고 하자. 이 때 \\(R_{switch} > N*R_{line}\\) 이면 무시할 수 있는 queuing 만 발생한다. 그러나, \\(R_{switch}\\) 가 충분히 빠르지 않으면 어떻게 될까? 이 때 input port 에서 packet queuing 이 발생할 것이다. 이 queuing 의 결과를 설명하기 위해서, 상황을 가정하자. crossbar switching fabric 에서, (1) link speed 는 모두 동일하고, (2) 하나의 패킷이 input port 에서 output port 로 전달되는 속도는 input port 에서 패킷을 받는 속도와 같고, (3) 패킷은 input queue 에서 output queue 로 FCFS(First-come-First-served) 방식으로 보내진다. 다수의 패킷은 output port 이 다를 경우에 병렬적으로 동시에 보내질 수 있다. 하지만, output port 가 같은 경우, 하나가 보내질 동안 나머지는 input queue 에서 기다려야 한다. 
 
 아래의 경우를 보자. 왼쪽 상황에서 빨간 패킷 2개가 같은 output port 로 가고자 하므로 하나의 패킷은 기다려야 한다. 이때, 맨 아래 빨간 패킷이 기다려야 하면, 그 뒤에 있는 초록 패킷도 기다려야 한다. 이 초록 패킷은 초록 output port 에 가는 경쟁 패킷이 없음에도 기다려야 한다. 이것을 <span style="background-color: #FEFBD1">**head-of-line (HOL) blocking**</span> 이라고 한다. 
 
@@ -150,7 +150,7 @@ Output port 는 아래와 같이 이루어져 있다.
 
 만약 transmission rate 보다 fabric 에서 패킷이 도착하는 속도가 더 빠르다면, <span style="background-color: #FEFBD1">**buffering**</span> 이 필요하다. 이때 버퍼가 가득 차면, 도착하는 패킷을 버릴지, 이미 queue 에 있는 패킷을 버릴 지 선택해야 한다. 어느 때는 버퍼가 다 차기 전에 미리 버퍼 안의 패킷을 버리는 것이 더 이득일 수 도 있다. 이것을 <span style="background-color: #FEFBD1">**active queue management(AQM)**</span> 이라고 한다. 
 
-이때, 얼마나의 버퍼링이 필요한지 계산할 수 있다. link capacity 가 C이고, N개의 flow 가 있을 때, 버퍼링은 $RTT*C/\sqrt(N)$  이다.   
+이때, 얼마나의 버퍼링이 필요한지 계산할 수 있다. link capacity 가 C이고, N개의 flow 가 있을 때, 버퍼링은 \\(RTT*C/\sqrt(N)\\)  이다.   
 
 ### Packet Scheduling
 
@@ -176,7 +176,7 @@ Output port 는 아래와 같이 이루어져 있다.
 
 - **Weighted Fair Queuing(WFQ)**
 
-  일반화된 형태의 Round Robin 이다. 여기서도 패킷들은 클래스로 분류된다. 각 클래스는 사이클마다 서로 다른 weighted amount 의 가중치를 갖는다. 각 클래스는 지정된 사이클마다 가중치에 비례하는 양의 서비스(처리 시간)을 받는다. 특정 인터벌 동안 클래스 i는 전체 대역폭 중에서 $w_{i} / \sum w_i$ 의 비율로 대역폭을 할당받는다. 여기서 $w_i$ 는 클래스 i 의 가중치이며, $\sum w_i$ 는 모든 클래스의 가중치 합계이다. 이를 통해 WFQ 는 다양한 트래픽 유형과 필요에 따라 공정하고 유연한 대역폭 할당을 보장한다.
+  일반화된 형태의 Round Robin 이다. 여기서도 패킷들은 클래스로 분류된다. 각 클래스는 사이클마다 서로 다른 weighted amount 의 가중치를 갖는다. 각 클래스는 지정된 사이클마다 가중치에 비례하는 양의 서비스(처리 시간)을 받는다. 특정 인터벌 동안 클래스 i는 전체 대역폭 중에서 \\(w_{i} / \sum w_i\\) 의 비율로 대역폭을 할당받는다. 여기서 \\(w_i\\) 는 클래스 i 의 가중치이며, \\(\sum w_i\\) 는 모든 클래스의 가중치 합계이다. 이를 통해 WFQ 는 다양한 트래픽 유형과 필요에 따라 공정하고 유연한 대역폭 할당을 보장한다.
   
   <img width="432" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/ee296ad0-2d6a-4ec4-91ed-bd037c23429e">
 

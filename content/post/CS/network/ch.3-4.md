@@ -111,9 +111,9 @@ rdt 2.2 는 rdt 2.1 과 동일한 기능이지만, ACK 만 사용한다. NAK 를
 
 만약 1Gbps link 가 있고, 15ms propagation delay, 8000 bit packet 이 있다고 하자. 
 
-$D_{trans} = L/R = \dfrac{8000bits}{(10^9bits/sec)} = 8ms$
+$$D_{trans} = L/R = \dfrac{8000bits}{(10^9bits/sec)} = 8ms$$
 
-$U_{sender} = \dfrac{L/R}{RTT + L/R} = \dfrac{0.008}{30.008} = 0.00027$
+$$U_{sender} = \dfrac{L/R}{RTT + L/R} = \dfrac{0.008}{30.008} = 0.00027$$
 
 
 ![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/fc550256-6e5d-49dd-8410-832a40b2f64f)

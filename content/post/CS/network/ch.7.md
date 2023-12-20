@@ -100,9 +100,7 @@ VANET 은 802.11p 이다. Internet of Vehicles(IoV) 로 진화했다. MANET 에 
 
 SNR 은 받은 전체 데이터 중 실제 정보(시그널)  과 노이즈의 비율이다. 받는 쪽에서 데시벨(dB)로 측정한다. SNR 이 높을 수록 실제 정보가 더 많으니까, 더 품질이좋은 것이다. SNR 에 따라 채널의 capacity 가 결정된다. 
 
-$$
-SNR_{(dB)}=10\log_{10}\frac{signal \ power}{noise \ power}
-$$
+$$SNR_{(dB)}=10\log_{10}\frac{signal \ power}{noise \ power}$$
 
 **Capacity** 는 Shannon capacity formula 를 통해 구할 수 있다. 이것은 채널이 이론적으로 받을 수 있는 최대 대역폭 값이다. 
 

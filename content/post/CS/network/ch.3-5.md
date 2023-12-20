@@ -78,7 +78,7 @@ rdt protocol 과 비슷하게, TCP 도 잃어버린 segment 를 복구하기 위
 
 **RTT는 어떻게 측정해야 할까?** **SampleRTT** 는 segment 전송 ~ ACK 받을 때 까지 시간이다. 이 SampleRTT 는 라우터의 congestion, end-to-end 사이의 길이 등 변수들에 의해  segment 에 따라서 달라진다. 그래서 우리는 더 "smooth" 한 **EstimatedRTT** 를 사용한다. 
 
-$EstimateRTT = (1-\alpha)*EstimateRTT+\alpha * SampleRTT$
+$$EstimateRTT = (1-\alpha)*EstimateRTT+\alpha * SampleRTT$$
 
 이것은 exponential weighted moving average 로, 과거 샘플들의 중요도는 지수적으로 감소하고, 최근의 샘플들에 대한 중요도는 올라간다. SampleRTT 보다 EstimatedRTT 가 훨씬 변동성이 적은 것을 볼 수 있다. $\alpha$ 값은 주로 0.125 를 사용한다.
 
@@ -86,9 +86,9 @@ $EstimateRTT = (1-\alpha)*EstimateRTT+\alpha * SampleRTT$
 
 그러면 timeout interval 을 EstimateRTT + 'safety margin' 으로 설정하면 된다. EstimateRTT 에 변동성이 크면, 더 큰 safety margin 을 설정해주면 된다. 그래서, 이 변동성(DevRTT)을 측정해서 마진으로 넣어준다. 
 
-$DevRTT = (1-\beta)*DevRTT+\beta *|SampleRTT-EstimateRTT|$
+$$DevRTT = (1-\beta)*DevRTT+\beta *|SampleRTT-EstimateRTT|$$
 
-따라서, 최종적인 $TimeoutInterval = EstimatedRTT + 4*DevRTT$  로 설정한다. 
+따라서, 최종적인 \\(TimeoutInterval = EstimatedRTT + 4*DevRTT\\)  로 설정한다. 
 
 
 ### 4. Reliable data transfer
@@ -155,7 +155,7 @@ TCP 는 **flow-control service** 를 제공한다. receiver 는 sender 를 컨�
   
 LastByteRcvd - LastByteRead <= RcvBuffer 이어야 한다.
 
-따라서, $rwnd = RcvBuffer - [LastByteRcvd - LastByteRead]$ 로 설정한다. 
+따라서, \\(rwnd = RcvBuffer - [LastByteRcvd - LastByteRead]\\) 로 설정한다. 
 
 그러면, sender 는 자신의 window size 를 receiver 의 rwnd 값으로 제한한다. 이렇게 하면, receiver buffer 가 overflow 하는 것을 막을 수 있다. 
 
