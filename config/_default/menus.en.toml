@@ -75,10 +75,7 @@
 # the copyright notice. Configure as per the main menu above.
 
 
-[[footer]]
-    name = "Github"
-   url = "https://github.com/ddoddii"
-   weight = 10
+
 
 # [[footer]]
 #   name = "Categories"
