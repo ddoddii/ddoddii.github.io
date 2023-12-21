@@ -3,7 +3,7 @@ title: "[네트워크] Wireless and Mobile Networks"
 date: 2023-12-01
 draft: false
 summary : "무선 네트워크에 대한 모든 것"
-tags: ["network"]
+tags: ["네트워크"]
 categories : ["CS"]
 series: ["Network"]
 series_order: 17
