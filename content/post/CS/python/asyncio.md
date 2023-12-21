@@ -1,6 +1,6 @@
 +++
 author = "Soeun"
-title = "Async, await 살펴보기"
+title = "python 에서의 Async 개념"
 date = "2023-12-21"
 summary = "python 공식 문서를 참고한 async, await, coroutine, task 개념 정리"
 categories = [
