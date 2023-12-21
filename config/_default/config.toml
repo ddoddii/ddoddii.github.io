@@ -60,4 +60,4 @@ buildFuture = false
       applyFilter = false
       name = 'fragmentrefs'
       type = 'fragments'
-      weight = 10
+      weight = 0
