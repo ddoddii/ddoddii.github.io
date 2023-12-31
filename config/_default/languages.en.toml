@@ -6,7 +6,7 @@ title = "Soeun's Dots"
 [params]
   displayName = "EN"
   isoCode = "en"
-  
+    
   rtl = false
   dateFormat = "January 2 2006"
   # logo = "img/logo.png"
