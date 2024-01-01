@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "Docker 에서 데이터를 관리하는 방법"
-date = "2024-01-01"
+date = "2024-01-02"
 summary = "Docker Volume , Bind Mount, 환경 변수 설정"
 categories = [
     "CS"
