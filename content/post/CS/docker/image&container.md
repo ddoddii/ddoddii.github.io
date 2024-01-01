@@ -10,6 +10,8 @@ tags = [
     "Docker"
 ]
 slug = "docker-image-and-containers"
+series = ["Docker"]
+series_order = 1
 +++
 
 ## Images & Containers
