@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "Docker Image & Container"
-date = "2024-01-01"
+date = "2024-01-01T00:10:10+09:00"
 summary = "Docker Image , Container 기초와 명령어 정리"
 categories = [
     "CS"
