@@ -50,12 +50,6 @@
   weight = 20
 
 
-[[main]]
-  name = "About"
-  pageRef = "about"
-  weight = 5
-
-
 
 [[main]]  
  name = "Project"
