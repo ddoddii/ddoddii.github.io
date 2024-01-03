@@ -7,7 +7,7 @@ categories = [
     "CS"
 ]
 tags = [
-    "자료구조"
+    "객체지향"
 ]
 image = ""
 +++

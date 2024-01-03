@@ -11,6 +11,7 @@ tags = [
 ]
 image = ""
 +++
+
 ## Class & Pointers
 
 ### Class

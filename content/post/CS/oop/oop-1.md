@@ -7,7 +7,7 @@ categories = [
     "CS"
 ]
 tags = [
-    "oop"
+    "객체지향"
 ]
 slug = "oop-objects-with-code"
 +++
