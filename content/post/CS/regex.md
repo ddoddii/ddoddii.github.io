@@ -35,12 +35,6 @@ python 에서는 `re` 모듈을 사용하여 정규표현식(regex pattern)을 �
 
 
 
-
-
-
-
-
-
 ## 자주 사용하는 정규표현식 
 
 | 표현식 | 의미                                         |
@@ -71,7 +65,23 @@ python 에서는 `re` 모듈을 사용하여 정규표현식(regex pattern)을 �
 | \w     | 문자 + 숫자 [a-zA-Z0-9_]          |
 | \W     | 문자 + 숫자가 아닌 것             | 
 
+## 정규표현식 모듈 함수
+
+  
+
+| 모듈 함수      | 설명                                                                                                                          |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `re.compile()` | 정규표현식을 컴파일하는 함수이다. 찾고자 하는 패턴이 빈번한 경우에는 미리 컴파일해놓고 사용하면 속도와 편의성면에서 유리하다. |
+| `re.search()`  | 문자열 전체에 대해서 정규표현식과 매치되는지를 검색한다.                                                                      |
+| `re.match()`   | 문자열의 처음이 정규표현식과 매치되는지를 검색한다.                                                                           |
+| `re.split()`   | 정규 표현식을 기준으로 문자열을 분리하여 리스트로 리턴한다.                                                                   |
+| `re.findall()`   | 문자열에서 정규 표현식과 매치되는 모든 경우의 문자열을 찾아서 리스트로 리턴한다. 만약, 매치되는 문자열이 없다면 빈 리스트가 리턴된다.                                                                                                                               |
+| `re.finditer()`  | 문자열에서 정규 표현식과 매치되는 모든 경우의 문자열에 대한 이터레이터 객체를 리턴한다.                                                                                                                              |
+| `re.sub()`               | 문자열에서 정규 표현식과 일치하는 부분에 대해서 다른 문자열로 대체한다.                                                                                                                               |
+
 ## 실제 예시
+
+### 정규표현식 예시
 
 실제 예시를 통해 더 알아보자.
 
@@ -104,6 +114,42 @@ regex_101.pdf
 추출 결과
 `file_record_transcript`, `regex_101`
 
+### re 모듈 사용하기 
+
+```python
+text = "Luke Skywalker 02-123-4567 luke@starwars.com, 다스베이더 080-8888-8888 darth_vader@gmail.com, leia 010 3434 3221 leia@naver.com"
+r = re.compile("0\d{1,2}[ -]?\d{3,4}[ -]?\d{3,4}")
+print(r.findall(text))>)
+
+# 출력 결과
+# ['02-123-4567', '080-8888-8888', '010 3434 3221']
+
+```
+
+```python
+# 공백 기준 분리
+text = "사과 딸기 수박 메론 바나나"
+re.split(" ", text)
+
+# ['사과', '딸기', '수박', '메론', '바나나']  
+```
+
+```python
+text = "Regular expression : A regular expression, regex or regexp[1] (sometimes called a rational expression)[2][3] is, in theoretical computer science and formal language theory, a sequence of characters that define a search pattern."
+
+preprocessed_text = re.sub('[^a-zA-Z]', ' ', text) #특수 문자 공백으로 대체
+print(preprocessed_text)
+
+"""
+출력결과
+'Regular expression   A regular expression  regex or regexp     sometimes called a rational expression        is  in theoretical computer science and formal language theory  a sequence of characters that define a search pattern '  
+
+"""
+
+```
+
+
 ## Reference
 - https://docs.python.org/3/library/re.html
 - https://docs.python.org/3/howto/regex.html#regex-howto
+- https://wikidocs.net/21703
