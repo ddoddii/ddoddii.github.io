@@ -48,12 +48,12 @@ smartTOC = true
 
 [article]
   showDate = true
-  showViews = false
-  showLikes = false
+  showViews = true
+  showLikes = true
   showDateUpdated = false
   showAuthor = true
-  showHero = false
-  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  showHero = true
+  heroStyle = "basic" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = false
@@ -116,24 +116,24 @@ smartTOC = true
   cardViewScreenWidth = false
 
 [firebase]
-  # apiKey = "XXXXXX"
-  # authDomain = "XXXXXX"
-  # projectId = "XXXXXX"
-  # storageBucket = "XXXXXX"
-  # messagingSenderId = "XXXXXX"
-  # appId = "XXXXXX"
-  # measurementId = "XXXXXX"
+  apiKey = "AIzaSyDSpwWmuY-0Pc7GDs_-PlKsuZeefynvO7Y"
+  authDomain = "myblog-3623e.firebaseapp.com"
+  projectId = "myblog-3623e"
+  storageBucket = "myblog-3623e.appspot.com"
+  messagingSenderId = "267572879466"
+  appId = "1:267572879466:web:29662ee04ce750f635ea13"
+  measurementId = "G-E0XRSBBY4C"
 
 [fathomAnalytics]
   # site = "ABC12345"
   # domain = "llama.yoursite.com"
 
 [buymeacoffee]
-  # identifier = ""
-  # globalWidget = true
-  # globalWidgetMessage = "Hello"
-  # globalWidgetColor = "#FFDD00"
-  # globalWidgetPosition = "Right"
+  identifier = "ddoddii"
+  globalWidget = true
+  globalWidgetMessage = "☕️"
+  globalWidgetColor = "#FFDD00"
+  globalWidgetPosition = "Right"
 
 [verification]
   # google = ""
