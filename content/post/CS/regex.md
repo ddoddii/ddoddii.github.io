@@ -147,7 +147,18 @@ print(preprocessed_text)
 'Regular expression   A regular expression  regex or regexp     sometimes called a rational expression        is  in theoretical computer science and formal language theory  a sequence of characters that define a search pattern '  
 
 """
+```
 
+- **capturing group** 
+  - `r"([-+*])"` 는 () 를 사용해서, capturing group 이 된다. 따라서 결과에 split 에 사용된 -,+,* 도 포함된다.
+  - `r"[-+*]"` 는 () 이 없다. 따라서 split 에 사용된 -,+,* 는 결과에 포함되지 않는다.
+
+```python
+expression = "50*6-3*2"
+print(re.split(r"([-+*])", expression))
+# ['50', '*', '6', '-', '3', '*', '2']
+print(re.split(r"[-+*]", exp))
+# ['50', '6', '3', '2']
 ```
 
 
