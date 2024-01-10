@@ -1,6 +1,6 @@
 +++
 author = "Soeun"
-title = "python 에서의 Async 개념"
+title = "python 에서의 비동기 알아보기"
 date = "2023-12-21"
 summary = "python 공식 문서를 참고한 async, await, coroutine, task 개념 정리"
 categories = [
@@ -12,7 +12,7 @@ tags = [
 slug = "python-asyncio"
 +++
 
-## Async 
+## 비동기(Async)
 
 우선 예시를 통해 synchronous, asynchronous 를 비교해보자. 
 
@@ -30,7 +30,7 @@ Multi-threading 이면, 3개의 thread 를 만들고 각각 쓰레드에서 함�
 
 Asynchronous 는 single-threaded 환경에서 여러 태스크 들을 동시에 실행(concurrent execution) 할 수 있도록 하는 프로그래밍 패러다임이다. 즉 async 는 멀티쓰레딩, 멀티프로세싱도 아니고 동시성 프로그래밍이다.  
 
-파이썬에서는 `asyncio` 라이브러리를 이용하여 구현할 수 있다. asyncio 에서는 async / await 구문을 이용하여 동시성 코드를 작성할 수 있다. asynco 는 고성능 네트워크 및 웹 서버, 데이터베이스 연결 라이브러리, 분산 작업 큐 등을 제공하는 여러 파이썬 비동기 프레임워크의 기반으로 사용된다.  asyncio 는 종종 IO 병목이면서 고수준의 **구조화된** 네트워크 코드에 가장 적합하다. 
+파이썬에서는 `asyncio` 라이브러리를 이용하여 구현할 수 있다. asyncio 에서는 async / await 구문을 이용하여 동시성 코드를 작성할 수 있다. asyncio 는 고성능 네트워크 및 웹 서버, 데이터베이스 연결 라이브러리, 분산 작업 큐 등을 제공하는 여러 파이썬 비동기 프레임워크의 기반으로 사용된다.  asyncio 는 종종 IO 병목이면서 고수준의 **구조화된** 네트워크 코드에 가장 적합하다. 
 
 `asyncio` 는 다음과 같은 고수준 API 를 제공한다. 
 
@@ -72,7 +72,8 @@ B
 
 이 **asynco api** 에 대해 좀 더 알아보자. 
 
-## Coroutine
+## Coroutine and Task
+### Coroutine
 
 코루틴은 async / await 를 사용해서 선언된다. 즉 `async def` 로 선언된 함수는 코루틴이다. 
 ```python
@@ -99,7 +100,7 @@ world
 
 코루틴을 직접적으로 실행하려면, 다음과 같은 방법을 따라야 한다. 
 - 최상위 진입점 `main()` 함수를 실행하는 `asyncio.run()` 함수
-- 코루틴을 기다리기. 
+- 코루틴을 기다리기
   
   아래 코드는 1초를 기다린 후 "hello" 를 프린트 하고, 2초를 기다린 후 "world" 를 프린트한다.  출력으로 보면 총 3초가 걸렸음을 알 수 있다. 
 
@@ -176,6 +177,24 @@ world
 	
 	    print(f"finished at {time.strftime('%X')}")
 	```
+
+---
+여기서 코루틴 과 쓰레드를 비교해보자. 
+
+**Thread** 
+
+<img width="700" alt="image" src="https://github.com/ddoddii/resume-ai-chat/assets/95014836/751a17ef-518c-4c6b-ae8f-5419ec934dc2">
+
+Thread A 에서 Task1 을 수행하다가, Task2 수행이 필요할 시에 비동기적으로 Task2 를 호출하며 Task2 를 수행한다. 이때 Thread A 는 block 되며 Thread B 로 context switching 이 일어난다. Task2 가 완료 되면 다시 Thread A 로 Context switching 이 일어나 결과값을 Task1 로 반환한다. 마찬가지로 Task3, Task4 가 Thread C, Thread D 에서 수행된다. Task 수행 단위는 Thread 가 되며, **Context switching** 을 통해 동시성이 보장된다. 
+
+**Coroutine**
+
+<img width="700" alt="image" src="https://github.com/ddoddii/resume-ai-chat/assets/95014836/7da8e90a-1118-4f5f-aa2e-c6f1b2672aeb">
+
+ThreadA 에서 Task1 을 수행하다가, Task2 수행이 필요할 시에 비동기적으로 동일한 ThreadA에서 Task2를 수행합니다. 동일한 스레드에서 Task1, Task2를 수행할 수 있으므로, Context switching 비용이 발생하지 않습니다. Task3, Task4도 마찬가지로 ThreadC에서 concurrent하게 실행 가능합니다. 즉, 작업 단위가 스레드 단위가 아닌 Object 단위(프로그래머가 단위를 정할 수 있습니다)로 수행 되게 됩니다. 동시성 보장 수단이 **프로그래머의 코드**가 되는 것이다. 
+
+---
+
 
 ## Awaitable
 
@@ -488,3 +507,4 @@ except 부분에는 일어날 수 있는 에러들이 적혀 있다. (rate limit
 ## Reference
 - https://docs.python.org/ko/3/library/asyncio.html
 - https://docs.python.org/ko/3/library/asyncio-task.html
+
