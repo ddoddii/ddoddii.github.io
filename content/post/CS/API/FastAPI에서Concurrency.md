@@ -1,6 +1,6 @@
 +++
 author = "Soeun"
-title = "FastAPI 공식문서에서 본 Concurrency & Async"
+title = "FastAPI 공식문서로 알아본 Concurrency & Async"
 date = "2024-01-06"
 summary = "FastAPI 는 어떻게 동시성을 보장할까?"
 categories = [
