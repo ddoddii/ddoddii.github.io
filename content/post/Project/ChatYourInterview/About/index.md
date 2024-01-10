@@ -16,8 +16,7 @@ slug = "about"
 ## Chat Your Interview
 ✨**Chat Your Interview**✨ 를 소개합니다 ! 이 챗봇은 자소서 기반 개인 질문과, 지원하는 개발자 포지션에 맞는 기술 질문, 인성 질문을 물어보고 여러분의 답변을 평가까지 해줍니다. 
 
-{{< youtube 3UqAng_nUUA >}}
-
+{{< youtube cgK4MzohPjA >}}
 
 
 [GDSC](https://gdsc-ys.github.io/) ML 파트원, 프런트 [@수빈](https://github.com/suekim3028), 백엔드 [@인엽](https://github.com/inshining) 함께 CV 기반 개인 질문을 생성해주고, 챗봇 형태로 대화할 수 있는 `Chat Your Interview` 프로젝트를 진행했다. 
