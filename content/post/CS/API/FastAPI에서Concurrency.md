@@ -14,6 +14,10 @@ tags = [
 slug = "fastapi-concurrency"
 +++
 
+{{< alert icon="edit">}}
+본 포스팅은 **FastAPI 공식 문서**를 번역한 글입니다.
+{{< /alert >}}
+
 
 현대 파이썬은, "코루틴" 을 사용하여 "비동기 코드" 를 지원한다. 이것은 `async`, `await` 을 사용해서 구현할 수 있다. 그러면 아래 3가지가 각각 어떤 의미인지 보자. 
 
