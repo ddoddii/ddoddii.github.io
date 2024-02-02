@@ -17,11 +17,11 @@ title = "Soeun's Dots"
 
 [author]
     name = "Soeun Uhm"
-#    image = "img/blowfish_logo.png"
-    headline = "Per nebulae, ad astra: Through mists, unto the stars."
+    image = "img/avatar.png"
+    headline = "Change yourself, Change your team, Change the world 🌎"
     bio = "Problem-Solving developer"
   links = [
-#      { email = "mailto:uhmturks@yonsei.ac.kr" },
+#     { email = "mailto:uhmturks@yonsei.ac.kr" },
 #     { link = "https://link-to-some-website.com/" },
 #     { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
 #     { apple = "https://www.apple.com" },
