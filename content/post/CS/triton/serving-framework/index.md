@@ -10,6 +10,7 @@ tags = [
     "Triton",
 ]
 slug = "triton-server-framework"
+draft = true
 +++
 
 회사 인턴 업무 중 자연어처리 모델 서빙하는 업무를 맡았습니다. 기존 서빙 아키텍쳐는 FastAPI + AWS EC2 (G4DN )
