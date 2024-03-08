@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "Nvidia Triton Server 에서 모델 배포하기"
-date = "2024-01-05"
+date = "2023-08-20"
 summary = "삽질을 통해 헤쳐나간 Triton Server 사용기 - 1탄"
 categories = [
     "CS"
@@ -186,14 +186,6 @@ python client.py
 ![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/8e351ba8-b3b5-4ee8-9049-028530497c0a)
 
 무려 0.22 초 만에 사진을 인식하고, text_detection과 text_recognition 작업을 모두 해냈습니다.
-
-{{< alert icon="comment" >}}
-처음 **Triton Inference Server** 에 관심을 가지게 된 계기 ?
-{{< /alert >}}
-
-작년 여름, CJ 대한 통운 공모전에서 1점 차이로 탈락했었습니다. 추론 속도 + 정확도 2가지 기준으로 점수를 측정했는데, 정확도는 우리 팀이 1등이었지만 추론 속도가 말도 안되게 느렸습니다. 1등한 팀의 메일 주소를 어찌저찌 발견하여 메일로 여쭤보니, Triton Server 를 사용했다고 하셨습니다.
-
-그때부터 triton server 에 대해 공부했지만, 튜토리얼이 친절하지는 않습니다. GPU 도 필요하고, nvidia driver 가 깔려있는 환경이어야 제대로 돌아갑다. 따라서 저의 시행착오를 바탕으로 이 글을 보는 누군가는 삽질을 하지 않기를 바라며, 공식 문서의 튜토리얼을 차근차근 번역해보았습니다. Tutorial 이 part 6 까지 있는데, 이전에 공부했던 자료를 바탕으로 차근차근 업로드할 계획입니다. 특히 한국어 자료는 마치 가뭄에 단비와 같았기에, Triton Server 에 대해 처음 사용을 시작하는 누군가에게 도움이 되었으면 좋겠단 마음으로 자세히 작성했습니다.
 
 ## Reference
 
