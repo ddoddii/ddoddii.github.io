@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "Nvidia Triton Server 에서 모델 배포하기"
-date = "2023-08-20"
+date = "2024-01-14"
 summary = "삽질을 통해 헤쳐나간 Triton Server 사용기 - 1탄"
 categories = [
     "CS"

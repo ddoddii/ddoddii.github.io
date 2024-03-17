@@ -1,7 +1,7 @@
 +++
 author = "Soeun"
 title = "Nvidia Triton Server 에서 리소스 최대한 활용하기 (Throughput, Latency 개선방법)"
-date = "2023-08-30"
+date = "2024-01-17"
 summary = "삽질을 통해 헤쳐나간 Triton Server 사용기 - 2탄"
 categories = [
     "CS"
