@@ -104,7 +104,7 @@ Superscalar 는 프로그래머가 코드를 재작성할 필요 없이, 프로�
 
 <img width="820" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/a832b4cd-e4fd-4a46-a70d-07b0543443f4">
 
-### 쓰레드는 무엇인가요? 
+### 쓰레드는 무엇인가요? 
 
 그렇다면 **쓰레드**는 정확히 무엇일까요?  
 
