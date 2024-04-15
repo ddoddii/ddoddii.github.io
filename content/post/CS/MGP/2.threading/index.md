@@ -260,7 +260,7 @@ Barrier도 동기화 메카니즘입니다. 모든 쓰레드가 barrier 에 도�
 3. `count_` 가 0이 되면, barrier 에 모든 쓰레드들이 도달했다는 의미입니다. 이 경우 count 는 원래 count 값 (`initial_count_`)으로 초기화 되며, 기다리고 있는 쓰레드들은 `cv_.notify_all()` 을 이용해 알림을 전송합니다. 
 4.  `count_` 가 0이 아니면, 쓰레드는 `cv_.wait()` 를 사용하여 컨디션 변수에 기다립니다. 쓰레드는 `count_ == initial_count_`  가 참이 될때까지 블럭됩니다. 
 
-### Thread-safety
+## Thread-safety
 
 **Thread-safe** 하다는 것은 코드에서 공유 데이터를 조작하는데도 여러 개의 쓰레드를 가지고 코드를 실행해도 괜찮다는 의미입니다.  하지만 대부분의 자료구조들은 thread-safe 하지 않습니다. 아주 간단하게, lock 을 걸어서 thread-safe 하게 만들 수 있습니다. 하지만 이런 경우 굉장히 느려집니다. 어떻게 하면 thread-safe 하면서 속도를 많이 늦추지 않을 수 있을까요?
 
