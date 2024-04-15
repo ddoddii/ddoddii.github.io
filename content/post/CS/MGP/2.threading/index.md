@@ -284,7 +284,10 @@ pop() 에서, head 노드와 new_head 노드의 락을 획득하려 합니다. �
 
 이 상황에서 쓰레드A 와 쓰레드B 는 서로 락을 반환하기를 기다리면서 데드락이 발생합니다. 따라서 락을 구현할 때 이러한 점들을 신경써야 합니다. 
 
+작성한 실제 코드는 아래 레포지토리의 threading 폴더에서 볼 수 있습니다.
 
+
+{{< github repo="ddoddii/Multicore-GPU-Programming" >}}
 
 ## Reference
 - Multicore and GPU Programming, 연세대학교 박영준 교수님
