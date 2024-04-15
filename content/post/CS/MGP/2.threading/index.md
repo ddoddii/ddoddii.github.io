@@ -1,8 +1,8 @@
 ---
-title: "c++로 알아본 쓰레드 관리하기"
+title: "c++로 알아본 쓰레드 프로그래밍"
 date: 2024-03-20
 draft: false
-summary : "c++에서 쓰레드 관리하기, 쓰레드 안전 구현하는 방법"
+summary : "쓰레드 관리하기, thread-safety 구현하는 방법"
 tags: ["Multicore-GPU-Programming"]
 categories : ["CS"]
 series: ["Multicore-GPU-Programming"]
