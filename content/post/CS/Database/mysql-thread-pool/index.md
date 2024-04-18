@@ -1,8 +1,8 @@
 +++
 author = "Soeun"
-title = "MySQL 서버에서 알아본 쓰레드풀의 의미"
-date = "2024-04-03"
-summary = "클라이언트의 커넥션 풀 - MySQL 의 커넥션 풀의 관계"
+title = "MySQL 서버에서 쓰레드풀은 어떤 역할을 할까?"
+date = "2024-04-10"
+summary = "클라이언트의 커넥션 풀 - MySQL 의 쓰레드 풀의 관계"
 categories = [
     "CS"
 ]
