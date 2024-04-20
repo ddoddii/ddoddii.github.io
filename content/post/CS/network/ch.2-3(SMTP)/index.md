@@ -32,11 +32,11 @@ series_order = 4
 
 SMTP 는 메일을 주고 받기 위해 TCP 를 사용한다. 왜냐면 메일의 내용이 손상이 되면 안되기 때문이다. 메일을 보낼 때 시나리오를 생각해보자.
 
-1. 내가 이도현에게 이메일을 보내고자 한다. 이도현님의 이메일 주소를 찾아서, 메세지를 적고, user agent(gmail 등) 을 이용해서 메세지를 보내라고 한다.
+1. 내가 A에게 이메일을 보내고자 한다. A의 이메일 주소를 찾아서, 메세지를 적고, user agent(gmail 등) 을 이용해서 메세지를 보내라고 한다.
 2. 내 user agent 는 내 mail server 에게 이 메세지를 보낸다. 이 메세지는 message queue 에 저장된다.
-3. 내 SMTP 는 message queue 에 저장되어 있는 메세지를 발견하고, 이도현 님의 mail server 와 TCP 연결을 한다. 
+3. 내 SMTP 는 message queue 에 저장되어 있는 메세지를 발견하고, A의 mail server 와 TCP 연결을 한다. 
 4. SMTP handshaking 후에, 내 SMTP client 는 TCP 연결을 통해 메세지를 보낸다. 
-5. 이도현님의 메일 서버는 메세지를 받고, 이 메세지를 mailbox 에 보관한다. 
+5. A의 메일 서버는 메세지를 받고, 이 메세지를 mailbox 에 보관한다. 
 
 <img width="669" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/a0dcf86e-9cbd-4bdc-a156-fffb7f4bfc6e">
 
