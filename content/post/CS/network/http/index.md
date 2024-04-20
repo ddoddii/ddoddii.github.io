@@ -154,6 +154,11 @@ HTTP/2 로 인해 성능 향상이 되었지만, 여전히 HTTP 는 TCP 기반�
 
 QUIC(Quick UDP Internet Connections)는 전송 계층 프로토콜로, 멀티플렉싱과 자체 보안 기능을 내장하고 있습니다. 또한 TCP 보다 훨씬 빠른 핸드셰이크 프로세스를 가지고 있어, 연결을 훨씬 빠르게 맺을 수 있습니다. 그리고 UDP 상에서 여러 개의 스트림을 만들어서, 각 스트림마다 패킷 loss 를 독립적으로 처리합니다. 따라서 패킷을 잃어버려도, 전체가 영향을 받는 것이 아니라 그 스트림만 영향을 받습니다. 
 
+## Summary
+
+![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/2f768e32-3f90-41fe-b43a-78b1af8dc9ae)
+
+
 
 
 ## Reference
