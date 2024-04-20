@@ -271,7 +271,15 @@ int main(int argc, char const* argv[])
 
 ![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/38672bd3-7e56-4ed1-ab92-82db8595842b)
 
+## 소켓은 OSI 7계층 중 어디에 속할까요?
+
+![image](https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/4d3b64d1-a859-43a2-9c8f-1115865e1d14)
+
+
+소켓은 OSI 7계층 중 **세션 레이어**에 속합니다. 소켓은 하나의 컴퓨터와 다른 컴퓨터가 소통하기 위한 창구같은 개념입니다. 네트워크 소켓(network socket)은 컴퓨터 네트워크를 경유하는 프로세스 간 통신의 종착점입니다. 오늘날 컴퓨터 간 통신의 대부분은 인터넷 프로토콜을 기반으로 하고 있으므로, 대부분의 네트워크 소켓은 인터넷 소켓입니다. 네트워크 통신을 위한 프로그램들은 소켓을 생성하고, 이 소켓을 통해서 서로 데이터를 교환합니다. 
 
 ## Reference
 - How Network Works, Tsutomu Tone 
 - https://www.geeksforgeeks.org/socket-programming-cc/
+- https://jmvidal.cse.sc.edu/talks/javasockets/sockets.html
+- https://en.wikipedia.org/wiki/Network_socket
