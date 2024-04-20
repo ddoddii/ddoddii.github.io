@@ -11,7 +11,8 @@ tags = [
 ]
 image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9246b7a7-030a-4057-96fd-28b1ce6b2c13"
 series = ["Database"]
-series_order = 5
+series_order = 2
+slug = "index"
 +++
 
 ## 대량 데이터 내에서 검색하기 

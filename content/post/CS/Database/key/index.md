@@ -10,7 +10,8 @@ tags = [
     "데이터베이스"
 ]
 series = ["Database"]
-series_order = 3
+series_order = 1
+slug = "key"
 +++
 
 ## RDB 의 구성

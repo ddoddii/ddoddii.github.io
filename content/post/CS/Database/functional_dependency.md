@@ -14,6 +14,7 @@ math = true
 slug = "functional-dependency"
 series = ["Database"]
 series_order = 7
+draft = true
 +++
 {{< katex >}}
 

@@ -13,6 +13,7 @@ image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9246b7a7-0
 math = true
 series = ["Database"]
 series_order = 4
+draft = true
 +++
 
 ## 1. Subclasses, Superclasses, and Inheritance

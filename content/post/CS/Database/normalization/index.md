@@ -13,7 +13,7 @@ image = "https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9246b7a7-0
 math = true
 slug = "normalization"
 series = ["Database"]
-series_order = 8
+series_order = 3
 +++
 {{< katex >}}
 
