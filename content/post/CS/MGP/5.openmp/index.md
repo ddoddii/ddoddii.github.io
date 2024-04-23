@@ -100,37 +100,36 @@ int main(int argc, char **argv)
 ### Private
 
 ```cpp
-#include <omp.h>
-#include <cstdio>
 #include <cassert>
+#include <cstdio>
+#include <omp.h>
 #include <stdlib.h>
 
 int main(int argc, char **argv)
 {
-	omp_set_num_threads(2);
-	int is_private = -2;
-	
-	#pragma omp parallel private(is_private)
-	{
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d  | is_private(before) = %d\n",tid,is_private);
-		is_private = tid();
-		printf("Thread ID %2d  | is_private(after) = %d\n",tid,is_private);
-		assert(is_private==tid);
-	}
-	printf("Main thread  | is_private = %d\n", is_private);
+    omp_set_num_threads(2);
+    int is_private = -2;
 
-	return 0;
+/*
+private : not initialized
+Modifying is_private within parallel block does not modify the value outside block
+*/
+#pragma omp parallel private(is_private)
+    {
+        int tid = omp_get_thread_num();
+        printf("Thread ID %2d  | is_private(before) = %d\n", tid, is_private);
+        is_private = tid;
+        printf("Thread ID %2d  | is_private(after) = %d\n", tid, is_private);
+        assert(is_private == tid);
+    }
+    printf("Main thread  | is_private = %d\n", is_private);
+
+    return 0;
 }
+
 ```
 
-```text
-Thread ID 1  | is_private (before) = 32763
-Thread ID 1  | is_private (after) = 1
-Thread ID 0  | is_private(before) = 0
-Thread ID 0  | is_private (after) = 0
-Main thread  | is_private = -2
-```
+<img width="380" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/5fbcca7a-7758-4523-95a1-f7f40574b161">
 
 `is_private` 변수가 각 쓰레드마다 할당되었음을 볼 수 있습니다. 하지만 똑같이 초기화 된 것은 아닙니다. {} 안에서 `is_private` 변수를 수정해도 블럭 바깥에는 영향을 미치지 않습니다. 
 
@@ -139,118 +138,147 @@ Main thread  | is_private = -2
 Firstprivate 를 사용하면 모든 로컬 변수가 초기화됩니다. 
 
 ```cpp
-#include <omp.h>
-#include <cstdio>
 #include <cassert>
+#include <cstdio>
+#include <omp.h>
 #include <stdlib.h>
 
 int main(int argc, char **argv)
 {
-	omp_set_num_threads(2);
-	int is_private = -2;
-	
-	#pragma omp parallel firstprivate(is_private)
-	{
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d  | is_private(before) = %d\n",tid,is_private);
-		is_private = tid();
-		printf("Thread ID %2d  | is_private(after) = %d\n",tid,is_private);
-		assert(is_private==tid);
-	}
-	printf("Main thread  | is_private = %d\n", is_private);
+    omp_set_num_threads(2);
+    int is_private = -2;
+/*
+firstprivate : initialized to value outside region
+Modifying is_private within parallel block does not modify the value outside the block
+*/
+#pragma omp parallel firstprivate(is_private)
+    {
+        int tid = omp_get_thread_num();
+        printf("Thread ID %2d  | is_private(before) = %d\n", tid, is_private);
+        is_private = tid;
+        printf("Thread ID %2d  | is_private(after) = %d\n", tid, is_private);
+        assert(is_private == tid);
+    }
+    printf("Main thread  | is_private = %d\n", is_private);
 
-	return 0;
+    return 0;
 }
 ```
 
+<img width="679" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/ee9952ed-6ff5-4cf7-9e8d-b2f0551c507e">
 
-```text
-Thread ID 1  | is_private (before) = -2
-Thread ID 1  | is_private (after) = 1
-Thread ID 0  | is_private(before) = -2
-Thread ID 0  | is_private (after) = 0
-Main thread  | is_private = -2
-```
+
 
 범위 바깥에 `is_private` 변수를 -2로 초기화한것이 그래도 적용됨을 볼 수 있습니다. 그러나 여전히 블럭 내에서  `is_private` 변수를 수정하는 것은 블럭 바깥에 영향을 미치지 않습니다. 
 
 ### Last private
 
 ```cpp
-#include <omp.h>
-#include <cstdio>
 #include <cassert>
+#include <cstdio>
+#include <omp.h>
 #include <stdlib.h>
 
 int main(int argc, char **argv)
 {
-	omp_set_num_threads(2);
-	int last_private = -2;
-	
-	#pragma omp parallel for lastprivate(last_private)
-	for (int i=0;i<10;i++)
-	{
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d excuting i=%d  | last_private(before) = %d\n",tid,i,is_private);
-		is_private = tid();
-		printf("Thread ID %2d excuting i=%d  | last_private(after) = %d\n",tid,i,is_private);
-		assert(last_private==i);
-	}
-	printf("Main thread  | last_private = %d\n", last_private);
+    omp_set_num_threads(2);
+    int last_private = -2;
+/*
+lastprivate : not initialized,
+becomes what's written in the last iteration (no matter when, which thread executed it!)
+*/
+#pragma omp parallel for lastprivate(last_private)
+    for (int i = 0; i < 10; i++)
+    {
+        int tid = omp_get_thread_num();
+        printf("Thread ID %2d excuting i=%d  | last_private(before) = %d\n", tid, i, last_private);
+        last_private = i;
+        printf("Thread ID %2d excuting i=%d  | last_private(after) = %d\n", tid, i, last_private);
+        assert(last_private == i);
+    }
+    printf("Main thread  | last_private = %d\n", last_private);
 
-	return 0;
+    return 0;
+}
+
+```
+
+**Lastprivate** 는 이터레이션 내 마지막으로 수정된 값으로 고정됩니다. 그리고 private 과 같이 초기화되지 않습니다. 
+
+<img width="695" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/9a2445fa-17f9-4b9c-900e-fe690fca69c3">
+
+### FirstPrivate & LastPrivate
+
+```cpp
+#include <cassert>
+#include <cstdio>
+#include <omp.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv)
+{
+    omp_set_num_threads(2);
+    int last_private = -2;
+/*
+lastprivate & firstprivate : initialized,
+becomes what's written in the last iteration (no matter when, which thread executed it!)
+*/
+#pragma omp parallel for firstprivate(last_private) lastprivate(last_private)
+    for (int i = 0; i < 10; i++)
+    {
+        int tid = omp_get_thread_num();
+        printf("Thread ID %2d excuting i=%d  | last_private(before) = %d\n", tid, i, last_private);
+        last_private = i;
+        printf("Thread ID %2d excuting i=%d  | last_private(after) = %d\n", tid, i, last_private);
+        assert(last_private == i);
+    }
+    printf("Main thread  | last_private = %d\n", last_private);
+
+    return 0;
 }
 ```
 
-Lastprivate 는 이터레이션 내 마지막으로 수정된 값으로 고정됩니다. 그리고 private 과 같이 초기화되지 않습니다. 
+firstpriavate, lastprivate 같이 사용할 수 도 있습니다.
 
-```text
-Thread ID 1 executing i=5 | last_private (before) = 1704464448
-Thread ID 1 executing i=5 | last_private(after) = 5
-Thread ID 1 executing i=6 | last_private (before) = 5
-Thread ID 1 executing i=6 | last_private (after) = 6
-Thread ID 1 executing i=7 | last_private(before) = 6
-Thread ID 1 executing i=7 | last_private (after) = 7
-Thread ID 1 executing i=8 | last_private (before) = 7
-Thread ID 1 executing i=8 | last_private(after) = 8
-Thread ID 1 executing i=9 | last_private(before) = 8
-Thread ID 1 executing i=9 | last_private(after) = 9 
-Thread ID 0 executing i=0 | last_private (before) = 0
-Thread ID 0 executing i=0 | last_private (after) =0
-Thread ID 0 executing i=1 | last_private(before) = 0
-Thread ID 0 executing i=1 | last_private(after) = 1
-Thread ID 0 executing i=2 | last_private(before) = 1
-Thread ID 0 executing i=2 | last_private (after) = 2
-Thread ID 0 executing i=3 | last_private (before) = 2
-Thread ID 0 executing i=3 | last_private(after) = 3
-Thread ID 0 executing i=4 | last_private(before) = 3
-Thread ID 0 executing i=4 | last_private(after) = 4
-Main thread | last_private = 9
-```
+<img width="732" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/4f57fbac-7b54-403c-b8bc-cbdb5cb552bd">
 
 ## Sections
 
 병렬화를 위한 다른 **sections** 를 제공할 수 도 있습니다. 
 
 ```cpp
-omp_set_num_threads(10);
+#include <cassert>
+#include <cstdio>
+#include <omp.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv)
+{
+    omp_set_num_threads(10);
 
 #pragma omp parallel sections
-{
-	#pragma omp parallel section
-	for(int i=0;i<1000;i++){
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d section A\n",tid);
-	}
+    {
+#pragma omp section
+        for (int i = 0; i < 10; i++)
+        {
+            int tid = omp_get_thread_num();
+            printf("Thread ID %2d section A\n", tid);
+        }
 
-	#pragma omp parallel section
-	for(int i=0;i<1000;i++){
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d section B\n",tid);
-	}
+#pragma omp section
+        for (int i = 0; i < 10; i++)
+        {
+            int tid = omp_get_thread_num();
+            printf("Thread ID %2d section B\n", tid);
+        }
+    }
+
+    return 0;
 }
-
 ```
+
+<img width="528" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/5188d2e1-c25e-4014-bad4-b0e56745d829">
+
 
 ## Single
 
@@ -259,37 +287,37 @@ omp_set_num_threads(10);
 ![image](https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/eed368e8-d92b-44b2-aef1-140b291b16c8)
 
 ```cpp
-#pragma omp parallel 
-{
-	#pragma omp single
-	for(int i=0;i<10;i++){
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d section A\n",tid);
-	}
-	// Implicit barrier !
+#include <cassert>
+#include <cstdio>
+#include <omp.h>
+#include <stdlib.h>
 
-	#pragma omp for
-	for(int i=0;i<100;i++){
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d section B\n",tid);
-	}
+int main(int argc, char **argv)
+{
+    omp_set_num_threads(10);
+
+#pragma omp parallel
+    {
+#pragma omp single
+        for (int i = 0; i < 10; i++)
+        {
+            int tid = omp_get_thread_num();
+            printf("Thread ID %2d section A\n", tid);
+        } // implicit barrier !!
+
+#pragma omp for
+        for (int i = 0; i < 100; i++)
+        {
+            int tid = omp_get_thread_num();
+            printf("Thread ID %2d section B\n", tid);
+        }
+    }
+
+    return 0;
 }
 ```
 
-```text
-Thread ID 2 section A
-Thread ID 2 section A
-Thread ID 2 section A
-Thread ID 2 section A
-Thread ID 2 section A
-...
-Thread ID 9 section B
-Thread ID 9 section B
-Thread ID 2 section B
-Thread ID 0 section B
-Thread ID 8 section B
-...
-```
+<img width="478" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/30186494-f5fc-46d8-a5c6-00b53071e43a">
 
 ## Barriers
 
@@ -355,60 +383,46 @@ section 과 비슷하지만, master 쓰레드에 의해 실행되는 것을 보�
 
 이렇게 하면 Thread ID 가 0인 master 쓰레드만 section A를 실행합니다.
 
-```text
-Thread ID 2 section B
-Thread ID 2 section B
-Thread ID 5 section B
-Thread ID 5 section B
-Thread ID 3 section B
-Thread ID 0 section A
-Thread ID 3 section B
-Thread ID 4 section B
-Thread ID 4 section B
-Thread ID 0 section A
-Thread ID 0 section A
-...
-```
+<img width="466" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/944a02f8-d997-424d-8923-0ff1caade744">
+
 
 **Master + explicit barrier** 를 같이 쓰면, single 과 비슷하게 작동합니다. 
 
 ```cpp
-#pragma omp parallel 
+#include <cassert>
+#include <cstdio>
+#include <omp.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv)
 {
-	#pragma omp master
-	for(int i=0;i<100;i++){
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d section A\n",tid);
-	}
-	
-	#pragma omp barrier
-	#pragma omp for
-	for(int i=0;i<100;i++){
-		int tid = omp_get_thread_num();
-		printf("Thread ID %2d section B\n",tid);
-	}
+    omp_set_num_threads(10);
+
+#pragma omp parallel
+    {
+/*
+master + explicit barrier works like "single"
+*/
+#pragma omp master
+        for (int i = 0; i < 5; i++)
+        {
+            int tid = omp_get_thread_num();
+            printf("Thread ID %2d section A\n", tid);
+        }
+#pragma omp barrier
+#pragma omp fpr
+        for (int i = 0; i < 5; i++)
+        {
+            int tid = omp_get_thread_num();
+            printf("Thread ID %2d section B\n", tid);
+        }
+    }
+
+    return 0;
 }
 ```
 
-```text
-Thread ID 0 section A
-Thread ID 0 section A
-Thread ID 0 section A
-Thread ID 0 section A
-Thread ID 0 section A
-Thread ID 0 section A
-....
-
-Thread ID 7 section B
-Thread ID 7 section B
-Thread ID 9 section B
-Thread ID 0 section B
-Thread ID 0 section B
-Thread ID 0 section B
-Thread ID 1 section B
-Thread ID 1 section B
-...
-```
+<img width="667" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/ea86c4f3-2355-425a-938e-e6b66270da9f">
 
 ![image](https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/c32c2879-5ddc-4dff-a6ce-61092ad434d9)
 
@@ -428,29 +442,41 @@ int main(int argc, char **argv)
 }
 ```
 
+<img width="584" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/a7c924ca-030a-480b-b322-afc0df2074cf">
+
 이 경우에, 답은 엉뚱한 값이 나옵니다. 어떻게 하면 정확한 결과를 얻을까요?
 
 ```cpp
+#include <iostream>
+#include <omp.h>
+
 int main(int argc, char **argv)
 {
-	int sum=0;
-	#pragma omp parallel for reduction(+:sum)
-	for (int i=0;i<100;i++) {
-		sum += i;
-	}
-	printf("Sum : %d\n", sum);
-	return 0;
+    omp_set_num_threads(10);
+    int sum = 0;
+
+#pragma omp parallel for reduction(+ : sum)
+    for (int i = 0; i < 100; i++)
+    {
+        sum += i;
+    }
+    printf("Sum : %d\n", sum);
+    return 0;
 }
 ```
 
-reduction 을 사용하면 local sum 을 만들고, global sum에 더해줍니다. 
+**reduction** 을 사용하면 local sum 을 만들고, global sum에 더해줍니다. 0부터 99까지 합인 4950이 올바르게 출력되는 것을 볼 수 있습니다. 
+
+<img width="554" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/adc69f68-495e-4a7b-9845-981a08a7f392">
 
 ## Summary
 
-OpenMP 를 사용하면, 쓰레드를 직접 만들었을 때보다 간편하게 병렬 프로그래밍을 할 수 있지만, 어디서 틀렸는지 정확히 모를 수 도 있다는 단점이 있습니다. 따라서 정확하게 문법을 숙지하여 openmp 를 사용해야 합니다. 
+OpenMP 를 사용하면, 쓰레드를 직접 만들었을 때보다 간편하게 병렬 프로그래밍을 할 수 있지만, 어디서 틀렸는지 정확히 모를 수 도 있다는 단점이 있습니다. 따라서 정확하게 문법을 숙지하여 openmp 를 사용해야 합니다.
+
+작성한 실제 코드는 아래 레포지토리의 **openmp 폴더**에서 볼 수 있습니다.
 
 
-
+{{< github repo="ddoddii/Multicore-GPU-Programming" >}}
 
 ## Reference
 - Multicore and GPU Programming, 연세대학교 박영준 교수님
