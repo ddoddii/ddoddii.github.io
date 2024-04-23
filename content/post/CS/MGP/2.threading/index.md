@@ -29,6 +29,8 @@ markup: 'mmark'
 
 우선 하드웨어는 신경쓰지 않고,  모든 쓰레드들이 같은 주소공간을 공유(shared memory)한다고 가정합시다. 쓰레드들이 같은 주소에 접근하면, 모두 같은 정보를 볼 수 있습니다. 하나의 쓰레드가 주소 공간에 어떠한 값을 쓰면, 다른 쓰레드들은 그 값을 볼 수 있습니다. 
 
+이 경우에는 다수의 쓰레드들이 같은 자원에 접근하여 **race condition** 이 생길 수 있기 때문에 **상호 배제**를 구현해야 합니다. 
+
 <img width="523" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/456718c5-6887-4cf2-9f3c-122733b79aba">
 
 #### CPU and Memory
@@ -67,7 +69,7 @@ markup: 'mmark'
 
 ## C++  threads
 
-C++11 부터 쓰레딩을 지원합니다. (`std: :thread`)  
+C++11 부터 쓰레딩을 지원합니다. (`std::thread`)  
 
 ![carbon (3)](https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/0155bcb1-c538-400a-9650-44362b2a4241)
 
@@ -102,9 +104,14 @@ Counting 프로그램을 예시로 하나 봅시다.
 
 이 프로그램을 멀티 쓰레딩 프로그램으로 만들 수 있을까요?
 
-![carbon (5)](https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/a5798f5c-de8a-4896-8094-f60ffeae118b)
+![carbon (1)](https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/4da24d7a-1ede-470a-ba0e-51223a667be1)
 
-하지만 결과를 보면, 실제 1000000 보다 적은 결과가 나옵니다. 왜 그럴까요? 이유는 바로 **race condition** 때문입니다. 
+<img width="599" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/7ea12109-5e07-4256-9fee-fcd1e25d8e71">
+
+<img width="600" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/403862bf-6a00-46f6-a095-6e9f55e3a350">
+
+
+하지만 결과를 보면, 싱글쓰레드로 실행했을 때는 정확한 결과가 나오지만, 멀티쓰레딩으로 실행했을 때는 실제 100000 보다 적은 결과가 나옵니다. 왜 그럴까요? 이유는 바로 **race condition** 때문입니다. 
 
 어떤 일이 일어나는 지 봅시다.
 
@@ -122,18 +129,20 @@ Counting 프로그램을 예시로 하나 봅시다.
 
 ### Race condition 
 
-앞에서 봤듯이, read-add-write 연산은 시간이 걸리는 연산들이고 중간에 interrupt 될 수 있습니다. Race condition 이란 결과가 실행의 순서에 따라 영향을 받는 것입니다. 따라서 결과는 매번 실행 때매다 달라집니다. 이것을 다루는 것은 프로그래머의 책임입니다. 
+앞에서 봤듯이, read-add-write 연산은 시간이 걸리는 연산들이고 중간에 **interrupt** 될 수 있습니다. **Race condition** 이란 결과가 실행의 순서에 따라 영향을 받는 것입니다. 따라서 결과는 매번 실행 때매다 달라집니다. 이것을 다루는 것은 프로그래머의 책임입니다. 
 
 ### Mutex
 
-Mutex 는 한 쓰레드/프로세스가 임계 영역에 있으면 다른 쓰레드/프로세스가 못 들어오도록 막습니다. 즉 하난의 쓰레드만이 mutex를 얻어 critical section 내에 있는 공유 자원에 접근할 수 있습니다. 다른 쓰레드들은 mutex 가 unlocked 상태가 될 때까지 기다려야 합니다.  
+**Mutex** 는 한 쓰레드/프로세스가 임계 영역에 있으면 다른 쓰레드/프로세스가 못 들어오도록 막습니다. 즉 하나의 쓰레드만이 mutex를 얻어 critical section 내에 있는 공유 자원에 접근할 수 있습니다. 다른 쓰레드들은 mutex 가 unlocked 상태가 될 때까지 기다려야 합니다.  
 
 하지만 동시간대에 하나의 쓰레드만 실행되므로, 프로그램은 무진장 느립니다. 따라서 critical section 의 사이즈를 최소화하는 것도 중요합니다. 
 
 ![carbon (6)](https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/99e1dbb0-027d-497d-a61c-f02fb564b987)
 
+<img width="600" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/4d2be0e0-d499-479b-89ce-f352fe535e1d">
 
-이것을 실행하면, 원래 의도와 같이 1000000 개의 0을 카운트 할 수 있습니다. 여기서 또 주의해야 할 점은, 꼭 `global_mutex.unlock();` 를 해서 뮤텍스를 unlock 해야 합니다. 만약 하지 않는다면, 데드락 상황이 발생할 수 도 있습니다. 
+
+이것을 실행하면, 원래 의도와 같이 100000 개의 0을 카운트 할 수 있습니다. 여기서 또 주의해야 할 점은, 꼭 `global_mutex.unlock();` 를 해서 뮤텍스를 unlock 해야 합니다. 만약 하지 않는다면, 데드락 상황이 발생할 수 도 있습니다. 
 
 따라서 더 안전하게 뮤텍스를 사용할 수 있는 방법들이 있습니다. 
 
@@ -219,7 +228,7 @@ Mutex 는 한 쓰레드/프로세스가 임계 영역에 있으면 다른 쓰레
 
 ### condition variable
 
-새로운 개념인 condition_variable 이 등장했습니다. 이때 `notify_one()` 와 `cond.wait()` 를 사용하면 됩니다. push() 와 pop() 이 일어날 때 락에게 알림을 전송합니다. 그러면 이전처럼 리소스를 낭비하지 않고, 큐가 비어있을 때는 리소스를 반환하여 다른 쓰레드들이 CPU 를 사용할 수 있습니다.
+새로운 개념인 **condition_variable** 이 등장했습니다. 이때 `notify_one()` 와 `cond.wait()` 를 사용하면 됩니다. push() 와 pop() 이 일어날 때 락에게 알림을 전송합니다. 그러면 이전처럼 리소스를 낭비하지 않고, 큐가 비어있을 때는 리소스를 반환하여 다른 쓰레드들이 CPU 를 사용할 수 있습니다.
 
 ![carbon (2)](https://github.com/ddoddii/algorithm/assets/95014836/62db54eb-6912-4fdc-87af-4784334e966a)
 
@@ -242,13 +251,13 @@ Mutex 는 한 쓰레드/프로세스가 임계 영역에 있으면 다른 쓰레
 ![carbon (4)](https://github.com/ddoddii/algorithm/assets/95014836/31a48934-8fdc-4f0a-a474-1d2ce511ea56)
 
 
-만약 lock-unlock 사이의 작업이 매우 간단하면, `std::atomic` 을 쓸 수 도 있습니다. atomic은 c++ 라이브러리로, 변수에 대한 원자적인 연산을 제공합니다. 원자적 연산은 쪼개질 수 없으므로, 락 없이도 쓰레드 안전성을 보장합니다. `std::atomic` 은 변수에 대한 read, write 연산이 원자적으로 이루어짐을 보장하며, 이것은 race condition 가 일어나지 않음을 보장합니다. 
+만약 lock-unlock 사이의 작업이 매우 간단하면, `std::atomic` 을 쓸 수 도 있습니다. **atomic** 은 c++ 라이브러리로, **변수에 대한 원자적인 연산**을 제공합니다. 원자적 연산은 쪼개질 수 없으므로, 락 없이도 쓰레드 안전성을 보장합니다. `std::atomic` 은 변수에 대한 read, write 연산이 원자적으로 이루어짐을 보장하며, 이것은 race condition 가 일어나지 않음을 보장합니다. 
 
 atomic 을 사용하면, 뮤텍스 락보다는 살짝 빠르지만 여전히 보통 연산들에 비해서는 현저히 느립니다. 
 
 ### Barrier
 
-Barrier도 동기화 메카니즘입니다. 모든 쓰레드가 barrier 에 도착할 때까지 쓰레드들이 기다리는 동기화 포인트로 작동합니다. 모든 쓰레드들이 barrier 에 도착하면, 동시에 실행합니다. join() 과 비슷하지만, join()과 달리 쓰레드들을 종료시키지는 않습니다. c++ 20에서 기본 라이브러리로 포함되었습니다. 
+**Barrier** 도 동기화 메카니즘입니다. 모든 쓰레드가 barrier 에 도착할 때까지 쓰레드들이 기다리는 동기화 포인트로 작동합니다. 모든 쓰레드들이 barrier 에 도착하면, 동시에 실행합니다. join() 과 비슷하지만, join()과 달리 쓰레드들을 종료시키지는 않습니다. c++ 20에서 기본 라이브러리로 포함되었습니다. 
 
 ![carbon (5)](https://github.com/ddoddii/algorithm/assets/95014836/2695692a-e0d3-4913-a7e3-b4af6c03ae5b)
 
