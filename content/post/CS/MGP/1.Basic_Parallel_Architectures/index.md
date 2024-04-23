@@ -108,15 +108,16 @@ Superscalar 는 프로그래머가 코드를 재작성할 필요 없이, 프로�
 
 그렇다면 **쓰레드**는 정확히 무엇일까요?  
 
- **쓰레드**는 프로세스의 경량화된 버전입니다. 쓰레드들 끼리는 code,heap,address space 등 몇가지의 리소스를 공유합니다. 하지만 쓰레드만의 고유한 영역인 pc, stack, registers 도 있습니다. 
+ **쓰레드**는 프로세스의 경량화된 버전으로, 프로세스 내에서 작업의 실행 단위입니다. 쓰레드들 끼리는 code,data,heap 등 몇가지의 리소스를 공유합니다. 하지만 쓰레드만의 고유한 영역인 pc, stack, registers 도 있습니다. 
 
 <img width="431" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/ab7b2349-efc3-491c-bff5-399a42540a5b">
 
-왜 쓰레드는 코드영역을 공유할까요? 왜냐하면 두개의 쓰레드는 같은 프로그램 내에 속해있기 때문입니다. 
+왜 쓰레드는 **코드영역**과 **데이터 영역**을 공유할까요? 프로세스의 **코드영역**에는 실제 수행되는 코드가 컴파일 되어 CPU 명령어가 바이너리 형태로 저장되어 있습니다. 두개의 쓰레드는 같은 프로그램 내에 속해있기 때문에, 수행하는 명령어들의 집합은 같습니다. 프로세스의 **데이터 영역**은 전역 변수나 static 변수 등 프로세스 시작과 함께 생성되는 데이터가 저장되어 있습니다. 
 
-왜 pc, stack, register 는 공유할 수 없을까요? PC는 다음 실행할 명령어를 가리키는데, 각 쓰레드는 같은 프로그램이지만 각각 다른 명령어를 실행하기 때문입니다. 또한 쓰레드 별로 다른 데이터를 다루기 때문에 레지스터도 공유될 수 없습니다. 
 
-그렇다면, 만약 프로세서에서 사이클마다 모든 쓰레드에게 같은 명령어를 실행하게 한다면, pc 를 공유할 수 있을까요? 이런 특수한 상황에서는 가능합니다. 그렇다면 이때는 레지스터는 공유할 수 있나요? 아닙니다. 여전히 각 쓰레드가 다른 데이터를 다루기 때문에 공유할 수 없습니다. 
+왜 **program counter, stack, register** 는 공유할 수 없을까요? Program Counter 는 다음 실행할 명령어를 가리키는데, 각 쓰레드는 같은 프로그램이지만 각각 다른 명령어를 실행하기 때문입니다. **스택**에는 로컬 변수, 함수 호출 기록, 로컬 변수가 저장되는데  쓰레드의 실행 경로에 따른 상태 정보를 유지해야 하기 때문에, 쓰레드별로 스택을 가집니다. 따라서 각 쓰레드 별로 같은 이름의 로컬 변수가 있더라도, 힙 영역 내에 다른 데이터를 할당받을 수 있습니다. 
+
+그렇다면, 만약 프로세서에서 사이클마다 모든 쓰레드에게 같은 명령어를 실행하게 한다면, pc 를 공유할 수 있을까요? 이런 특수한 상황에서는 가능합니다. 그렇다면 이때는 스택은 공유할 수 있나요? 아닙니다. 여전히 각 쓰레드가 다른 데이터를 다루기 때문에 공유할 수 없습니다. 
 
 예시 코드를 하나 더 봅시다. 
 
@@ -175,7 +176,7 @@ int main(int argc, char *argv[])
 		threads.push_back(std::thread(mac, t, NT)); //create multiple thread
 	}
 	
-	for (auto &thread : threads)
+	for (auto& thread : threads)
 	{
 		thread.join();
 	}
@@ -200,7 +201,7 @@ Loop 들은 병렬 처리를 하기 효과적입니다. 왜냐하면 루프의 �
 
 ## Vector Processing
 
-이제 Vector Processing이 등장합니다. 여기서는 하나의 명령어 스트림만 있고, 여러개의 ALU 가 있는 구조입니다. 그리고 여러개의 ALU가 하나의 fetch/decode 유닛을 공유합니다. 
+이제 **Vector Processing** 이 등장합니다. 여기서는 하나의 명령어 스트림만 있고, 여러개의 ALU 가 있는 구조입니다. 그리고 여러개의 ALU가 하나의 fetch/decode 유닛을 공유합니다. 
 
 <img width="186" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/94007376-3229-4408-9927-48ae3f1ad717">
 
@@ -257,8 +258,8 @@ SuperScalar Processor 과 Multicore Processor 의 차이점은 무엇일까요? 
 - Multicore and GPU Programming (2024-1), 연세대학교 박영준 교수님
 - [Computer Architecture: What is the difference between scalar and superscalar?](https://www.quora.com/Computer-Architecture-What-is-the-difference-between-scalar-and-superscalar)
 - https://www.researchgate.net/figure/Superscalar-versus-scalar-clock-cycles_fig2_283345112
-
-
+- https://w3.cs.jmu.edu/kirkpams/OpenCSF/Books/csf/html/ProcVThreads.html#:~:text=Since%20all%20threads%20in%20a,also%20lead%20to%20some%20disadvantages.
+- https://www.quora.com/Do-different-processes-share-the-heap-In-physical-memory-is-there-any-specific-area-for-heap
 
 
 
