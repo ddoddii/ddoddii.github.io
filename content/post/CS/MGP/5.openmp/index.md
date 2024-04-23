@@ -469,6 +469,109 @@ int main(int argc, char **argv)
 
 <img width="554" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/adc69f68-495e-4a7b-9845-981a08a7f392">
 
+## Nested loop
+
+```cpp
+omp_set_num_threads(4);
+a();
+#pragma omp parallel for
+for (int i=0;i<4;i++) {
+	for (int j=0;j<4;j++) {
+		c(i,j);
+	}
+}
+z();
+```
+
+`parallel for` 는 가장 바깥쪽 루프만 병렬화합니다. 
+
+![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/01496a52-bf90-4cde-ad3b-953bd683093a)
+
+```cpp
+omp_set_num_threads(4);
+a();
+#pragma omp parallel for
+for (int i=0;i<3;i++) {
+	for (int j=0;j<6;j++) {
+		c(i,j);
+	}
+}
+z();
+```
+
+
+만약 가장 바깥 쪽 루프의 이터레이션 수보다 쓰레드의 수가 많으면 어떻게 될까요? 아래 처럼 쓰레드 한개가 idle 한 상황이 발생합니다. 
+
+![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/61636455-c7cc-4348-8f7a-f466f2a24f7d)
+
+이 상황을 해결하는 방법들을 봅시다.
+
+<span style="font-size:120%">**Bad Way(1)**</span>
+
+```cpp
+omp_set_num_threads(4);
+a();
+for (int i=0;i<3;i++) {
+	#pragma omp parallel for
+	for (int j=0;j<6;j++) {
+		c(i,j);
+	}
+}
+z();
+```
+
+안쪽 루프를 병렬화하는 방법입니다. 가끔 해결책이 될 수 있지만, 항상 해결책이 되지는 않습니다.
+
+![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/f4584222-fe28-4f17-92c3-213c355da930)
+
+<span style="font-size:120%">**Bad Way(2)**</span>
+
+```cpp
+omp_set_num_threads(4);
+a();
+#pragma omp parallel for
+for (int i=0;i<3;i++) {
+	#pragma omp parallel for
+	for (int j=0;j<6;j++) {
+		c(i,j);
+	}
+}
+z();
+```
+
+이렇게 안쪽, 바깥쪽 루프에 모드 병렬화를 하면 두번째 pragma 는 무시됩니다. 따라서 맨 위에만 pragma 를 붙인 것과 같은 결과입니다.
+
+<span style="font-size:120%">**Good way(1)**</span>
+
+```cpp
+a();
+#pragma omp parallel for
+for (int ij = 0; ij < 3; ++ij) {
+	c(ij/6, ij%6);
+}
+z();
+```
+
+중첩된 루프를 하나의 루프로 푸는 방식입니다. 따라서 총 18번의 이터레이션이 생깁니다. 
+
+![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/0bc37cab-cc29-4690-a334-01cc839e5c25)
+
+<span style="font-size:120%">**Good way(2)**</span>
+
+위의 방식을 자동으로 해주는 pragma 의 `collapse` 를 사용할 수 있습니다. 
+
+```cpp
+omp_set_num_threads(4);
+a();
+#pragma omp parallel for collapse(2)
+for (int i=0;i<3;i++) {
+	for (int j=0;j<6;j++) {
+		c(i,j);
+	}
+}
+z();
+```
+
 ## Summary
 
 OpenMP 를 사용하면, 쓰레드를 직접 만들었을 때보다 간편하게 병렬 프로그래밍을 할 수 있지만, 어디서 틀렸는지 정확히 모를 수 도 있다는 단점이 있습니다. 따라서 정확하게 문법을 숙지하여 openmp 를 사용해야 합니다.
