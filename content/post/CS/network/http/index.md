@@ -160,6 +160,8 @@ QUIC(Quick UDP Internet Connections)는 전송 계층 프로토콜로, 멀티플
 
 
 
+![http](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/5925115d-e3be-4e5f-bf08-62deedac299a 'Image by ByteBytego')
+
 
 ## Reference
 - https://developer.mozilla.org/ko/docs/Web/HTTP
@@ -167,3 +169,4 @@ QUIC(Quick UDP Internet Connections)는 전송 계층 프로토콜로, 멀티플
 - https://developer.mozilla.org/ko/docs/Web/HTTP/Headers
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP
 - https://www.baeldung.com/cs/rest-vs-http
+- https://github.com/ByteByteGoHq/system-design-101?tab=readme-ov-file#rest-api-vs-graphql
