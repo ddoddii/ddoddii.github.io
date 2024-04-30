@@ -12,7 +12,7 @@ tags = [
 slug = "container-extension-points"
 series = ["Spring Core"]
 series_order = 4
-draft=true
+
 +++
 
 {{< alert icon="edit">}}

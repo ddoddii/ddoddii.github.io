@@ -12,7 +12,6 @@ tags = [
 slug = "dependencies"
 series = ["Spring Core"]
 series_order = 2
-draft=true
 +++
 
 {{< alert icon="edit">}}

@@ -200,6 +200,11 @@ HTTP 와 웹소켓 둘다 공격 당할 수는 있습니다. HTTP는 [cross-site
 
 결론적으로 추천하는 방식은 하이브리드 방식입니다. 대부분의 요청에서는 HTTP를 쓰되, 메세징,비디오 챗과 같이 실시간 통신이 필요한 경우에는 웹소켓 방식을 도입하는 것입니다. 이 둘에만 국한되지 않고 [WebRTC](https://webrtc.org/)와 같이 아예 새로운 기술을 쓸 수 도 있습니다.
 
+## 다른 API 아키텍쳐는 없을까?
+
+<img width="651" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/c61fe046-2f23-4c16-a546-a34ca7a057ac">
+
+
 ## 실제 사용기
 
 저는 OpenAI 의 stream 기능을 사용하여 CV 에 대한 개인 질문들을 stream 형태로 받아서 사용자에게 실시간으로 보여지게 했습니다.

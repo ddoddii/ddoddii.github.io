@@ -12,7 +12,6 @@ tags = [
 slug = "bean-scopes"
 series = ["Spring Core"]
 series_order = 3
-draft=true
 +++
 
 {{< alert icon="edit">}}
