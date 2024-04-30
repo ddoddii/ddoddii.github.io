@@ -111,7 +111,7 @@ smartTOC = true
   showViews = false
   showLikes = false
   showTableOfContents = true
-  groupByYear = false
+  groupByYear = true
   cardView = true
   cardViewScreenWidth = false
 
