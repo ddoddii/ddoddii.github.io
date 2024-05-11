@@ -130,6 +130,10 @@ i 가 2가 되어서 다음 행의 연산이 일어나는 경우에는 B는 캐�
 
 <img width="287" alt="image" src="https://github.com/ddoddii/Computer-Science-Study/assets/95014836/501de061-c8ca-477b-966b-83e2063f73e7">
 
+set associativity 와 thrashing 문제는 [여기](https://github.com/ddoddii/OS-CA-Study/tree/main/Computer%20Architecture/ch.5%20Memory%20Hierarchy)에서 더 자세히 공부했습니다. 
+
+
+
 다시 매트릭스 문제로 돌아와서 이게 어떠한 문제를 발생시키는지 봅시다. 
 - N 이\\(2^n\\)의 배수일 경우 (e.g N = 128), 128 * 4B = 512B = 8 캐시 라인들을 가지고 있습니다. 
 - Haswell CPU 는 32KB L1D 의 8-way set associativity 를 가지고 있습니다.
@@ -201,6 +205,8 @@ B보다 더 큰 사이즈의 배열을 만든 후, B를 복사합니다. 이때 
 - C :\\(N^2/c\\)reads and writes
 
 따라서 b 가 클수록, 더 빠른 연산(matmul) 을 할 수 있는 것을 볼 수 있습니다. 그렇지만 여전히 b 가 캐시에 들어가게끔 설계해야 합니다. 
+
+블러킹으로 인해 성능이 향상되는 것을 [여기](https://github.com/ddoddii/OS-CA-Study/tree/main/Computer%20Architecture/ch.5%20Memory%20Hierarchy#software-optimization-via-blocking)에서 더 자세히 공부했습니다.
 
 ## Two-level blocking
 
