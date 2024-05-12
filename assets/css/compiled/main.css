@@ -134,7 +134,7 @@ code,
 kbd,
 samp,
 pre {
-	font-family: 'IBM Plex Sans KR',ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		'Liberation Mono', 'Courier New', monospace;
 	/* 1 */
 	font-feature-settings: normal;
