@@ -16,7 +16,8 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/textmate");
     editor.session.setMode("ace/mode/python"); // Default to Python
-    editor.setValue(`{{ .Inner | safeJS }}`); // Set initial value
+    var initialContent = `{{ .Inner | htmlUnescape | safeJS }}`;
+    editor.setValue(initialContent.trim()); 
   
     function changeLanguage() {
       var language = document.getElementById("language").value;
