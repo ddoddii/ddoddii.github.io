@@ -2,8 +2,9 @@
     <div class="code-editor-header">
       <label for="language" style="font-size: 14px;">Select Language: </label>
       <select id="language" class="language-selector" onchange="changeLanguage()">
-        <option value="python">Python</option>
+        <option value="python">Python3</option>
         <option value="cpp">C++</option>
+        <option value="java">Java</option>
         <option value="javascript">JavaScript</option>
       </select>
     </div>
@@ -26,6 +27,8 @@
         mode += "c_cpp";
       } else if (language === "javascript") {
         mode += "javascript";
+      } else if (language == "java") {
+        mode += "java";
       }
       editor.session.setMode(mode);
     }
@@ -35,12 +38,19 @@
       var language = document.getElementById("language").value;
   
       var pistonLanguage;
+      var version;
       if (language === "python") {
         pistonLanguage = "python";
+        version == "3.10.0";
       } else if (language === "cpp") {
         pistonLanguage = "cpp";
+        version = "10.2.0";
       } else if (language === "javascript") {
         pistonLanguage = "javascript";
+        version = "18.15.0"
+      } else if (language == "java") {
+        pistonLanguage = "java";
+        version = "15.0.2"
       }
   
       fetch('https://emkc.org/api/v2/piston/execute', {
@@ -50,7 +60,7 @@
         },
         body: JSON.stringify({
           language: pistonLanguage,
-          version: '*',
+          version: version,
           files: [{
             name: 'code.' + pistonLanguage,
             content: code
