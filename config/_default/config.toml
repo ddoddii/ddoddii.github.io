@@ -61,3 +61,6 @@ buildFuture = false
       name = 'fragmentrefs'
       type = 'fragments'
       weight = 0
+
+[security.gotemplates]
+allowActionJSTmpl = true
