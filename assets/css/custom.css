@@ -1,30 +1,4 @@
-/* Increase the default font size */
-.ibm-plex-sans-kr-regular {
-  font-family: "IBM Plex Sans KR", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "IBM Plex Sans KR";
-  src: url('/fonts/IBMPlexSansKR-Medium.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "IBM Plex Sans KR";
-  src: url('/fonts/IBMPlexSansKR-Bold.ttf') format('truetype'); 
-  font-weight: 700;  
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Nanum Gothic Coding";
-  src: url('/fonts/NanumGothicCoding-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
+/* Font setting */
 
 @font-face {
   font-family: "Meslo LG M";
@@ -40,19 +14,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: "Gowun Dodum";
-  src: url('/fonts/GowunDodum-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Nexon Lv2 Gothic";
-  src: url('/fonts/NEXONLv2Gothic-Medium.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
 
 @font-face {
   font-family: "SUIT";
@@ -71,7 +32,6 @@
 html {
   font-size: 13pt;
 }
-
 
 article {
   font-family: "SUIT", sans-serif;
@@ -93,4 +53,62 @@ code {
 code strong, code b {
   font-family: "Meslo LG M", monospace;
   font-weight: 700; 
+}
+
+/* Live code editor setting */
+.code-editor-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Meslo LG M", sans-serif;
+}
+.code-editor-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+}
+.language-selector {
+padding: 5px;
+font-size: 14px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #f5f5f5;
+cursor: pointer;
+transition: border-color 0.3s ease;
+}
+.language-selector:hover {
+border-color: #888;
+}
+
+#editor {
+width: 100%;
+height: 300px;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.run-button {
+padding: 10px 15px;
+font-size: 14px;
+color: #fff;
+background-color: #007bff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+margin-top: 10px; 
+}
+.run-button:hover {
+background-color: #0056b3;
+}
+
+#output {
+margin-top: 15px;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+background-color: #f8f9fa;
+white-space: pre-wrap;
+word-wrap: break-word;
 }
