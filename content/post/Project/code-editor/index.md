@@ -4,7 +4,7 @@ title = "블로그에서 바로 실행가능한 라이브 코드 에디터 만�
 date = "2024-05-14"
 summary = "Ace 와 Piston을 사용해서 만든 웹 코드 에디터"
 categories = [
-    "CS"
+    "Project"
 ]
 tags = [
     "live code editor"
