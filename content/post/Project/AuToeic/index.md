@@ -7,7 +7,7 @@ categories = [
     "Project"
 ]
 tags = [
-    "AuToeic"
+    "AuToeic", "회고"
 ]
 background-image = "https://github.com/ddoddii/DSL-23-1-modeling-AuToeic/assets/95014836/2a7f0bab-459d-45c7-b15a-c1d5fc35be13"
 showHero = false

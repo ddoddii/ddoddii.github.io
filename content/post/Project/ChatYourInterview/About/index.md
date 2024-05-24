@@ -7,7 +7,7 @@ categories = [
     "Project"
 ]
 tags = [
-    "chat your interview"
+    "chat your interview", "회고"
 ]
 slug = "about"
 
