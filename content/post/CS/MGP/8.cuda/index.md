@@ -27,7 +27,7 @@ CUDA는 엔비디아에서 개발했기 때문에 기본적으로 엔비디아�
 우선 CUDA를 사용하려면 내 컴퓨터 혹은 서버에 있는 GPU 사양을 확인해야 합니다. 리눅스 서버 상에서는 간단하게 `nvidia-smi` 명령어로 확인할 수 있습니다. 
 
 <img width="577" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/f538c4e1-517c-4f37-8f84-18120a803591">
-`
+
 실제 제품이름을 알고 싶으면 `nvidia-smi -q | grep -i 'Product Name'` 을 입력하면 됩니다.
 
 
@@ -102,25 +102,25 @@ CUDA는 C/C++를 확장한 프로그래밍 인터페이스입니다. 위의 코�
 CUDA 프로그램은 호스트 코드와 디바이스 코드로 구성되어 있습니다. GPU 등 다른 연산 장치를 활용하기 위해서는 호스트 코드에서 커널을 호출해야 합니다. 컴퓨터 시스템의 기본 메모리 공간 역시 CPU가 사용하는 시스템 메모리(일반적으로 DRAM)입니다. 
 
 
-1. 호스트 메모리에서 디바이스 메모리로 입력 데이터 복사
+1. **호스트 메모리에서 디바이스 메모리로 입력 데이터 복사**
 
     <img width="701" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/16f3a37e-dca3-459c-ac53-a0a0eb1f7a18">
 
 
     CPU와 GPU는 서로 독립된 장치로, 사용하는 메모리 영역도 다릅니다. 따라서 GPU를 사용하기 위해서는 호스트 메모리에 있는 데이터를 디바이스 메모리로 복사해주어야 합니다. 
 
-2. GPU 연산 
+2. **GPU 연산** 
 
     <img width="725" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/9859ab5a-99c7-4486-8b43-9545b94261f7">
 
 
     연산에 필요한 메모리가 디바이스 메모리에 준비된 후, GPU 연산이 이루어 집니다. GPU 연산은 커널 호출을 통해 시작되며 디바이스 메모리에서 관리합니다. 
 
-3. 디바이스 메모리에서 호스트 메모리로 연산 결과 복사 
+3. **디바이스 메모리에서 호스트 메모리로 연산 결과 복사**
 
     <img width="672" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/0d6e502b-031b-44f7-94da-d22a2e5ec0b3">
 
-    GPU 연산이 끝나면 연산 결과를 다시 호스트 메모르로 복사합니다.
+    GPU 연산이 끝나면 연산 결과를 다시 호스트 메모리로 복사합니다.
 
 ### CUDA 기초 메모리 API
 
