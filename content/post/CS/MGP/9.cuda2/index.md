@@ -1,6 +1,6 @@
 ---
-title: "CUDA 프로그래밍시 고려할 점"
-date: 2024-05-25
+title: "CUDA 스레드 계층구조 알아보기"
+date: 2024-05-28
 draft: false
 summary : "벡터 합 연산, CUDA 스레드 계층구조, 스레드 인덱싱"
 tags: ["Multicore-GPU-Programming", "cuda"]
@@ -14,7 +14,7 @@ markup: 'mmark'
 ---
 {{< katex >}}
 
-본 포스팅에서는 CUDA 프로그래밍 시 고려해야 할 점들에 대해 살펴보겠습니다. 
+본 포스팅에서는 CUDA 스레드가 무엇인지와, 스레드 계층구조에 대해 살펴보겠습니다. 
 
 ## CPU와 GPU간 관계
 
@@ -402,6 +402,7 @@ void blurKernel(unsigned char* in, unsigned char* out, int w, int h)
 ![image](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/ab0f1c52-ea8e-474d-9748-30fea2477108)
 
 
+다음 포스팅에서는 **Nvidia GPU의 메모리 구조**에 대해 살펴보고, 하드웨어 구조에 따라서 성능이 어떻게 바뀌는지에 대해 살펴보겠습니다.
 
 
 
