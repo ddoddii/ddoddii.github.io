@@ -1,5 +1,5 @@
 ---
-title: "CUDA 프로그래밍 기초와 CUDA 메모리 계층구조"
+title: "CUDA 프로그래밍 기초"
 date: 2024-05-04
 draft: false
 summary : "Hello, CUDA!"
