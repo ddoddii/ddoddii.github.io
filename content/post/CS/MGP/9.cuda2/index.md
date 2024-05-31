@@ -221,7 +221,8 @@ int main
 
 - **3차원 블록**
 
-    <img width="654" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/e809e8cd-8dcb-4788-9f97-f7b47182b591">
+    <img width="649" alt="image" src="https://github.com/ddoddii/Multicore-GPU-Programming/assets/95014836/9e2643b2-ca2f-4bd9-aa19-2dd7c76a2254">
+
 
     3D 블록의 경우, 2차원 형태의 하위 블록 여러 개가 z-차원으로 나열되어 있습니다. 이때 필요한 정보는, 자신이 속한 2차원 하위 블럭 앞 까지 스레드 개수(blockDim.x * blockDim.y * threadIdx.z) 와 자신이 속한 2차원 하위 블럭 안에서 자신의 스레드 번호(2D_BLOCK_TID) 입니다.
 
@@ -229,7 +230,7 @@ int main
     3D_BLOCK_TID = (blockDim.x * blockDim.y * threadIdx.z) + 2D_BLOCK_TID
     ```
 
-2. **그리드 내 스레드 전역 번호**
+1. **그리드 내 스레드 전역 번호**
 
 그리그 내 블록이 1개라면 `TID_IN_BLOCK`이 그리드 내에서 스레드의 전역 번호가 되지만, 블럭이 여러 개라면 블럭 번호도 고려해야 합니다. 이때 고려해야 하는 정보는 자신이 속한 블록 앞 블록까지 스레드 개수와 자신의 속한 블록 내에서 자신이 몇번째 스레드인지(`TID_IN_BLOCK`) 입니다. 
 
