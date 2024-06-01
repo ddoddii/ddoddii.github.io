@@ -1,8 +1,8 @@
 ---
-title: "CUDA 스레드 계층구조 알아보기"
+title: "CPU-GPU 통신 및 CUDA를 활용한 이미지 프로세싱 기법"
 date: 2024-05-28
 draft: false
-summary : "벡터 합 연산, CUDA 스레드 계층구조, 스레드 인덱싱"
+summary : "CUDA 프로그래밍 작성에 필수적인 CUDA 스레드 계층구조와 스레드 인덱싱"
 tags: ["Multicore-GPU-Programming", "cuda"]
 categories : ["CS"]
 series: ["Multicore-GPU-Programming"]
