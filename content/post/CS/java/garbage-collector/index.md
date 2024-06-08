@@ -40,11 +40,14 @@ Garbage Collector 가 무엇이고, 언제 동작하고, 어떻게 동작하는�
 [Reference Counting](https://en.wikipedia.org/wiki/Reference_counting)은 참조되는 횟수를 이용하는 방법입니다. 참조되는 횟수가 0인 객체는 즉시 메모리가 해제됩니다. 굉장히 간단하기 때문에 구현하기도 쉽습니다. 
 
 그러나 Reference Counting 은 여러 가지 문제점들이 있습니다. 
--  **Cycles**
+-  **Cycles**
+
 	  만약 2개 이상의 객체가 서로 참조한다면, 이것은 서로 참조하는 **순환 참조**를 만들 수 있습니다. 그렇게 되면 참조하는 횟수는 영원히 0이 되지 않습니다. 따라서 Reference Counting 을 사용하는 여러 언어, 특히 CPython 에서는 순환 참조 문제를 해결하기 위해 cycle-detecting 알고리즘을 사용하기도 합니다. 다른 해결 방법은 [weak reference](https://en.wikipedia.org/wiki/Weak_reference) 를 사용하는 방법입니다. weak reference에 의해서만 참조되는 객체는 weakly reachable 로 판단되고, GC의 수거 대상이 됩니다. 
 - **Space overhead (reference count)**
+
 	  Reference Counting 에서는 객체의 참조 횟수를 저장하기 위한 추가적인 공간이 필요합니다. 참조횟수는 대체로 unsigned pointer 를 사용해서 나타내는데, 이것은 32 또는 64bits 가 추가적으로 사용됩니다. 
 - **Speed overhead (increment/decrement)** 
+
 	  멀티쓰레드 환경에선, 참조 횟수를 증가/감소 시킬 때 race condition 이 발생할 수 있습니다. 따라서 참조 횟수를 증가/감소 시키는 연산은 원자적 연산이어야 합니다. 이러한 원자적 연산에는 [compare-and-swap](https://en.wikipedia.org/wiki/Compare-and-swap) 이 있습니다. 
 
 GC에서 자주 사용하는 전략들을 봤으니, 우선 자바에서 어떠한 형태로 GC를 구현했는지 알아봅시다. 
@@ -118,10 +121,11 @@ Young 영역에서는 앞서 설명했던 방식대로,
 이 방식은 low-latency collector 로 알려져 있으며, 힙 메모리 영역의 크기가 클 때 적합합니다. **Young 영역**에 대한 GC는 Parallel Collector 과 동일합니다. 
 
 **Old 영역**에서는 아래와 같은 단게를 거칩니다.
-1. Initial Mark : 매우 짧은 대기 시간으로 살아 있는 객체를 찾는 단계입니다.  root 로부터 시작해서 스택 영역을 훑어 메서드에서 참조되는 것들만 등록합니다. 쉽게 생각하면 탐색할 범위를 한정시키는 것입니다. 
-2. Concurrent Mark : 서버 수행과 동시에 살아 있는 객체에 표시를 해놓는 단계입니다. 초기 마크 이후 추가 참조를 찾는 작업입니다. 
-3. Remark : Concurrent 표시 단계에서 표시하는 동안 변경된 객체에 대해서 다시 표시하는 단계입니다. Concurrent Mark 가 서버 실행 중에 수행되므로, 그동안 수정된 것들을 다시 마킹합니다. 
-4. Concurrent Sweep : 서버 수행과 동시에 표시되어 있는 쓰레기를 정리하는 단계입니다. 
+
+1. **Initial Mark** : 매우 짧은 대기 시간으로 살아 있는 객체를 찾는 단계입니다.  root 로부터 시작해서 스택 영역을 훑어 메서드에서 참조되는 것들만 등록합니다. 쉽게 생각하면 탐색할 범위를 한정시키는 것입니다. 
+2. **Concurrent Mark** : 서버 수행과 동시에 살아 있는 객체에 표시를 해놓는 단계입니다. 초기 마크 이후 추가 참조를 찾는 작업입니다. 
+3. **Remark** : Concurrent 표시 단계에서 표시하는 동안 변경된 객체에 대해서 다시 표시하는 단계입니다. Concurrent Mark 가 서버 실행 중에 수행되므로, 그동안 수정된 것들을 다시 마킹합니다. 
+4. **Concurrent Sweep** : 서버 수행과 동시에 표시되어 있는 쓰레기를 정리하는 단계입니다. 
 
 Initial Mark, Remark 에서는 **Stop-the-World** 상태로, GC을 실행하기 위해 JVM이 애플리케이션 실행을 멈춥니다. 하지만 Concurrent Mark, Concurrent Sweep 에서는 어플리케이션 실행과 같이 수행됩니다. 결국 **단계를 나누어 놓은 이유는 STW 상태에 빠져 있는 시간을 최소화 하기 위함**입니다. 
 
@@ -156,12 +160,12 @@ G1 이 **Young GC** 를 하는 방법을 봅시다.
 
 G1의 **Old GC**는 CMS GC 의 방식과 비슷하며, 6가지 단계로 나뉩니다. 
 
-1. Initial Mark(STW) : Old 영역에 있는 객체에서 Survivor 영역의 객체를 참조하고 있는 객체들을 표시합니다.
-2. Root region scanning : Old 영역 참조를 위해 Survivor 영역을 훑습니다. 이 작업은 Young GC가 발생하기 전에 수행됩니다.
-3. Concurrent Mark : 전체 힙 영역에 살아있는 객체를 찾습니다. 이때 Young GC가 발생하면 잠시 멈춥니다. 
-4. Remark(STW) : 힙에 살아있는 객체들의 표시 작업을 완료합니다. 이때 snapshot-at-the-beginnning(SATB) 라는 알고리즘을 사용하며, 이것은 CMS GC에서 사용하는 방식보다 빠릅니다.  
-5. Cleaning (STW) : 살아있는 객체와 비어 있는 구역을 식별하고, 필요 없는 객체들을 지웁니다. 그리고 비어 있는 구역을 초기화합니다.
-6. Copy (STW) : 살아있는 객체들을 비어 있는 구역으로 모읍니다. 
+1. **Initial Mark(STW)** : Old 영역에 있는 객체에서 Survivor 영역의 객체를 참조하고 있는 객체들을 표시합니다.
+2. **Root region scanning** : Old 영역 참조를 위해 Survivor 영역을 훑습니다. 이 작업은 Young GC가 발생하기 전에 수행됩니다.
+3. **Concurrent Mark** : 전체 힙 영역에 살아있는 객체를 찾습니다. 이때 Young GC가 발생하면 잠시 멈춥니다. 
+4. **Remark(STW)** : 힙에 살아있는 객체들의 표시 작업을 완료합니다. 이때 snapshot-at-the-beginnning(SATB) 라는 알고리즘을 사용하며, 이것은 CMS GC에서 사용하는 방식보다 빠릅니다.  
+5. **Cleaning (STW)** : 살아있는 객체와 비어 있는 구역을 식별하고, 필요 없는 객체들을 지웁니다. 그리고 비어 있는 구역을 초기화합니다.
+6. **Copy (STW)** : 살아있는 객체들을 비어 있는 구역으로 모읍니다. 
 
 G1 GC 는 GC를 가동하는 시간을 얼마나 설정한 것인가로 튜닝합니다. 따라서 시간을 설정해서 STW의 시간을 최소화할 수 있습니다. 
 
