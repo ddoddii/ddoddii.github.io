@@ -327,7 +327,7 @@ cudaFuncSetCacheConfig(MyKernel,cudaFuncCachePreferShared);
 
 ---
 
-이번 포스팅까지 CUDA 의 스레드 계층, 메모리 계층, GPU 캐시 구조 대해 다루어봤습니다. 다음 포스팅부터는 **matmul 연산을 통해 CUDA 프로그램을 최적화 하는 방법**에 대해 다루어 보겠습니다.
+이번 포스팅까지 CUDA 의 스레드 계층, 메모리 계층, GPU 캐시 구조 대해 다루어봤습니다. 또, CUDA 의 성능 고려 사항 중 SM 당 스레드 개수를 설정하는 것과, 브랜치 분기를 피하는 이유에 대해 살펴보았습니다. 다음 포스팅에서는 **matmul 연산을 통해 CUDA 프로그램을 최적화 하는 방법들**에 대해 더 다루어 보겠습니다.
 
 
 ## Reference
