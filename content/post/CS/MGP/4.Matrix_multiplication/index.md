@@ -130,7 +130,7 @@ i 가 2가 되어서 다음 행의 연산이 일어나는 경우에는 B는 캐�
 
 <img width="287" alt="image" src="https://github.com/ddoddii/Computer-Science-Study/assets/95014836/501de061-c8ca-477b-966b-83e2063f73e7">
 
-set associativity 와 thrashing 문제는 [여기](https://github.com/ddoddii/OS-CA-Study/tree/main/Computer%20Architecture/ch.5%20Memory%20Hierarchy)에서 더 자세히 공부했습니다. 
+set associativity 와 thrashing 문제는 [여기](https://github.com/ddoddii/OS-CA-Study/tree/main/Computer%20Architecture/3.%20Memory%20Hierarchy#software-optimization-via-blocking)에서 더 자세히 공부했습니다. 
 
 
 
