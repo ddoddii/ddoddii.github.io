@@ -314,20 +314,9 @@ cudaFuncSetCacheConfig(MyKernel,cudaFuncCachePreferShared);
 <img width="785" alt="image" src="https://github.com/ddoddii/ddoddii.github.io/assets/95014836/2daefdf1-6b11-4c77-bd7c-597cccc8d8f1">
 
 
-선언되는 **변수**도 **type qualifier** 에 따라 적용되는 메모리와 스코프가 달라집니다. 
-
-|Variable declaration|Memory|Scope|Lifetime|
-|-------------------|------|----|---------|
-|int LocalVar; | register | thread | thread|
-|`__device__ __shared__` int SharedVar;|shared|block|block|
-|`__device__` int GlobalVar; | global|grid|application|
-|`__device__ __constant__`int ConstantVar; | constant| grid| application|
-
-
-
 ---
 
-이번 포스팅까지 CUDA 의 스레드 계층, 메모리 계층, GPU 캐시 구조 대해 다루어봤습니다. 또, CUDA 의 성능 고려 사항 중 SM 당 스레드 개수를 설정하는 것과, 브랜치 분기를 피하는 이유에 대해 살펴보았습니다. 다음 포스팅에서는 **matmul 연산을 통해 CUDA 프로그램을 최적화 하는 방법들**에 대해 더 다루어 보겠습니다.
+이번 포스팅까지 CUDA 의 스레드 계층, 메모리 계층, GPU 캐시 구조 대해 다루어봤습니다. 또, CUDA 의 성능 고려 사항 중 SM 당 스레드 개수를 설정하는 것과, 브랜치 분기를 피하는 이유에 대해 살펴보았습니다. 다음 포스팅에서는 **CUDA의 메모리(공유 메모리, 레지스터, 글로벌 메모리)와 매트릭스 연산을 최적화하는 방법들**에 대해 더 다루어 보겠습니다.
 
 
 ## Reference
