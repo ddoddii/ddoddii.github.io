@@ -127,3 +127,18 @@ background-color: #f8f9fa;
 white-space: pre-wrap;
 word-wrap: break-word;
 }
+
+/*hover effect of post*/
+
+/* Combined hover effect for multiple elements */
+a.flex.flex-wrap.article.border.border-neutral-200.dark\:border-neutral-700.rounded-md.backdrop-blur.overflow-hidden:hover,
+div.min-h-full.border.border-neutral-200.dark\:border-neutral-700.border-2.rounded.overflow-hidden:hover {
+  transform: scale(1.05); 
+  transition: transform 0.3s ease-in-out; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background-color: rgba(167, 230, 255, 0.1); 
+}
+
+
+
+
