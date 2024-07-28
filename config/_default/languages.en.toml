@@ -18,7 +18,7 @@ title = "Soeun's Dots"
 [author]
     name = "Soeun Uhm"
     image = "img/avatar.png"
-    headline = "Problem-solving Engineer, talented in grit.🔥"
+    headline = "Problem-solving Engineer, talented in grit."
     bio = "problem-solving engineer, talented in grit."
   links = [
 #     { link = "https://link-to-some-website.com/" },
@@ -62,6 +62,6 @@ title = "Soeun's Dots"
 #     { x-twitter = "https://twitter.com/username" },
 #     { whatsapp = "https://wa.me/phone-number" },
      { youtube = "https://www.youtube.com/@ddoddiii" },
-     { email = "mailto:1223cindy@google.com" },
+     { email = "mailto:1223cindy@gmail.com" },
 #     { ko-fi = "https://ko-fi.com/username" },
    ]
