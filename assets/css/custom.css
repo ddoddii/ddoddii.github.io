@@ -44,18 +44,34 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'NotoSerifKR-Medium';
+  src: url('/fonts/NotoSerifKR-Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NotoSerifKR-Bold';
+  src: url('/fonts/NotoSerifKR-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 html {
   font-size: 13pt;
 }
 
 article {
-  font-family: "LineSeed", sans-serif;
+  font-family: "NotoSerifKR-Medium", sans-serif;
   font-weight: 400;
   font-size: 13pt;
 }
 
+
+
 article strong, article b {
-  font-family: "LineSeed-Bold", sans-serif;
+  font-family: "NotoSerifKR-Bold", sans-serif;
   font-weight: 700;  
   font-size: 13pt;
 }
@@ -68,6 +84,19 @@ code {
 code strong, code b {
   font-family: "Meslo LG M-Bold", monospace;
   font-weight: 700; 
+}
+
+.font-bold.text-xl {
+  font-family: "NotoSerifKR-Bold", sans-serif;
+  font-weight: 700; 
+}
+
+.py-1.prose {
+  font-family: "NotoSerifKR-Medium", sans-serif;
+}
+
+.text-base {
+  font-family: "NotoSerifKR-Bold", sans-serif;
 }
 
 /* Live code editor setting */
