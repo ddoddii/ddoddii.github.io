@@ -59,13 +59,19 @@
  name = "Autoeic"
   parent = "Project"
   pageRef = "tags/AuToeic"
-  weight = 20
+  weight = 10
 
 [[main]]
  name = "Chat Your Interview"
   parent = "Project"
   pageRef = "tags/chat-your-interview"
   weight = 20
+
+[[main]]
+ name = "Daily Coding Times"
+ parent = "Project"
+ url = "https://ddoddii.github.io/post/project/daily-coding-times/"
+ weight = 30
 
 
 # -- Footer Menu --
