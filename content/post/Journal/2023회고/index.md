@@ -25,7 +25,6 @@ Data Science Lab 학회에서 부회장을 맡아서 열심히 커리큘럼 짜�
 
 ![KakaoTalk_Photo_2023-12-31-23-18-34](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/f7a94377-8570-459e-875e-c306effea11f '1월 DSL OT')
 
-![KakaoTalk_Photo_2023-12-31-23-22-38](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/f533224c-cdea-4e17-9dc0-89d302088aa7 '운영진과 스키장')
 
 
 ## 3~4월
@@ -38,7 +37,6 @@ DSL 에서 모델링 프로젝트 리드를 맡았다. 지금까지 진행했던
 
 {{< article link="/post/project/autoeic/" >}}
 
-![KakaoTalk_Photo_2024-01-01-01-45-46](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/dadde25b-6564-4470-a471-57fa853824f0 '감자들과 글램핑')
 
 ## 5~6월
 
@@ -62,7 +60,6 @@ DSL 에서 모델링 프로젝트 리드를 맡았다. 지금까지 진행했던
 
 ![KakaoTalk_Photo_2023-12-31-23-37-43](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/6c086175-6078-419f-9bc2-8b9efcd2b806 '6걔월을 동고동락한 운영진과')
 
-![KakaoTalk_Photo_2024-01-01-01-41-16](https://github.com/ddoddii/ddoddii.github.io/assets/95014836/4983df89-f858-4af6-a117-ae28f942ab04 '졸업하는 데싸랩 친구들과')
 
 ## 7~8월
 
