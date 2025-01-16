@@ -12,7 +12,7 @@ toc : true
 katex : true
 markup: 'mmark'
 ---
-{{< katex >}}
+
 
 ## Matrix multiplication basics
 
@@ -59,7 +59,7 @@ C의 한개의 칼럼을 계산하기 위해서는, A 전체를 읽고 B의 칼�
 
 <img width="178" alt="image" src="https://github.com/ddoddii/Computer-Science-Study/assets/95014836/0e794f1b-0295-4b30-83b9-601f03faf22e">
 
-그렇다면 C의 각 행에 쓰레드를 할당하면 어떨까요? 이때도 중복되는 연산이 없고, 열에 쓰레드를 할당했을 때 생기는 false sharing 문제도 해결이 됩니다. 
+그렇다면 C의 각 행에 쓰레드를 할당하면 어떨까요? 이때도 중복되는 연산이 없고, 열에 쓰레드를 할당했을 때 생기는 false sharing 문제도 해결이 됩니다.
 
 여기서는 A의 행 1줄을 읽을 때마다, B의 모든 칼럼을 읽어야 합니다. 이때 칼럼을 읽는 것은 메모리 구조에 따라 계속해서 캐시 미스가 발생하므로, 행 방향으로 데이터를 읽는 것이 캐시 히트가 될 확률이 높습니다. 따라서 B을 Transpose(전치) 시키면,\\(B^T\\)는 행 방향으로 데이터를 읽어올 수 있습니다. 하지만, 여기서도 행렬을 전치시키는데는 많은 오버헤드가 듭니다. 
 

@@ -16,7 +16,7 @@ series = ["Database"]
 series_order = 7
 draft = true
 +++
-{{< katex >}}
+
 
 ## Functional Dependency
 Functional Dependency : \\( x \rightarrow y \\) 라고 쓰면, x 가 y 를 결정한다는 뜻이다. 즉, 아래 테이블에서 x 를 주면, y 를 알 수 있다는 뜻이다. 여기서 x 는 **determinant** 이고, y 는 **dependent** 이다. 

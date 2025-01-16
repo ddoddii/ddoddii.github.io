@@ -11,7 +11,7 @@ tags = [
 ]
 slug = "regex-101"
 +++
-{{< katex >}}
+
 
 ## Regular Expressoin HOWTO
 

@@ -15,7 +15,7 @@ slug = "transaction"
 series = ["Database"]
 series_order = 4
 +++
-{{< katex >}}
+
 
 ## Intro to Transaction
 

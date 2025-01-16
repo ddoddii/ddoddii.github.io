@@ -12,7 +12,6 @@ tags = [
 slug = "bitmask"
 +++
 
-{{< katex >}}
 
 ## 비트 논리 연산자
 

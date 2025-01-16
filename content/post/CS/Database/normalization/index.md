@@ -15,7 +15,7 @@ slug = "normalization"
 series = ["Database"]
 series_order = 3
 +++
-{{< katex >}}
+
 
 Normalization(정규화) 는 무엇이고, 왜 해야할까?
 
