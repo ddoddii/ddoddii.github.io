@@ -32,6 +32,12 @@
   weight = 20
 
 [[main]]
+ name = "Papers"
+  parent = "Categories"
+  pageRef = "categories/papers/"
+  weight = 20
+
+[[main]]
  name = "Data Science"
   parent = "Categories"
   pageRef = "categories/ds/"
