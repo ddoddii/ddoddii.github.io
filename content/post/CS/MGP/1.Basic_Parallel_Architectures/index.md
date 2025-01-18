@@ -12,7 +12,7 @@ toc : true
 katex : true
 markup: 'mmark'
 ---
-
+{{< katex >}}
 
 
 본 포스팅에서는 기본적인 **Parallel Architectures** 3가지에 대해 살펴보겠습니다. 

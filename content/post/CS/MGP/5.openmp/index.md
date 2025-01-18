@@ -12,6 +12,7 @@ toc : true
 katex : true
 markup: 'mmark'
 ---
+{{< katex >}}
 
 ## OpenMP - why?
 
