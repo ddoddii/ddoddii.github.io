@@ -1,18 +1,17 @@
-+++
-author = "Soeun"
-title = "Nvidia Triton Server 에서 리소스 최대한 활용하기 (Throughput, Latency 개선방법)"
-date = "2024-01-17"
-summary = "삽질을 통해 헤쳐나간 Triton Server 사용기 - 2탄"
-categories = [
-    "CS"
-]
-tags = [
-    "Triton",
-]
-slug = "resouce-utilization"
-series = ["Triton Inference Server"]
-series_order = 2
-+++
+---
+title: "Nvidia Triton Server 에서 리소스 최대한 활용하기 (Throughput, Latency 개선방법)"
+date: 2024-01-17
+draft: false
+summary : "삽질을 통해 헤쳐나간 Triton Server 사용기 - 2탄"
+tags: ["Triton"]
+categories : ["tools"]
+series : ["Triton Inference Server"]
+series_order : 2
+slug : "triton-resource"
+toc : true
+katex : true
+markup: 'mmark'
+---
 
 ## Part2. Improving resource utilization
 

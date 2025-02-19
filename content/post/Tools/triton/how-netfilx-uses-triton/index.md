@@ -1,18 +1,17 @@
-+++
-author = "Soeun"
-title = "How Netflix uses Triton for model scoring service"
-date = "2024-07-27"
-summary = "Learings and Painpoints of using Triton"
-categories = [
-    "CS"
-]
-tags = [
-    "Triton",
-]
-slug = "how-neflix-uses-triton"
-series = ["Triton Inference Server"]
-series_order = 3
-+++
+---
+title: "How Netflix uses Triton for model scoring service"
+date: 2024-07-27
+draft: false
+summary : "Learings and Painpoints of using Triton"
+tags: ["Triton"]
+categories : ["Tools"]
+series : ["Triton Inference Server"]
+series_order : 3
+slug : "how-neflix-uses-triton"
+toc : true
+katex : true
+markup: 'mmark'
+---
 
 ## Challenges with AI inferencing
 

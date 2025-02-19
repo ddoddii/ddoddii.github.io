@@ -32,52 +32,24 @@
   weight = 20
 
 [[main]]
+ name = "Artificial Intelligence"
+  parent = "Categories"
+  pageRef = "categories/ai/"
+  weight = 20
+
+[[main]]
  name = "Papers"
   parent = "Categories"
   pageRef = "categories/papers/"
-  weight = 20
+  weight = 30
+
 
 [[main]]
- name = "Data Science"
+ name = "Tools"
   parent = "Categories"
-  pageRef = "categories/ds/"
+  pageRef = "categories/tools/"
   weight = 20
 
-[[main]]
- name = "Journal"
-  parent = "Categories"
-  pageRef = "categories/journal/"
-  weight = 20
-
-[[main]]
- name = "Tips"
-  parent = "Categories"
-  pageRef = "categories/tips/"
-  weight = 20
-
-
-
-[[main]]  
- name = "Project"
- weight = 40
-
-[[main]]
- name = "Autoeic"
-  parent = "Project"
-  pageRef = "tags/AuToeic"
-  weight = 10
-
-[[main]]
- name = "Chat Your Interview"
-  parent = "Project"
-  pageRef = "tags/chat-your-interview"
-  weight = 20
-
-[[main]]
- name = "Daily Coding Times"
- parent = "Project"
- url = "https://ddoddii.github.io/post/project/daily-coding-times/"
- weight = 30
 
 
 # -- Footer Menu --

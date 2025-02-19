@@ -1,18 +1,17 @@
-+++
-author = "Soeun"
-title = "Nvidia Triton Server 에서 모델 배포하기"
-date = "2024-01-14"
-summary = "삽질을 통해 헤쳐나간 Triton Server 사용기 - 1탄"
-categories = [
-    "CS"
-]
-tags = [
-    "Triton",
-]
-slug = "model-deploy"
-series = ["Triton Inference Server"]
-series_order = 1
-+++
+---
+title: "Nvidia Triton Server 에서 모델 배포하기"
+date: 2024-01-14
+draft: false
+summary : "삽질을 통해 헤쳐나간 Triton Server 사용기 - 1탄"
+tags: ["Triton"]
+categories : ["tools"]
+series : ["Triton Inference Server"]
+series_order : 1
+slug : "model-deploy"
+toc : true
+katex : true
+markup: 'mmark'
+---
 
 ## Part1. model deployment
 
