@@ -45,7 +45,7 @@ BLAS 명세는 일반적이지만, 실제 BLAS 구현은 특정 하드웨어에�
 
 ### BLAS의 확장과 성능 최적화
 
-LAS 추상화 계층은 높은 성능을 위한 커스터마이징을 가능하게 하였다. 예를 들어, LINPACK은 범용 라이브러리로, 여러 머신에서 수정 없이 실행할 수 있었다. 그러나 특정 하드웨어에서 성능을 극대화하려면 해당 머신에 최적화된 BLAS 버전을 사용해야 했다.
+BLAS 추상화 계층은 높은 성능을 위한 커스터마이징을 가능하게 하였다. 예를 들어, LINPACK은 범용 라이브러리로, 여러 머신에서 수정 없이 실행할 수 있었다. 그러나 특정 하드웨어에서 성능을 극대화하려면 해당 머신에 최적화된 BLAS 버전을 사용해야 했다.
 
 컴퓨터 아키텍처가 발전하면서 벡터 프로세서(vector processor) 가 등장하였으며, 벡터 프로세서를 위한 BLAS는 빠른 벡터 연산을 활용할 수 있도록 설계되었다. (비록 벡터 프로세서는 이후 점차 사라졌지만, 현대 CPU에서는 벡터 명령어가 BLAS 루틴의 성능 최적화를 위해 필수적인 요소로 자리 잡았다.)
 
@@ -192,6 +192,125 @@ GotoBLAS는 데이터를 미리 복사하여 연속적인 메모리 블록을 �
 이러한 최적화 기법은 GotoBLAS, OpenBLAS, BLIS 등의 최신 BLAS 라이브러리에 포함되어 있다.
 
 
+## Anatomy of High-Performance Matrix Multiplication
+
+이제 비교적 오래된 논문에서, 매트릭스 연산 최적화를 어떻게 제시했는지 살펴보자.
+
+
+### A Layered Approach to GEMM
+
+\\(m × n\\) 크기인 행렬 \\(X\\) 를 보자. \\(X\\) 를 아래와 같이 행렬로 나눈 경우를 생각하자:
+
+<img width="410" alt="Image" src="https://github.com/user-attachments/assets/49934103-1692-4724-96e1-d8f51eef9f20" />
+
+이때, \\(X_j\\) 는 \\(n_b\\)개의 열을 가지고 있고, \\(\check(X_i)\\)는 \\(m_b\\)개의 행을 가지고 있다. 
+
+매트릭스 연산을 각각 작은 매트릭스(submatrices)로 분할하여 생각해보자. 여기서 저자들은 이러한 형태의 연산이 매우 자주 일어나는 것을 발견했다. 예를 들어서, LAPACK가 지원하는 여러 가지 연산들은 GEPP, GEMP, GEPM 으로 이루어져 있다. 
+
+
+<img width="635" alt="Image" src="https://github.com/user-attachments/assets/3a1769b3-895b-4a86-a556-648f64435503" />
+
+
+<img width="1144" alt="Fig.4" src="https://github.com/user-attachments/assets/093959f6-b0a4-4310-ade2-c7f7d00b85df" />
+
+
+Fig. 4를 보면, 일반적인 GEMM 연산이 어떻게 Fig. 2에서 설명된 다양한 특수한 형태의 연산으로 체계적으로 분해될 수 있는지를 보여준다.
+
+즉, GEMM 연산은 여러 개의 GEPP, GEMP, GEPM 호출로 분해될 수 있으며,이 연산들은 다시 GEBP, GEPB, GEPDOT 같은 커널 함수들로 더 세분화될 수 있다.
+
+이 접근 방식의 핵심 아이디어는 **가장 하위 계층의 세 가지 커널(GEBP, GEPB, GEPDOT)이 높은 성능을 달성하면, 나머지 GEMM 연산들도 자연스럽게 높은 성능을 낼 수 있다** 는 것이다.
+
+<img width="501" alt="Fig.5" src="https://github.com/user-attachments/assets/258d0580-63f6-4de3-a2c7-0fd672378985" />
+
+Fig. 5에서는 일반적인 GEMM 연산을 작은 블록 단위로 나누어 수행하는 방식을 설명한다.
+
+1. **행렬 C,A,B 의 블록 분할 (Partitioning into Submatrices)**
+
+이를 위해 행렬 C,A,B 를 작은 서브 행렬(submatrices)로 나누는데, 다음과 같이 블록 단위를 정의한다:
+
+<img width="582" alt="Image" src="https://github.com/user-attachments/assets/03323ecc-2bfd-4821-9855-c8abf97c300e" />
+
+
+- \\(C_{ij} \in \mathbb{R}^{m_c × n_r}  \\) → 결과 행렬 \\(C\\) 의 개별 블록
+- \\(A_{ip} \in \mathbb{R}^{m_c × k_c}  \\) → 행렬 \\(A\\) 의 블록
+- \\(B_{pj} \in \mathbb{R}^{k_c × n_r}  \\) → 행렬 \\(B\\) 의 블록
+
+즉, \\(C\\) 행렬의 각 원소 \\(C_{ij}\\)는 다음과 같이 계산된다: 
+
+$$C_{ij} += A_{ip}B_{pj}$$
+
+여기서, 블록 크기 \\(m_c, n_r, k_c\\) 는 논문 후반부에 더 자세히 설명된다. 
+
+2. **3중 중첩 루프(Triple-Nested Loop)와 GEMM 분해 과정**
+
+Fig. 5에서는 GEMM 연산을 작은 블록으로 나누어 수행하는 과정을 3중 중첩 루프 형태로 나타낸다:
+
+```
+for p = 1 : K
+    for i = 1 : M
+        for j = 1 : N
+            C_ij += A_ip * B_pj
+        endfor
+    endfor
+endfor
+```
+
+각 루프가 수행하는 역할은 다음과 같다:
+
+(1) j 루프`(for j = 1:N)` -> 행렬 \\(B\\)를 \\(n_r\\)크기의 블록으로 분할하여 부분연산 수행
+
+(2) i 루프`(for i = 1:M)` -> 행렬 \\(A\\)를 \\(m_c\\)크기의 블록으로 분할하여 부분연산 수행
+
+(3) p 루프`(for p = 1:K)` -> 행렬 \\(A\\),\\(B\\)를 \\(k_c\\)크기의 블록으로 나누어 순차적으로 처리
+
+
+즉, GEMM 연산을 바로 수행하는 것이 아니라, 블록 단위로 나누어 작은 크기의 행렬 곱셈을 여러 번 수행함으로써 연산을 최적화한다.
+
+3. **GEMM 최적화 계층 (Layered Optimization)**
+
+Fig. 5에서는 GEMM 연산을 더욱 세분화하여 최적화하는 계층적인 접근 방식을 설명한다.
+이 과정은 다음과 같이 단계적으로 나뉜다:
+
+- GEBP (Generalized Edge Block Panel)
+  - 가장 작은 블록 단위 연산 수행
+  - 작은 패널(panel) 크기의 서브 행렬을 사용하여 행렬 연산을 수행
+  - 캐시 친화적인(blocking) 연산을 수행하여 성능 최적화
+
+- GEPP_VAR1 (Generalized Edge Panel Panel - Variant 1)
+  - 중간 크기의 블록을 사용하여 연산을 수행
+  - 여러 개의 블록을 조합하여 보다 큰 연산을 처리
+
+- GEMM_VAR1 (Generalized Matrix-Matrix Multiplication - Variant 1)
+  - 전체 행렬을 작은 블록 단위 연산으로 완성
+  - 최종적으로 GEMM 연산을 블록 기반으로 수행
+
+### High-Performance GEBP, GEPB, GEPDOT
+
+이제 GEBP, GEPB, GEPDOT 연산을 고성능으로 구현하는 방법을 살펴보자.우선, 메모리 계층 간 데이터 이동 비용(cost of moving data) 을 분석하는 것으로 시작하며, 이후 보다 실제적인 모델을 추가하여 GEPP, GEMP, GEPM 알고리즘으로 확장할 것이다.
+
+#### 1. Basics 
+
+Fig. 6 (왼쪽)에서는 간단한 메모리 계층 모델을 보여준다. RAM과 레지스터 사이에 하나의 캐시(Cache) 계층을 추가한 모델이다. 이 모델을 활용하면, GEBP, GEPB, GEPDOT의 가장 간단한 성능 최적화를 설명할 수 있다.
+
+<img width="626" alt="Fig.6" src="https://github.com/user-attachments/assets/9f835d18-1a50-4494-aad5-0085cb551b47" />
+
+우선 \\(A \in \mathbb{R}^{m_c × k_c}  \\), \\(B \in \mathbb{R}^{k_c × n}\\), \\(C \in \mathbb{R}^{m_c × n}\\) 인 GEBP 를 보자. 아래와 같이 행렬 B,C를 분할하자:
+
+$$B = (B_0 | B_1 | \cdots | B_{N-1}) and C = (C_0 | C_1 | \cdots | C_{N_1})$$ 
+
+그리고 3가지 가정을 하는데 :
+
+\\(Assumption (a)\\). \\(m_c,k_c\\) 는 충분히 작아서, \\(A\\) 및 행렬 \\(B,C\\)  의 \\(n_r\\) 번째 열인 \\(B_j,C_j\\) 가 둘다 캐시에 완전히 적재가능해야 한다.
+
+\\(Assumption (b)\\). 만약 \\(A,C_j, \ and \ B_j\\)가 캐시에 있으면 \\(C_j := AB_j + C_j\\) 는 CPU의 최대 속도로 연산될 수 있다.
+
+\\(Assumption (c)\\). 만약 \\(A\\)가 캐시에 있으면 더 이상 필요 없어질 때까지 캐시에 있는다. 
+
+이러한 가정들 하에, Fig.7 의 접근에서 GEBP 알고리즘이 메인 메모리에서 캐시로 데이터 이동 비용을 최소화할 수 있다.
+
+<img width="454" alt="Fig.7" src="https://github.com/user-attachments/assets/460f7eb3-dd9b-4ea6-ac15-512fa9e9a3bd" />
+
+<img width="854" alt="GEBP help" src="https://github.com/user-attachments/assets/d5e55066-ea6a-4c4f-9eb6-cafeddd64dda" />
 
 
 
