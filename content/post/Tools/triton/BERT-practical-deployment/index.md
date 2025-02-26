@@ -9,6 +9,7 @@ categories = [
 tags = [
     "Triton",
 ]
+draft = true
 slug = "bert-deployment-with-triton"
 series = ["Triton Inference Server"]
 series_order = 4

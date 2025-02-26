@@ -1,7 +1,7 @@
 ---
 title: "[Review] - DeepSeek LLM Scaling Open-Source Language Models with Longtermism"
 date: 2025-01-31
-draft: false
+draft: true
 summary : "DeepSeek paper review"
 tags: ["DeepSeek"]
 categories : ["Papers"]
